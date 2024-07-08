@@ -23,27 +23,27 @@ import ShopDetails from "../Pages/ShopDetails/ShopDetails";
 
         },
         {
-          path: "allProducts",
+          path: "/allProducts",
           element: <AllProducts></AllProducts>
         },
         {
-          path: "about",
+          path: "/about",
           element:<FullAbout></FullAbout>
         },
         {
-          path: "login",
+          path: "/login",
           element: <Login></Login>
         },
         {
-          path: "signup",
+          path: "/signup",
           element: <Signup></Signup>
         },
         {
-          path: 'details/:id',
+          path: '/details/:id',
           element: <ProductDetails></ProductDetails>
         },
         {
-          path: 'shopDetails/:id',
+          path: '/shopDetails/:id',
           element: <ShopDetails></ShopDetails>
         }
 

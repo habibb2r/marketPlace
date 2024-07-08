@@ -36,7 +36,7 @@ const Navbar = () => {
             <Link to='/dashboard'>Dashboard</Link>
             <div className="btn btn-ghost text-primary flex justify-center items-center">
             <FaShoppingCart className="text-3xl text-primary"/>
-            <div className="badge badge-md badge-primary">{cart.length}</div>
+            <div className="badge badge-md badge-primary">{cart?.length || 0}</div>
             </div>
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>
