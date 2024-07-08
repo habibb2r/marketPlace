@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom";
 const Signup = () => {
     
     const{createUser} = useContext(AuthContext)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const onSubmit = data => {
     console.log(data);
     createUser(data.Email, data.Password)
@@ -25,6 +25,7 @@ const Signup = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
+              reset();
               <Navigate to='/'></Navigate>
         }
     })

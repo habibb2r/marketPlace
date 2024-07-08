@@ -14,7 +14,7 @@ import useAuth from "../../Hooks/useAuth";
 const ProductDetails = () => {
     const itemId = useParams();
     const[details, isLoading] = useDetails(itemId)
-    const [, refetch] = useCart()
+    const [, , refetch] = useCart()
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()

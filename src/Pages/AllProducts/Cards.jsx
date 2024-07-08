@@ -18,7 +18,7 @@ const Cards = ({data}) => {
   const navigate = useNavigate();
   const location = useLocation()
   const axiosSecure = useAxiosSecure()
-  const [, refetch] = useCart()
+  const [, ,refetch] = useCart()
 
   const {
     product_image,

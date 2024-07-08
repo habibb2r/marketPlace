@@ -23,7 +23,7 @@ const ShopDetails = () => {
             </div>
             <div className="text-center">
                 <p className="text-xl font-medium font-sans py-5 text-primary">Products available in this stall</p>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-4 gap-5">
                     {
                         shopDetails.map(item=> <Cards key={item.id} data={item}></Cards>)
                     }

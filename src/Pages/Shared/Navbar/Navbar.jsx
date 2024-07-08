@@ -5,6 +5,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../../Hooks/useCart";
+import home from '../../../icons/home-page.png'
+import allproducts from '../../../icons/allproducts.png'
+import dashboard from '../../../icons/dashboard.png'
+import cartlogo from '../../../icons/cart.png'
 
 const Navbar = () => {
   const [cart] = useCart()
@@ -31,12 +35,12 @@ const Navbar = () => {
           </div>
           <div className="shadow-sm rounded-md p-1 font-thin"> Hey, {user? user.email : 'Login' }</div>
           <div className="flex align-middle items-center gap-5 font-semibold text-md">
-            <Link to='/'>Home</Link>
-            <Link to='/allProducts'>All Products</Link>
-            <Link to='/dashboard'>Dashboard</Link>
-            <div className="btn btn-ghost text-primary flex justify-center items-center">
-            <FaShoppingCart className="text-3xl text-primary"/>
-            <div className="badge badge-md badge-primary">{cart?.length || 0}</div>
+            <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
+            <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
+            <Link to='/dashboard'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link>
+            <div className="text-primary relative">
+            <img className="h-[42px]" src={cartlogo} alt="Cart" />
+            <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
             </div>
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>

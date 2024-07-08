@@ -1,5 +1,6 @@
 import About from "../About/About";
 import Banner from "../Banner/Banner";
+import BuyStall from "../BuyStall/BuyStall";
 import Categories from "../Categories/Categories";
 import DiscountProducts from "../DiscountProducts/DiscountProducts";
 import Reviews from "../Reviews/Reviews";
@@ -13,7 +14,7 @@ const Home = () => {
            <About></About>
            <Categories></Categories>
            <DiscountProducts></DiscountProducts>
-           <TopStalls></TopStalls>
+           <BuyStall></BuyStall>
            <Reviews></Reviews>
         </>
     );
