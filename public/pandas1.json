@@ -1,0 +1,746 @@
+[
+  {
+    "id": 1,
+    "product_name": "iphone 11",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 87999,
+      "present_price": 87999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 4,
+      "rom": 128,
+      "processor": "Apple A13 Bionic(7nm+)"
+    },
+    "product_image": "https://i.ibb.co/9W1CwC8/iphone11.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 2,
+    "product_name": "iphone 11 Pro",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 119999,
+      "present_price": 119999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 64,
+      "processor": "Apple A13 Bionic"
+    },
+    "product_image": "https://i.ibb.co/tXPTrRK/iphone-11-pro.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 3,
+    "product_name": "iphone 12",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 107999,
+      "present_price": 107999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 4,
+      "rom": 128,
+      "processor": "Apple A14 Bionic(5nm)"
+    },
+    "product_image": "https://i.ibb.co/ypfZ9Q4/iphone-12.jpg",
+    "product_category": "Mobile",
+    "product_rating": 5,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 4,
+    "product_name": "iphone 12 Pro Max",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 175999,
+      "present_price": 175999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 256,
+      "processor": "Apple A14 Bionic(5nm)"
+    },
+    "product_image": "https://i.ibb.co/YdPrgTy/iphone-12-pro-max.jpg",
+    "product_category": "Mobile",
+    "product_rating": 3,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 5,
+    "product_name": "iphone 13",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 133499,
+      "present_price": 133499,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 4,
+      "rom": 256,
+      "processor": "Apple A15 Bionic(5nm)"
+    },
+    "product_image": "https://i.ibb.co/RgwYQHC/iphone-13.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 6,
+    "product_name": "iphone 13 Pro Max",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 176999,
+      "present_price": 176999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 256,
+      "processor": "Apple A15 Bionic(5nm)"
+    },
+    "product_image": "https://i.ibb.co/gWwNBbQ/iphone-13-pro-max.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 7,
+    "product_name": "iphone 14",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 76500,
+      "present_price": 76500,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 128,
+      "processor": "Apple A15 Bionic(5nm)"
+    },
+    "product_image": "https://i.ibb.co/mFJ2J0y/iphone-14.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 8,
+    "product_name": "iphone 14 Pro Max",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 219699,
+      "present_price": 219699,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 256,
+      "processor": "Apple A16 Bionic(4nm)"
+    },
+    "product_image": "https://i.ibb.co/h9k2M9L/iphone-14-pro-max.jpg",
+    "product_category": "Mobile",
+    "product_rating": 5,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 9,
+    "product_name": "iphone 15",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 199999,
+      "present_price": 199999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 512,
+      "processor": "Hexa-core 3.46 GHz Everest"
+    },
+    "product_image": "https://i.ibb.co/fMb6h4r/iphone-15.jpg",
+    "product_category": "Mobile",
+    "product_rating": 5,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 10,
+    "product_name": "iphone 15 Pro Max",
+    "stall_name": "Iphone Lagbe?",
+    "stall_id": 227,
+    "product_price": {
+      "previous_price": 264999,
+      "present_price": 264999,
+      "discount": false
+    },
+    "product_description": {
+      "brand": "Iphone",
+      "ram": 6,
+      "rom": 512,
+      "processor": "Apple A17 pro(3 nm)"
+    },
+    "product_image": "https://i.ibb.co/59YtCsw/iphone-15-pro-max.jpg",
+    "product_category": "Mobile",
+    "product_rating": 5,
+    "stall_type": "Mobile Shop"
+  },
+  {
+    "id": 11,
+    "product_name": "Huawei Honor 20Lite",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 19990,
+      "present_price": 19000,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Huawei",
+      "ram": 4,
+      "rom": 128,
+      "processor": "Hisilicon kirin 710"
+    },
+    "product_image": "https://i.ibb.co/tbCcfDz/huwei-20lite.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 12,
+    "product_name": "xiaomi 13 Lite",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 49999,
+      "present_price": 46999,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Xiaomi",
+      "ram": 8,
+      "rom": 256,
+      "processor": "Qualcomm SM7450-AB Snapdragon 7 Gen 1 (4 nm)"
+    },
+    "product_image": "https://i.ibb.co/TqP9KW0/xiaomi-13-lite.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 13,
+    "product_name": "Redmi Note12 Pro 5G",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 37990,
+      "present_price": 35990,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Xiaomi",
+      "ram": 8,
+      "rom": 256,
+      "processor": "MediaTek Dimensity 1080 6nm"
+    },
+    "product_image": "https://i.ibb.co/9TBBT0H/xiaomi-note-12-pro.jpg",
+    "product_category": "Mobile",
+    "product_rating": 5,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 14,
+    "product_name": "Redmi Note 11T Pro+",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 41000,
+      "present_price": 40000,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Xiaomi",
+      "ram": 8,
+      "rom": 128,
+      "processor": "Mediatek Dimensity 8100 (5 nm)"
+    },
+    "product_image": "https://i.ibb.co/wyffMHd/xiaomi-note-11-T.jpg",
+    "product_category": "Mobile",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 15,
+    "product_name": "Zeblaze Btalk 3 Pro Smart Watch",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 2890,
+      "present_price": 2390,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Zeblaze",
+      "model": "btalk3-pro",
+      "Speaker": "Yes",
+      "Microphone": "Yes",
+      "Bluetooth version": "BLE 5.2",
+      "processor": "Unmentioned"
+    },
+    "product_image": "https://i.ibb.co/Mfd8SKN/zeblaze-btalk3.jpg",
+    "product_category": "Smart Watch",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 16,
+    "product_name": "OnePlus Watch 2 Smart Watch",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 37399,
+      "present_price": 31900,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "OnePlus",
+      "model": "OnePlus Watch 2",
+      "Bluetooth version": "BLE 5.0",
+      "processor": "Snapdragon W5 Gen 1"
+    },
+    "product_image": "https://i.ibb.co/RPXS8fP/oneplus-watch-2.jpg",
+    "product_category": "Smart Watch",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 17,
+    "product_name": "Havit H205d Wired Headphone",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 600,
+      "present_price": 560,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Havit",
+      "model": "Havit H205d",
+      "Cable Length": "4.6 ft",
+      "Connection Type": "Wired",
+      "Microphone": "Yes",
+      "Type": "Regular",
+      "Plug Type": "Dual port"
+    },
+    "product_image": "https://i.ibb.co/L1GFgFf/havit-h205d.jpg",
+    "product_category": "Headphone",
+    "product_rating": 4,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 18,
+    "product_name": "Havit H2011d-Pro Headphone",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 1180,
+      "present_price": 1150,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Havit",
+      "model": "Havit H2011d-Pro",
+      "Cable Length": "6.56 ft",
+      "Connection Type": "Wired",
+      "Microphone": "Yes",
+      "Type": "Gaming",
+      "Plug Type": "Dual port"
+    },
+    "product_image": "https://i.ibb.co/2ZdDqR3/havit-h2011.jpg",
+    "product_category": "Headphone",
+    "product_rating": 5,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 19,
+    "product_name": "Havit H2010d-Pro Gaming Headphone",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 1290,
+      "present_price": 1250,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Havit",
+      "model": "Havit H2010d-Pro",
+      "Cable Length": "6.56 ft",
+      "Connection Type": "Wired",
+      "Microphone": "Yes",
+      "Type": "Gaming",
+      "Plug Type": "Dual port"
+    },
+    "product_image": "https://i.ibb.co/F76SkLZ/havit-2010.jpg",
+    "product_category": "Headphone",
+    "product_rating": 5,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "id": 20,
+    "product_name": "Honeywell Moxie V10 Bluetooth Headphone",
+    "stall_name": "Padas Gadget House",
+    "stall_id": 337,
+    "product_price": {
+      "previous_price": 2930,
+      "present_price": 2700,
+      "discount": true
+    },
+    "product_description": {
+      "brand": "Honeywell",
+      "model": "Honeywell Moxie V10",
+      "Connection Type": "Wireless",
+      "Microphone": "Yes",
+      "Type": "Regular",
+      "Plug Type": "Single port"
+    },
+    "product_image": "https://i.ibb.co/Xb3Nw6x/honey-well-v10.jpg",
+    "product_category": "Headphone",
+    "product_rating": 5,
+    "stall_type": "Gadget Shop"
+  },
+  {
+    "product_name": "Shirt",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2500,
+      "present_price": 2500,
+      "discount": false
+    },
+    "product_description": {
+      "size": "XL",
+      "color": "Black",
+      "Brand": "Mufti"
+    },
+    "product_image": "https://i.ibb.co/tqvxnkZ/Screenshot-2024-06-20-223846.png",
+    "product_category": "Men-Fashion",
+    "product_rating": 4,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "T-Shirt",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2000,
+      "present_price": 2000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "XL",
+      "color": "Red",
+      "Brand": "Addidas"
+    },
+    "product_image": "https://i.ibb.co/YB1G6pk/addidas.jpg",
+    "product_category": "Men-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Men's Slim Fit Knit Shirt by RICHMAN",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2236,
+      "present_price": 2000,
+      "discount": true
+    },
+    "product_description": {
+      "size": "XL",
+      "color": "Green",
+      "Brand": "Addidas"
+    },
+    "product_image": "https://i.ibb.co/Z8hN7Pv/Tshirt-1.jpg",
+    "product_category": "Men-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "KASHTBHANJAN TAX Men Regular Fit Printed Spread Collar Casual Shirt",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2500,
+      "present_price": 2000,
+      "discount": true
+    },
+    "product_description": {
+      "size": "XL",
+      "color": "Maroon",
+      "Brand": "Addidas"
+    },
+    "product_image": "https://i.ibb.co/TTzYxrH/s2.jpg",
+    "product_category": "Men-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Luxury Designer Suit",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 2000,
+      "discount": true
+    },
+    "product_description": {
+      "size": "Soft Georgette",
+      "color": "Black",
+      "Brand": "Luxury"
+      
+    },
+    "product_image": "https://i.ibb.co/c2vbSH6/s14.jpg",
+    "product_category": "Women-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Cherry Abaya Borka For Women ",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 4000,
+      "present_price": 3000,
+      "discount": true
+    },
+    "product_description": {
+      "size": "Free Size",
+      "color": "Paste",
+      "Brand": "Dubai Cherry"
+    },
+    "product_image": "https://i.ibb.co/VjZstjt/s3.jpg",
+    "product_category": "Women-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Abaya Borkha",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 3000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "Free Size",
+      "color": "Black",
+      "Brand": "Dubai Cherry"
+    },
+    "product_image": "https://i.ibb.co/1Krsskr/s4.jpg",
+    "product_category": "Women-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Dubai Cherry Abaya",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 2000,
+      "discount": true
+    },
+    "product_description": {
+      "size": "50-54",
+      "color": "Black",
+      "Brand": "Dubai Cherry"
+      
+    },
+    "product_image": "https://i.ibb.co/DDW9gLg/s5.jpg",
+    "product_category": "Women-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Borka for women",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2000,
+      "present_price": 2000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "50-54",
+      "color": "gray",
+      "Brand": "Dubai Cherry"
+    },
+    "product_image": "https://i.ibb.co/jvrFj6g/s6.jpg",
+    "product_category": "Women-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Fashionable Jacket For Boys Baby",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 1500,
+      "present_price": 1500,
+      "discount": false
+    },
+    "product_description": {
+      "size": "90-130",
+      "color": "Black",
+      "Brand": "KIDZ"
+     
+    },
+    "product_image": "https://i.ibb.co/9TB1GWS/s7.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 4,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Baby Boy Formal Full Sleeve Shirt Vest Romper Pants Gentlemen Style Outfit With Hat",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 3000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "Small Baby(9 Month)",
+      "color": "White-black",
+      "Brand": "KIDZ"
+     
+    },
+    "product_image": "https://i.ibb.co/C0jW06C/s8.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Girl's Frock",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 4000,
+      "present_price": 3500,
+      "discount": true
+    },
+    "product_description": {
+      "size": "100-150cm",
+      "color": "gray",
+      "Brand": "KIDZ"
+    },
+    "product_image": "https://i.ibb.co/cgL1RTd/s9.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Red Frock for baby girl's",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 2650,
+      "discount": true
+    },
+    "product_description": {
+      "size": "4-10 years",
+      "color": "Red",
+      "Brand":"KIDZ"
+      
+    },
+    "product_image": "https://i.ibb.co/59RkmQ4/s10.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": " Barbet Sequence Embroidery and net one Sleeveless Baby Girl Frock",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 3000,
+      "present_price": 3000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "Knee-Length with One-Shoulder type Net",
+       "color": "Purple",
+       "Brand":"KIDZ"
+    },
+    "product_image": "https://i.ibb.co/JjrPmvH/s11.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Powder blue shimmer organza frock for baby girl",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 2000,
+      "present_price": 2000,
+      "discount": false
+    },
+    "product_description": {
+      "size": "Knee-Length",
+      "color": "blue",
+      "Brand":"KIDZ"
+     
+    },
+    "product_image": "https://i.ibb.co/1TzC12q/s12.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  },
+  {
+    "product_name": "Full Sleeve Frock",
+    "stall_name": "World Fashion",
+    "stall_id": 112,
+    "product_price": {
+      "previous_price": 1000,
+      "present_price": 1000,
+      "discount": false
+    },
+    "product_description": {
+      "color": "Red",
+      "size": "3 month",
+      "Brand":"KIDZ"
+
+    },
+    "product_image": "https://i.ibb.co/8Kvs1MW/s13.jpg",
+    "product_category": "Kids-Fashion",
+    "product_rating": 5,
+    "stall_type": "Fashion"
+  }
+]

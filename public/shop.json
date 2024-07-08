@@ -1,0 +1,28 @@
+[{
+    "category": "Bronze",
+    "features": {
+        "shop_size": 200,
+        "max_category": 3,
+        "duration" : 4 
+    },
+    "price" : 600000
+  },
+
+  {
+    "category": "Gold",
+    "features": {
+        "shop_size": 500,
+        "max_category": 5,
+        "duration" : 5 
+    },
+    "price" : 1200000
+  },
+  {
+    "category": "Platinum",
+    "features": {
+        "shop_size": 1000,
+        "max_category": 10,
+        "duration" : 5 
+    },
+    "price" : 2000000
+  }]
