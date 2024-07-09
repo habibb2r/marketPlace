@@ -27,7 +27,7 @@ const Navbar = () => {
       .catch(error => console.log(error))
   }
   return (
-    <div className=" z-20 max-w-screen-xl fixed w-[100%]  mx-auto bg-opacity-35 bg-base-100 p-6">
+    <div className=" z-20 max-w-screen-xl fixed w-[100%]  mx-auto bg-opacity-35 bg-base-100 px-2 py-3">
       <div className="">
         <div className="flex justify-between items-center">
           <div>
