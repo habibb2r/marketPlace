@@ -38,10 +38,10 @@ const Navbar = () => {
             <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
             <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
             <Link to='/dashboard'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link>
-            <div className="text-primary relative">
+            <Link to='/dashboard/cart' className="text-primary relative">
             <img className="h-[42px]" src={cartlogo} alt="Cart" />
             <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
-            </div>
+            </Link>
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>
             }

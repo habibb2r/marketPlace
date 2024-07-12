@@ -45,8 +45,8 @@
 
 .my-bannner .content {
     position: absolute;
-    bottom: 5%;
-    left: 46%;
+    bottom: 0%;
+    left: 49%;
     transform: translateX(-50%);
     width: 100%;
     height: 100vh;
@@ -74,7 +74,7 @@
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
         translateZ(550px);
-    animation: dance 3s ease-in-out infinite;
+    animation: dance 5s ease-in-out infinite;
     border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff) 1;
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.7);
     border-radius: 50px; /* Optional: adds rounded corners */
@@ -127,7 +127,7 @@
 /* Responsive Design */
 @media screen and (max-width: 1023px) {
     .my-bannner .my-slider {
-        width: 160px;
+        width: 260px;
         height: 200px;
         left: calc(50% - 80px);
     }
@@ -141,7 +141,7 @@
 
 @media screen and (max-width: 767px) {
     .my-bannner .my-slider {
-        width: 100px;
+        width: 250px;
         height: 150px;
         left: calc(50% - 50px);
     }

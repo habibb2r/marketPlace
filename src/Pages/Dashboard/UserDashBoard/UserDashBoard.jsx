@@ -1,10 +1,16 @@
+import { Outlet } from "react-router-dom";
+import UserNav from "./Shared/UserNavbar/UserNav";
 
 
 const UserDashBoard = () => {
     return (
-        <div>
-            
+        <>
+        <UserNav></UserNav>
+        <div className="ml-[250px] pt-[3%]">
+        <Outlet></Outlet>
         </div>
+       
+        </>
     );
 };
 

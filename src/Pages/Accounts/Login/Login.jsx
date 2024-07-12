@@ -9,14 +9,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  console.log(location)
-  console.log(from)
 
+const axiosSecure = useAxiosSecure();
     const {signin, signInGoogle} = useContext(AuthContext)
   const {
     register,
@@ -47,16 +48,27 @@ const Login = () => {
   const handleLogInWithGoogle = ()=>{
     signInGoogle()
     .then(result =>{
-      console.log(result.user)
       if(result.user){
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Log in successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        navigate(from, { replace: true });
+        const data = {
+          email: result.user.email,
+          name: result.user.displayName,
+          picture: result.user.photoURL,
+          role: 'customer'
+        }
+        console.log(data);
+        axiosSecure.post('/user', data)
+        .then(res=> {
+          if(res.data){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Log in successfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate(from, { replace: true });
+          }
+        })
       }
     })
   }
@@ -93,7 +105,7 @@ const Login = () => {
               Login
             </button>
           </form>
-          <div className="divider divider-primary">Or Login with</div>
+          <div className="divider divider-primary">Or continue with</div>
           <div className="flex justify-center items-center gap-10">
             <button onClick={handleLogInWithGoogle} className="text-5xl rounded-full">
               <FcGoogle />

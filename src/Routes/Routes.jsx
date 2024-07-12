@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserDashBoard from "../Pages/Dashboard/UserDashBoard/UserDashBoard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import ShopDetails from "../Pages/ShopDetails/ShopDetails";
+import CartUser from "../Pages/Dashboard/UserDashBoard/CartUser/CartUser";
 
   export const router = createBrowserRouter([
     {
@@ -51,7 +52,13 @@ import ShopDetails from "../Pages/ShopDetails/ShopDetails";
     },
     {
         path: "dashboard",
-        element: <PrivateRoute><UserDashBoard></UserDashBoard></PrivateRoute>
+        element: <PrivateRoute><UserDashBoard></UserDashBoard></PrivateRoute>,
+        children:[
+          {
+            path: 'cart',
+            element:<CartUser></CartUser>
+          }
+        ]
         
     }
     
