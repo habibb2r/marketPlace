@@ -37,7 +37,7 @@ const EraSlide = () => {
           </div>
         </div>
         <div className="content">
-            <Lottie className="h-[450px]" animationData={bannerjson}></Lottie>
+            <Lottie className="h-[250px]" animationData={bannerjson}></Lottie>
         </div>
       </div>
       

@@ -1,8 +1,8 @@
 
 
 .my-body {
-    /* background: linear-gradient(45deg, #D2D2D2, #25283B); */
     background-size: 100% 100%;
+
     animation: gradientAnimation 15s ease infinite;
     font-family: 'Poppins', sans-serif;
     perspective: 1000px;
@@ -32,28 +32,28 @@
 
 .my-bannner .my-slider {
     position: absolute;
-    width: 400px;
+    width: 350px;
     height: 250px;
     top: 10%;
-    left: calc(50% - 100px);
+    left: calc(50% - 150px);
     transform-style: preserve-3d;
-    transform: perspective(1000px);
+    transform: perspective(1200px);
     animation: autoRun 20s linear infinite;
-    z-index: 2;
+    z-index: 3;
+    
 }
 
 .my-bannner .content {
     position: absolute;
-    top: -20%;
-    bottom: 0;
-    left: 90%;
+    bottom: 5%;
+    left: 46%;
     transform: translateX(-50%);
-    width: min(1400px, 100vw);
+    width: 100%;
     height: 100vh;
     padding-bottom: 100px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     z-index: 2;
 }
@@ -61,10 +61,10 @@
 
 @keyframes autoRun {
     from {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+        transform: perspective(1200px) rotateX(-8deg) rotateY(0deg);
     }
     to {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+        transform: perspective(1200px) rotateX(-8deg) rotateY(360deg);
     }
 }
 
@@ -74,7 +74,7 @@
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
         translateZ(550px);
-    animation: dance 5s ease-in-out infinite;
+    animation: dance 3s ease-in-out infinite;
     border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff) 1;
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.7);
     border-radius: 50px; /* Optional: adds rounded corners */
@@ -91,7 +91,7 @@
     bottom: -4px;
     border-radius: 20px; /* Match with the border radius of the item */
     background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-    z-index: -1;
+    z-index: -3;
     filter: blur(10px);
   }
   
