@@ -17,7 +17,7 @@ const Reviews = () => {
       <SectionTitle title={"Customer Reviews"}></SectionTitle>
       <Marquee>
         {reviews.map((review) => (
-          <CardReview key={review.userId} data={review}></CardReview>
+          <CardReview key={review._id} data={review}></CardReview>
         ))}
       </Marquee>
     </>

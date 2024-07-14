@@ -46,6 +46,7 @@ const UserNav = () => {
             <NavLink className='flex justify-start items-center gap-2' to='payhistory'><img className="h-[35px]" src={payhist} alt="Dashboard" /><p>Payment History</p></NavLink>
             <NavLink className='flex justify-start items-center gap-2' to='orderstatus'><img className="h-[35px]" src={status} alt="Dashboard" /><p>Order Status</p></NavLink>
           </div>
+          <div className="divider divider-success"></div>
           <div className="flex flex-col items-center gap-5 font-semibold text-md mt-5">
           <NavLink className='flex justify-start items-center gap-2' to='/'><img className="h-[40px]" src={home} alt="Home" /><p>Home</p></NavLink>
             <Link to='/'></Link>

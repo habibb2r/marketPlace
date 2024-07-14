@@ -73,7 +73,7 @@ const CartUser = () => {
                               </div>
                             </div>
                             <div>
-                              <div className="font-bold w-[250px]">{item.product_name}</div>
+                              <div className="font-bold w-[250px] uppercase">{item.product_name}</div>
                               <div className="text-sm opacity-50">United States</div>
                             </div>
                           </div>

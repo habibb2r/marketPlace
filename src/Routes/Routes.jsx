@@ -12,6 +12,9 @@ import UserDashBoard from "../Pages/Dashboard/UserDashBoard/UserDashBoard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import ShopDetails from "../Pages/ShopDetails/ShopDetails";
 import CartUser from "../Pages/Dashboard/UserDashBoard/CartUser/CartUser";
+import UserHome from "../Pages/Dashboard/UserDashBoard/UserHome/UserHome";
+import GiveRating from "../Pages/Dashboard/UserDashBoard/GiveRating/GiveRating";
+import UpdateUser from "../Pages/Dashboard/UpdateUserInfo/UpdateUser";
 
   export const router = createBrowserRouter([
     {
@@ -57,6 +60,18 @@ import CartUser from "../Pages/Dashboard/UserDashBoard/CartUser/CartUser";
           {
             path: 'cart',
             element:<CartUser></CartUser>
+          },
+          {
+            path: 'userhome',
+            element: <UserHome></UserHome>
+          },
+          {
+            path: 'giverating',
+            element: <GiveRating></GiveRating>
+          },
+          {
+            path: 'userUpdate',
+            element: <UpdateUser></UpdateUser>
           }
         ]
         

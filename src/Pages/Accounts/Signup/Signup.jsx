@@ -6,9 +6,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Navigate } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Signup = () => {
-    
+    const axiosSecure = useAxiosSecure()
     const{createUser} = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const onSubmit = data => {
@@ -18,15 +19,29 @@ const Signup = () => {
         const loggedUser = result.user;
         console.log(loggedUser)
         if(loggedUser.email){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Signup succesfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              reset();
-              <Navigate to='/'></Navigate>
+            const userData = {
+                email: loggedUser.email,
+                name: data.name,
+                picture: null,
+                role: 'customer'
+              }
+              console.log(userData);
+              axiosSecure.post('/user', userData)
+              .then(res=> {
+                if(res.data){
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Signed up successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  reset();
+                  <Navigate to={'/'}></Navigate>
+                }
+              })
+
+
         }
     })
    
@@ -39,7 +54,7 @@ const Signup = () => {
             <div className="flex justify-center items-center gap-5 py-5">
                 <Lottie  className="h-[350px]" animationData={ani}></Lottie>
             <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
-            <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("Username", {})} />
+            <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
             <input  className="input input-bordered input-info w-full max-w-md" type="email" placeholder="Email" {...register("Email", {required: true})} />
             <input  className="input input-bordered input-info w-full max-w-md" type="password" placeholder="Password" {...register("Password", {required: true, max: 12, min: 4})} />
 

@@ -37,7 +37,7 @@ const Navbar = () => {
           <div className="flex align-middle items-center gap-5 font-semibold text-md">
             <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
             <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
-            <Link to='/dashboard'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link>
+            <Link to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link>
             <Link to='/dashboard/cart' className="text-primary relative">
             <img className="h-[42px]" src={cartlogo} alt="Cart" />
             <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
