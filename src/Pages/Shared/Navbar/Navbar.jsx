@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo/Logo.png";
-import { FaShoppingCart } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
