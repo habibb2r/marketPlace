@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 
 import { GoogleAuthProvider } from "firebase/auth";
-import axios from "axios";
 import { app } from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
