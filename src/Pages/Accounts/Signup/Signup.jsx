@@ -19,11 +19,14 @@ const Signup = () => {
         const loggedUser = result.user;
         console.log(loggedUser)
         if(loggedUser.email){
+          const now = new Date();
+          const localDate = now.toLocaleDateString();
             const userData = {
                 email: loggedUser.email,
                 name: data.name,
                 picture: null,
-                role: 'customer'
+                role: 'customer',
+                createdAt: localDate
               }
               console.log(userData);
               axiosSecure.post('/user', userData)

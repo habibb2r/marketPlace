@@ -5,9 +5,8 @@ import useAuth from "../../../../Hooks/useAuth";
 
 const useGetUserInfo = () => {
     const {user, loading}= useAuth()
-    console.log(user.email)
     const axiosSecure = useAxiosSecure()
-    const {data: userInfo, isLoading}= useQuery({
+    const {data: userInfo, refetch, isLoading}= useQuery({
         queryKey: ['userInfo'],
         enabled: !loading,
         queryFn: async()=>{
@@ -15,7 +14,7 @@ const useGetUserInfo = () => {
             return res.data
         }
     })
-    return [userInfo, isLoading]
+    return [userInfo, refetch, isLoading]
 };
 
 export default useGetUserInfo;

@@ -1,4 +1,3 @@
-import React from 'react';
 import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
 import useCart from '../../../../Hooks/useCart';
 import remove from '../../../../icons/bin.png'
@@ -43,7 +42,7 @@ const CartUser = () => {
         console.log(item)
     }
     return (
-        <div className='px-3'>
+        <div className='px-5'>
             <SectionTitle title='Cart Items'></SectionTitle>
 
 
@@ -84,7 +83,7 @@ const CartUser = () => {
                         <td className='font-semibold'>{item.price} tk</td>
                         <td className='flex justify-start items-center gap-5'>
                             <img onClick={()=>handleRemoveCart(item)} className="h-[40px]" src={remove} alt="" />
-                          <button className="btn btn-success">Pay</button>
+                          <Link to={`/dashboard/payment/${item._id}`} className="btn btn-success">Pay</Link>
                         </td>
                       </tr>)
                 }

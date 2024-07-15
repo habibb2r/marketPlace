@@ -7,7 +7,7 @@ import pp from '../../../../icons/profile.png'
 
 
 const UserHome = () => {
-    const [userInfo, isLoading]= useGetUserInfo()
+    const [userInfo, , isLoading]= useGetUserInfo()
     const [cart]= useCart()
     if(isLoading){
         return <Loading></Loading>
@@ -22,10 +22,10 @@ const UserHome = () => {
                     <div className="flex flex-col justify-center items-start gap-2">
                         <p className="font-semibold">Name : {userInfo.name}</p>
                         <p className="font-semibold">Email : {userInfo.email}</p>
-                        <p className="font-semibold">Phone : developing....</p>
-                        <p className="font-semibold">Date of Birth : developing....</p>
-                        <p className="font-semibold">Gender : developing....</p>
-                        <p className="font-semibold">Account Created : developing....</p>
+                        <p className="font-semibold">Phone : {userInfo.phone? userInfo.phone : "Update Profile"}</p>
+                        <p className="font-semibold">Date of Birth : {userInfo.dob? userInfo.dob : "Update Profile"}</p>
+                        <p className="font-semibold">Gender : {userInfo.gender? userInfo.gender : "Update Profile"}</p>
+                        <p className="font-semibold text-secondary">Account Created : {userInfo.createdAt}</p>
                     </div>
                     <Link to='/dashboard/userUpdate' className="btn btn-secondary">Update Profile</Link>
                 </div>

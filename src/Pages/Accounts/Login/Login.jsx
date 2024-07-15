@@ -49,11 +49,15 @@ const axiosSecure = useAxiosSecure();
     signInGoogle()
     .then(result =>{
       if(result.user){
+        const now = new Date();
+        const localDate = now.toLocaleDateString();
+        console.log(localDate)
         const data = {
           email: result.user.email,
           name: result.user.displayName,
           picture: result.user.photoURL,
-          role: 'customer'
+          role: 'customer',
+          createdAt: localDate
         }
         console.log(data);
         axiosSecure.post('/user', data)
