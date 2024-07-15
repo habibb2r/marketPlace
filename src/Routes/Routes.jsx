@@ -76,7 +76,7 @@ import PayHistory from "../Pages/Dashboard/UserDashBoard/PaymentHistory/PayHisto
             element: <UpdateUser></UpdateUser>
           },
           {
-            path: 'payment/:id',
+            path: 'payment',
             element: <Payment></Payment>
           },
           {

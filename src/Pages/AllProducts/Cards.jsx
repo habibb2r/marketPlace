@@ -1,13 +1,12 @@
 import { Rating } from "@smastrom/react-rating";
 import "./Cards.css";
 import "@smastrom/react-rating/style.css";
-import { TbCurrencyTaka, TbListDetails } from "react-icons/tb";
+import { TbCurrencyTaka} from "react-icons/tb";
 import { BsShop } from "react-icons/bs";
-import { FaCartPlus } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure, { axiosSecure } from "../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCart from "../../Hooks/useCart";
 import cart from '../../icons/005-add-to-cart.png'
 import details from '../../icons/info.png'
@@ -37,7 +36,8 @@ const Cards = ({data}) => {
         product_name: item.product_name,
         product_image : item.product_image,
         price : item.product_price.present_price,
-        shop : item.stall_name
+        shop : item.stall_name,
+        rating: item.product_rating
       }
       axiosSecure.post('/addToCart', cartItem)
       .then(res =>{

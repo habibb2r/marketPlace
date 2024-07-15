@@ -4,11 +4,13 @@ import remove from '../../../../icons/bin.png'
 import { Link } from 'react-router-dom';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Rating } from '@smastrom/react-rating';
 
 const CartUser = () => {
     const [cart, ,refetch] = useCart()
-    const axiosSecure = useAxiosSecure()
     console.log(cart)
+    const axiosSecure = useAxiosSecure()
+    const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
     const handleRemoveCart =(item)=>{
         Swal.fire({
             title: "Are you sure?",
@@ -73,7 +75,7 @@ const CartUser = () => {
                             </div>
                             <div>
                               <div className="font-bold w-[250px] uppercase">{item.product_name}</div>
-                              <div className="text-sm opacity-50">United States</div>
+                              <div className="text-sm"><Rating style={{ maxWidth: 100 }} value={item.product_rating} readOnly /></div>
                             </div>
                           </div>
                         </td>
@@ -81,9 +83,9 @@ const CartUser = () => {
                          <Link className='font-semibold'>{item.shop}</Link>
                         </td>
                         <td className='font-semibold'>{item.price} tk</td>
-                        <td className='flex justify-start items-center gap-5'>
+                        <td className='flex justify-center items-center gap-5'>
                             <img onClick={()=>handleRemoveCart(item)} className="h-[40px]" src={remove} alt="" />
-                          <Link to={`/dashboard/payment/${item._id}`} className="btn btn-success">Pay</Link>
+                          
                         </td>
                       </tr>)
                 }
@@ -93,10 +95,10 @@ const CartUser = () => {
     <tfoot>
     <tr>
         
-        <th>Item Name</th>
-        <th>Shop</th>
-        <th>Price</th>
-        <th>Manage Items</th>
+        <th></th>
+        <th></th>
+        <th className='text-xl'>Total: <span className='font-semibold text-secondary'>{totalPrice}</span></th>
+        <th className='flex justify-center items-center '><Link to={`/dashboard/payment`} className="btn btn-success">Pay</Link></th>
       </tr>
     </tfoot>
   </table>

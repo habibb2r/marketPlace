@@ -4,9 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 import home from '../../../../../icons/home-page.png'
-import allproducts from '../../../../../icons/allproducts.png'
-import dashboard from '../../../../../icons/dashboard.png'
-import cartlogo from '../../../../../icons/cart.png'
+
 import userHome from '../../../../../icons/userHome.png'
 import cartUser from '../../../../../icons/userfull-cart.png'
 import ratingUser from '../../../../../icons/give rating.png'

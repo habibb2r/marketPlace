@@ -32,7 +32,8 @@ const ProductDetails = () => {
             product_name: item.product_name,
             product_image : item.product_image,
             price : item.product_price.present_price,
-            shop : item.stall_name
+            shop : item.stall_name,
+            rating: item.product_rating
           }
           axiosSecure.post('/addToCart', cartItem)
           .then(res =>{
