@@ -4,12 +4,14 @@ import Loading from "../../../Shared/Loading/Loading";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useGetUserInfo from "../UserHooks/useGetUserInfo";
 import pp from '../../../../icons/profile.png'
+import useUserStat from "../UserHooks/useUserStat";
 
 
 const UserHome = () => {
     const [userInfo, , isLoading]= useGetUserInfo()
-    const [cart]= useCart()
-    if(isLoading){
+    const[stat, statLoad] = useUserStat();
+    console.log(stat)
+    if(isLoading || statLoad){
         return <Loading></Loading>
     }
     console.log(userInfo)
@@ -46,7 +48,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Total Cart</div>
-    <div className="stat-value text-primary">{cart.length}</div>
+    <div className="stat-value text-primary">{stat.cart}</div>
     <div className="stat-desc">Pay as soon as possible</div>
   </div>
 
@@ -65,7 +67,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Ordered Item</div>
-    <div className="stat-value text-secondary">2</div>
+    <div className="stat-value text-secondary">{stat.totalOrder}</div>
     <div className="stat-desc">Give rating those items</div>
   </div>
   <div className="stat">
@@ -83,7 +85,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Total Spending</div>
-    <div className="stat-value text-secondary">20k</div>
+    <div className="stat-value text-secondary">{stat.totalSpend}TK</div>
     <div className="stat-desc">Thats fair</div>
   </div>
 
@@ -105,7 +107,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Total Rating</div>
-    <div className="stat-value text-primary">2</div>
+    <div className="stat-value text-primary">{stat.totalRating}</div>
     <div className="stat-desc">We respect your opinion</div>
   </div>
 
@@ -124,7 +126,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Order Pending</div>
-    <div className="stat-value text-secondary">1</div>
+    <div className="stat-value text-secondary">{stat.pending}</div>
     <div className="stat-desc">Please wait</div>
   </div>
 
@@ -143,7 +145,7 @@ const UserHome = () => {
       </svg>
     </div>
     <div className="stat-title">Order Received</div>
-    <div className="stat-value text-secondary">1</div>
+    <div className="stat-value text-secondary">{stat.delivered ? stat.delivered : '0'}</div>
     <div className="stat-desc">Enjoy</div>
   </div>
 

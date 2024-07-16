@@ -19,6 +19,9 @@ const CheckoutForm = ({price, cart, refetch}) => {
     const [transactionId, setTransactionId]= useState('')
 
 
+            
+
+
     useEffect(()=>{
        if(price> 0){
         axiosSecure.post('/create-payment-intent', {price})
@@ -31,6 +34,12 @@ const CheckoutForm = ({price, cart, refetch}) => {
 
     const handleSubmit = async(event)=>{
         event.preventDefault();
+        const today = new Date()
+
+        const dateTimeString = today.toLocaleDateString();
+
+        const timeString = today.toLocaleTimeString()
+
         if(!stripe || !elements){
             return
         }
@@ -72,11 +81,14 @@ const CheckoutForm = ({price, cart, refetch}) => {
           if(paymentIntent.status ==='succeeded'){
             const traxID = paymentIntent.id;
             setTransactionId(traxID)
+            
+
             const paymentSlip = {
                 email: userInfo?.email,
                 name: userInfo?.name,
                 traxId: traxID,
-                date: new Date(),
+                date: dateTimeString,
+                time: timeString,
                 quantity: cart.length,
                 price: price,
                 cartItems: cart.map(item=> item._id),
