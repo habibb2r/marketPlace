@@ -31,11 +31,10 @@ const UserNav = () => {
         .catch(error => console.log(error))
     }
     return (
-        <div className="z-20 h-full fixed w-[250px] bg-opacity-40 bg-base-100 py-3">
+        <div className="z-20 h-full fixed w-[250px] bg-opacity-40 bg-base-100 py-3 px-4 shadow-md shadow-success">
         <div className="flex flex-col justify-between items-start h-full">
           <div>
             <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
-            <h1 className=" flex items-center gap-2 pt-2"> <p className="text-2xl font-semibold font-mono">User Dashboard </p><img className="h-[35px]" src={userDash} alt="" /></h1>
           </div>
           <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7"> 
             <NavLink className='flex justify-start items-center gap-2' to='userhome'><img className="h-[35px]" src={userHome} alt="Home" /> <p>User Home</p></NavLink>

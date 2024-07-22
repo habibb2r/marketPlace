@@ -17,6 +17,7 @@ import GiveRating from "../Pages/Dashboard/UserDashBoard/GiveRating/GiveRating";
 import UpdateUser from "../Pages/Dashboard/UpdateUserInfo/UpdateUser";
 import Payment from "../Pages/Dashboard/UserDashBoard/Payment/Payment";
 import PayHistory from "../Pages/Dashboard/UserDashBoard/PaymentHistory/PayHistory";
+import OrderStatus from "../Pages/Dashboard/UserDashBoard/OrderStatus/OrderStatus";
 
   export const router = createBrowserRouter([
     {
@@ -82,6 +83,10 @@ import PayHistory from "../Pages/Dashboard/UserDashBoard/PaymentHistory/PayHisto
           {
             path: 'payhistory',
             element: <PayHistory></PayHistory>
+          },
+          {
+            path: 'orderstatus',
+            element: <OrderStatus></OrderStatus>
           }
         ]
         
