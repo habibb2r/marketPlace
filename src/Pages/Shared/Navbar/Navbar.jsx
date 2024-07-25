@@ -8,13 +8,22 @@ import home from '../../../icons/home-page.png'
 import allproducts from '../../../icons/allproducts.png'
 import dashboard from '../../../icons/dashboard.png'
 import cartlogo from '../../../icons/cart.png'
+import adminpanel from '../../../assets/adminpanel.png'
+import sellerdash from '../../../assets/sellerdash.png'
+import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import Loading from "../Loading/Loading";
 
 const Navbar = () => {
   const [cart] = useCart()
   const {user, logOut} = useContext(AuthContext)
+  const [userInfo,refetch, isLoading] = useGetUserInfo()
+  if(isLoading){
+    <Loading></Loading>
+  }
   const handleLogOut = ()=>{
       logOut()
       .then(()=>{
+        
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -36,11 +45,22 @@ const Navbar = () => {
           <div className="flex align-middle items-center gap-5 font-semibold text-md">
             <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
             <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
-            <Link to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link>
-            <Link to='/dashboard/cart' className="text-primary relative">
-            <img className="h-[42px]" src={cartlogo} alt="Cart" />
-            <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
-            </Link>
+            {
+              userInfo?.role == 'admin'? <Link to='/adminpanel'><img className="h-[35px]" src={adminpanel} alt="AdminPanel" /></Link> : ''
+            }
+            {
+              userInfo?.role == 'customer'? <Link to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link> : ''
+            }
+            {
+              userInfo?.role == 'seller'? <Link to='/sellerdashboard'><img className="h-[35px]" src={sellerdash} alt="Dashboard" /></Link> : ''
+            }
+            {
+              userInfo?.role == 'customer'? <Link to='/dashboard/cart' className="text-primary relative">
+              <img className="h-[42px]" src={cartlogo} alt="Cart" />
+              <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
+              </Link> : ''
+            }
+            
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>
             }

@@ -18,6 +18,8 @@ import UpdateUser from "../Pages/Dashboard/UpdateUserInfo/UpdateUser";
 import Payment from "../Pages/Dashboard/UserDashBoard/Payment/Payment";
 import PayHistory from "../Pages/Dashboard/UserDashBoard/PaymentHistory/PayHistory";
 import OrderStatus from "../Pages/Dashboard/UserDashBoard/OrderStatus/OrderStatus";
+import AdminPanel from "../Pages/Dashboard/Admin/AdminPanel";
+import SellerDashboard from "../Pages/Dashboard/Seller/SellerDashboard";
 
   export const router = createBrowserRouter([
     {
@@ -88,8 +90,15 @@ import OrderStatus from "../Pages/Dashboard/UserDashBoard/OrderStatus/OrderStatu
             path: 'orderstatus',
             element: <OrderStatus></OrderStatus>
           }
-        ]
-        
+        ]        
+    },
+    {
+      path: 'adminpanel',
+      element: <AdminPanel></AdminPanel>
+    },
+    {
+      path: 'sellerdashboard',
+      element: <SellerDashboard></SellerDashboard>
     }
     
   ]);
