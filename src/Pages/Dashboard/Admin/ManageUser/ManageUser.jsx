@@ -6,26 +6,60 @@ import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const ManageUser = () => {
-    const [manageUsers] =useManageUser();
+    const [manageUsers, refetch] =useManageUser();
     const axiosSecure = useAxiosSecure();
  
     const handleManageUser = (user)=>{
         Swal.fire({
-            title: "Are you sure?",
-            text: "You want make this user as Admin",
-            icon: "warning",
+            title: "Do you want to do?",
+            showDenyButton: true,
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Make Admin",
+            denyButtonText: `Delete ACC`
           }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                console.log(user)
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                axiosSecure.put(`/manageUsers?email=${user.email}`)
+                .then(res=>{
+                    if(res.data.status){
+                        Swal.fire("Updated As Admin", "", "success");
+                        refetch()
+                    }else{
+                        Swal.fire("User Already in Admin Role", "", "error");
+                    }
+                }
+                )
+              
+            } else if (result.isDenied) {
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete user!"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        axiosSecure.delete(`/manageUsers?email=${user.email}`)
+                .then(res=>{
+                    if(res.data.status){
+                        refetch()
+                        Swal.fire({
+                            title: "Removed!",
+                            text: "User removed from marketplace.",
+                            icon: "success"
+                          });
+                    }
+                })
+                      
+                    }
+                  });
+
+                
+                
+              
             }
           });
         
@@ -71,7 +105,7 @@ const ManageUser = () => {
                         <td>
                         <div className="badge px-4 py-4 font-semibold badge-accent">{user.role}</div>
                         </td>
-                        <td className='flex justify-center items-center gap-5'>
+                        <td className='flex justify-start items-center gap-5'>
                             <img onClick={()=>handleManageUser(user)} className="h-[40px]" src={manageuser} alt="" />
                           
                         </td>
