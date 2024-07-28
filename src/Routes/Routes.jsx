@@ -20,6 +20,14 @@ import PayHistory from "../Pages/Dashboard/UserDashBoard/PaymentHistory/PayHisto
 import OrderStatus from "../Pages/Dashboard/UserDashBoard/OrderStatus/OrderStatus";
 import AdminPanel from "../Pages/Dashboard/Admin/AdminPanel";
 import SellerDashboard from "../Pages/Dashboard/Seller/SellerDashboard";
+import SellerProfile from "../Pages/Dashboard/Seller/SellerProfile/SellerProfile";
+import AddItems from "../Pages/Dashboard/Seller/AddItems/AddItems";
+import ManageItems from "../Pages/Dashboard/Seller/ManageItems/ManageItems";
+import ManageOrders from "../Pages/Dashboard/Seller/ManageOrders/ManageOrders";
+import AdminStat from "../Pages/Dashboard/Admin/AdminStat/AdminStat";
+import ManageUser from "../Pages/Dashboard/Admin/ManageUser/ManageUser";
+import ManageShop from "../Pages/Dashboard/Admin/ManageShop/ManageShop";
+import ManageAllItems from "../Pages/Dashboard/Admin/ManageAllItems/ManageAllItems";
 
   export const router = createBrowserRouter([
     {
@@ -94,11 +102,47 @@ import SellerDashboard from "../Pages/Dashboard/Seller/SellerDashboard";
     },
     {
       path: 'adminpanel',
-      element: <AdminPanel></AdminPanel>
+      element: <AdminPanel></AdminPanel>,
+      children: [
+        {
+          path: 'adminhome',
+          element: <AdminStat></AdminStat>
+        },
+        {
+          path: 'manageusers',
+          element: <ManageUser></ManageUser>
+        },
+        {
+          path: 'manageshops',
+          element: <ManageShop></ManageShop>
+        },
+        {
+          path: 'manageallitems',
+          element: <ManageAllItems></ManageAllItems>
+        }
+      ]
     },
     {
       path: 'sellerdashboard',
-      element: <SellerDashboard></SellerDashboard>
+      element: <SellerDashboard></SellerDashboard>,
+      children: [
+        {
+          path: 'sellerprofile',
+          element: <SellerProfile></SellerProfile>
+        },
+        {
+          path: 'additems',
+          element: <AddItems></AddItems>
+        },
+        {
+          path: 'manageitems',
+          element: <ManageItems></ManageItems>
+        },
+        {
+          path: 'manageorders',
+          element: <ManageOrders></ManageOrders>
+        }
+      ]
     }
     
   ]);

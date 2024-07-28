@@ -9,6 +9,9 @@ import { Navigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Signup = () => {
+  const today = new Date()
+  const dateTimeString = today.toLocaleDateString();
+  const timeString = today.toLocaleTimeString()
     const axiosSecure = useAxiosSecure()
     const{createUser} = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -19,14 +22,15 @@ const Signup = () => {
         const loggedUser = result.user;
         console.log(loggedUser)
         if(loggedUser.email){
-          const now = new Date();
-          const localDate = now.toLocaleDateString();
+     
+         
             const userData = {
                 email: loggedUser.email,
                 name: data.name,
                 picture: null,
                 role: 'customer',
-                createdAt: localDate
+                createdDate: dateTimeString,
+                createdTime: timeString
               }
               console.log(userData);
               axiosSecure.post('/user', userData)

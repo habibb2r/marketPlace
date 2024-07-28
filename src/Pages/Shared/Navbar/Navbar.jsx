@@ -46,7 +46,7 @@ const Navbar = () => {
             <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
             <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
             {
-              userInfo?.role == 'admin'? <Link to='/adminpanel'><img className="h-[35px]" src={adminpanel} alt="AdminPanel" /></Link> : ''
+              userInfo?.role == 'admin'? <Link to='/adminpanel/adminhome'><img className="h-[35px]" src={adminpanel} alt="AdminPanel" /></Link> : ''
             }
             {
               userInfo?.role == 'customer'? <Link to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link> : ''

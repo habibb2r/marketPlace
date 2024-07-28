@@ -10,10 +10,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import axios from "axios";
+
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const today = new Date()
+  const dateTimeString = today.toLocaleDateString();
+  const timeString = today.toLocaleTimeString()
 
   const from = location.state?.from?.pathname || "/";
 
@@ -49,15 +52,13 @@ const axiosSecure = useAxiosSecure();
     signInGoogle()
     .then(result =>{
       if(result.user){
-        const now = new Date();
-        const localDate = now.toLocaleDateString();
-        console.log(localDate)
         const data = {
           email: result.user.email,
           name: result.user.displayName,
           picture: result.user.photoURL,
           role: 'customer',
-          createdAt: localDate
+          createdDate: dateTimeString,
+          createdTime: timeString
         }
         console.log(data);
         axiosSecure.post('/user', data)
