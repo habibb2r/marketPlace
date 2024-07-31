@@ -1,7 +1,9 @@
 import { FaHandPointRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const SellerCard = ({data}) => {
+    
     const getCategoryColor = (category) => {
         if (category === 'Gold') return '#FFD700';
         if (category === 'Bronze') return '#CD7F32';
@@ -22,7 +24,7 @@ const SellerCard = ({data}) => {
                 </div>
             </div>
             <div className="text-xl">Price : <span className="font-semibold">{data.price} only</span></div>
-            <div><button className="btn btn-secondary">Buy Now</button></div>
+            <Link to={`/buyshop/${data._id}`}><button className="btn btn-secondary">Buy Now</button></Link>
         </div>
     );
 };

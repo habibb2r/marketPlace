@@ -26,7 +26,7 @@ const UserHome = () => {
                         <p className="font-semibold">Phone : {userInfo.phone? userInfo.phone : "Update Profile"}</p>
                         <p className="font-semibold">Date of Birth : {userInfo.dob? userInfo.dob : "Update Profile"}</p>
                         <p className="font-semibold">Gender : {userInfo.gender? userInfo.gender : "Update Profile"}</p>
-                        <p className="font-semibold text-secondary">Account Created : {userInfo.createdAt}</p>
+                        <p className="font-semibold text-secondary">Account Created : {userInfo.createdDate}</p>
                     </div>
                     <Link to='/dashboard/userUpdate' className="btn btn-secondary">Update Profile</Link>
                 </div>

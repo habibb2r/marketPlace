@@ -4,9 +4,11 @@ import useManageUser from '../AdminHooks/useManageUser';
 import manageuser from '../../../../assets/admin/png/setting.png'
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAuth from '../../../../Hooks/useAuth';
 
 const ManageUser = () => {
     const [manageUsers, refetch] =useManageUser();
+    const {removeUser} = useAuth()
     const axiosSecure = useAxiosSecure();
  
     const handleManageUser = (user)=>{
@@ -45,6 +47,11 @@ const ManageUser = () => {
                         axiosSecure.delete(`/manageUsers?email=${user.email}`)
                 .then(res=>{
                     if(res.data.status){
+                        removeUser(user.email)
+                        .then(res=>{
+                          console.log(res)
+                          console.log('Removed')
+                        })
                         refetch()
                         Swal.fire({
                             title: "Removed!",
@@ -103,7 +110,7 @@ const ManageUser = () => {
                          <p className='font-mono'>Time: {user.createdTime}</p>
                         </td>
                         <td>
-                        <div className="badge px-4 py-4 font-semibold badge-accent">{user.role}</div>
+                        <div className={`badge px-4 py-4 font-semibold ${user.role == 'admin'? 'badge-accent' : 'badge-secondary'}`}>{user.role}</div>
                         </td>
                         <td className='flex justify-start items-center gap-5'>
                             <img onClick={()=>handleManageUser(user)} className="h-[40px]" src={manageuser} alt="" />

@@ -28,6 +28,7 @@ import AdminStat from "../Pages/Dashboard/Admin/AdminStat/AdminStat";
 import ManageUser from "../Pages/Dashboard/Admin/ManageUser/ManageUser";
 import ManageShop from "../Pages/Dashboard/Admin/ManageShop/ManageShop";
 import ManageAllItems from "../Pages/Dashboard/Admin/ManageAllItems/ManageAllItems";
+import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
 
   export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ import ManageAllItems from "../Pages/Dashboard/Admin/ManageAllItems/ManageAllIte
           path: 'shopDetails/:id',
           element: <ShopDetails></ShopDetails>
         },
+        {
+          path: 'buyshop/:id',
+          element: <PaymentShop></PaymentShop>
+        }
 
       ]
     },

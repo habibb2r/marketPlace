@@ -7,8 +7,10 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Navigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const Signup = () => {
+  const [,refetch, ] =useGetUserInfo()
   const today = new Date()
   const dateTimeString = today.toLocaleDateString();
   const timeString = today.toLocaleTimeString()
@@ -36,6 +38,7 @@ const Signup = () => {
               axiosSecure.post('/user', userData)
               .then(res=> {
                 if(res.data){
+                  refetch()
                   Swal.fire({
                     position: "top-end",
                     icon: "success",
