@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "./SlideDiscount.css";
 
 // import required modules
-import { FreeMode, Pagination } from "swiper/modules";
+import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import useOfferProducts from "../../../Hooks/useOfferProducts";
 import { Link } from "react-router-dom";
 import { FcShop } from "react-icons/fc";
@@ -23,37 +23,40 @@ const SlideDiscount = () => {
   }
   return (
     <Swiper
-      slidesPerView={2}
-      spaceBetween={30}
+    autoplay={{
+      delay: 1500,
+      disableOnInteraction: false,
+    }}
       freeMode={true}
       pagination={{
         clickable: true,
       }}
-      modules={[FreeMode, Pagination]}
+      modules={[Autoplay, FreeMode, Pagination]}
       className="offer"
+      
     >
       {offers.map((offer) => (
         <SwiperSlide key={offer._id} className="swiper-slide-offer rounded-lg">
-          <div className="h-[300px] card card-side bg-base-100 shadow-xl shadow-success mx-2">
+          <div className="h-[400px] md:w-[650px] md:h-[300px] bg-base-100 shadow-xl shadow-success px-4 py-4 flex flex-col md:flex-row justify-between items-center rounded-lg md:gap-5">
             <figure>
-              <img className=""
+              <img className="h-[150px] md:h-[300px]"
                 src={offer.product_image}
                 alt="Discount Products"
               />
             </figure>
-            <div className="card-body">
+            <div className="flex flex-col justify-start items-start gap-3">
               <div className="flex flex-col justify-start items-start text-start">
-              <h2 className="card-title text-xl pb-2">{offer.product_name}</h2>
-              <div>Discount Available on : <br />
-              <div className="flex items-center gap-1">
+              <h2 className="font-bold text-sm md:text-xl pb-2">{offer.product_name}</h2>
+              <div className="text-sm md:text-xl">Discount Available on : <br />
+              <div className="flex items-center gap-1 p-1">
               <FcShop className="text-4xl" />
               <Link className="font-mono font-semibold shadow-sm  p-1 rounded-lg shadow-primary">
               {offer.stall_name}</Link>
               </div>
               </div>
 
-              <div className="font-medium py-2">
-                <p className="flex items-center"><span>Previous Price : <span className="font-semibold text-error">{offer.product_price.previous_price}</span></span> <FaBangladeshiTakaSign /></p>
+              <div className="font-medium md:py-2 text-sm md:text-xl">
+                <p className="flex items-center mb-2"><span>Previous Price : <span className="font-semibold text-error">{offer.product_price.previous_price}</span></span> <FaBangladeshiTakaSign /></p>
                 <p className="flex items-center"><span>Present Price : <span className="font-semibold text-primary">{offer.product_price.present_price}</span></span> <FaBangladeshiTakaSign /></p>
               </div>
               </div>

@@ -5,10 +5,10 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const About = () => {
   return (
-    <div className="py-10">
+    <div className="md:py-10">
         <SectionTitle title={'About This MarketPlace'}></SectionTitle>
-      <div className="flex justify-center items-center gap-10">
-        <div className="flex flex-col justify-start items-start gap-4 w-1/2 px-5">
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-2 md:gap-10">
+        <div className="flex flex-col justify-start items-start gap-4 md:w-1/2 px-5">
           <h1 className="text-3xl font-semibold">Welcome to Panda MarketPlace: Your Ultimate Online Shopping</h1>
           <p className="text-xl text-justify">
             Destination Panda MarketPlace is your one-stop destination for all
@@ -21,7 +21,7 @@ const About = () => {
           </p>
           <Link to='/about' className="btn btn-accent font-bold text-md">Know More..</Link>
         </div>
-        <Lottie className="w-1/2" animationData={about}></Lottie>
+        <Lottie className="md:w-1/2" animationData={about}></Lottie>
       </div>
     </div>
   );

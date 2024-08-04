@@ -1,0 +1,29 @@
+.resposive-nav{
+    display: none;
+}
+
+@media only screen and (max-width: 720px) {
+
+    .resposive-nav{
+        display: block;
+    }
+    .navbar-res{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        position: fixed;
+        gap: 40px;
+        background-color: bisque;
+        top: 90px;
+        right: 0px;
+        height: 100vh;
+        width: 250px;
+        padding: 50px;
+        transition: 0.3s ease-in-out;
+        border-radius: 2%;
+    }
+    .navbar-active{
+        right: -300px;
+    }
+}

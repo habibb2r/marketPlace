@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo/Logo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../../Hooks/useCart";
@@ -12,18 +12,26 @@ import adminpanel from '../../../assets/adminpanel.png'
 import sellerdash from '../../../assets/sellerdash.png'
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import Loading from "../Loading/Loading";
+import menu from '../../../assets/basic/001-menu-bar.png'
+import cancel from '../../../assets/basic/002-button.png'
+import './Navbar.css'
 
 const Navbar = () => {
+  const [clicked, setClick] = useState(false)
   const [cart] = useCart()
   const {user, logOut} = useContext(AuthContext)
-  const [userInfo,refetch, isLoading] = useGetUserInfo()
+  const [userInfo, refetch, isLoading] = useGetUserInfo()
   if(isLoading){
     <Loading></Loading>
+  }
+
+  const controlNav =()=>{
+    setClick(!clicked)
   }
   const handleLogOut = ()=>{
       logOut()
       .then(()=>{
-        
+        refetch()
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -39,10 +47,10 @@ const Navbar = () => {
       <div className="">
         <div className="flex justify-between items-center">
           <div>
-            <img className="h-[80px]" src={logo} alt="" />
+            <img className="h-[65px] md:h-[80px]" src={logo} alt="" />
           </div>
-          <div className="shadow-sm rounded-md p-1 font-thin"> Hey, {user? user.email : 'Login' }</div>
-          <div className="flex align-middle items-center gap-5 font-semibold text-md">
+          <div className="shadow-sm rounded-md p-1 font-thin"> Hey, {user? userInfo?.name : 'Guest' }</div>
+          <div className={`flex align-middle items-center gap-5 font-semibold text-md ${clicked? 'navbar-res': 'navbar-res navbar-active'}`}>
             <Link to='/'><img className="h-[40px]" src={home} alt="Home" /></Link>
             <Link to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /></Link>
             {
@@ -98,6 +106,9 @@ const Navbar = () => {
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
             </label>
+          </div>
+          <div className="resposive-nav">
+            <img onClick={()=>controlNav()} className="h-[40px]" src={clicked?cancel : menu} alt="" />
           </div>
         </div>
       </div>

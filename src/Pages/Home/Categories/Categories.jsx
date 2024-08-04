@@ -19,7 +19,7 @@ const Categories = () => {
   return (
     <div className="py-5">
       <SectionTitle title={"Product Categories"}></SectionTitle>
-      <div className=" flex justify-center overflow-hidden pb-5">
+      <div className=" flex flex-col md:flex-row justify-center overflow-hidden pb-5">
 
         <div className="  shadow-md shadow-primary w-[100%] flex flex-col justify-between items-start gap-3 p-2 py-10">
          {
