@@ -43,11 +43,11 @@ const Navbar = () => {
       .catch(error => console.log(error))
   }
   return (
-    <div className=" z-20 max-w-screen-xl fixed w-[100%]  mx-auto bg-opacity-35 bg-base-100 px-2 py-3">
+    <div className=" z-20 max-w-screen-xl fixed w-[100%]  mx-auto bg-opacity-35 bg-base-100 px-2 py-4 md:py-3">
       <div className="">
         <div className="flex justify-between items-center">
           <div>
-            <img className="h-[65px] md:h-[80px]" src={logo} alt="" />
+            <img className="h-[70px] md:h-[80px]" src={logo} alt="" />
           </div>
           <div className="shadow-sm rounded-md p-1 font-thin"> Hey, {user? userInfo?.name : 'Guest' }</div>
           <div className={`flex align-middle items-center gap-5 font-semibold text-md ${clicked? 'navbar-res': 'navbar-res navbar-active'}`}>

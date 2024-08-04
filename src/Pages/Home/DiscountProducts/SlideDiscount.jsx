@@ -37,9 +37,9 @@ const SlideDiscount = () => {
     >
       {offers.map((offer) => (
         <SwiperSlide key={offer._id} className="swiper-slide-offer rounded-lg">
-          <div className="h-[400px] md:w-[650px] md:h-[300px] bg-base-100 shadow-xl shadow-success px-4 py-4 flex flex-col md:flex-row justify-between items-center rounded-lg md:gap-5">
+          <div className="h-[400px] md:w-[650px] md:h-[300px] bg-base-100 shadow-xl shadow-success px-4 py-4 flex flex-col md:flex-row justify-around items-center rounded-lg md:gap-5">
             <figure>
-              <img className="h-[150px] md:h-[300px]"
+              <img className="h-[150px] md:h-[290px] rounded-md"
                 src={offer.product_image}
                 alt="Discount Products"
               />

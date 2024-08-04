@@ -14,7 +14,7 @@ const BuyStall = () => {
     return (
         <div className="py-10">
             <SectionTitle title='Want to be a Seller?'></SectionTitle>
-            <div className="grid grid-cols-3 gap-3 pt-10">
+            <div className="grid md:grid-cols-3 gap-3 pt-10">
                 {
                     buyShop.map(shop => <SellerCard key={shop._id} data ={shop}></SellerCard>)
                 }

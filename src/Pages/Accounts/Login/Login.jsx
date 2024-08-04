@@ -80,12 +80,12 @@ const axiosSecure = useAxiosSecure();
   return (
     <div className="">
       <SectionTitle title="Login"></SectionTitle>
-      <div className="py-[5%] flex justify-center items-center gap-16">
-        <Lottie animationData={loginani}></Lottie>
+      <div className="py-[5%] flex flex-col md:flex-row justify-center items-center gap-16">
+        <Lottie className="h-[250px] md:h-auto" animationData={loginani}></Lottie>
         <div>
           <div>
             <Lottie
-              className="h-[150px] py-3"
+              className="hidden md:block h-[150px] py-3 "
               animationData={apndaani}
             ></Lottie>
           </div>

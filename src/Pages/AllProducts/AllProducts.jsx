@@ -29,7 +29,7 @@ const AllProducts = () => {
   return (
     <div className="">
       <div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-1">
           <label className="input input-primary input-bordered flex items-center gap-2">
             <input type="text" className="grow" placeholder="Search Products" />
             <button className="text-2xl">
@@ -64,7 +64,7 @@ const AllProducts = () => {
         </div>
         <div>
           <SectionTitle title={`${filter} Products`}></SectionTitle>
-          <div className="pt-10 grid grid-cols-4 gap-10">
+          <div className="pt-10 grid md:grid-cols-4 gap-10">
             {allProducts.map((product) => (
               <Cards key={product._id} data={product}></Cards>
             ))}

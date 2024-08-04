@@ -61,7 +61,7 @@ const Signup = () => {
     return (
         <div>
             <SectionTitle title='Signup Now'></SectionTitle>
-            <div className="flex justify-center items-center gap-5 py-5">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-5 py-5">
                 <Lottie  className="h-[350px]" animationData={ani}></Lottie>
             <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
             <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
