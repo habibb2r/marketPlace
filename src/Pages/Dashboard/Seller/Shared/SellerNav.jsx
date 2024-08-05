@@ -13,10 +13,18 @@ import manageOrders from '../../../../assets/seller/004-order.png'
 import userDash from '../../../../icons/user-Dash.png'
 import useCart from "../../../../Hooks/useCart";
 import useAuth from "../../../../Hooks/useAuth";
+import { useState } from "react";
+import menu from '../../../../assets/basic/001-menu-bar.png'
+import cancel from '../../../../assets/basic/002-button.png'
+import '../../../dashboard.css'
 
 const SellerNav = () => {
-    const [cart] = useCart()
+    
     const {user, logOut} = useAuth()
+    const [clicked, setClick] = useState(false)
+ const controlNav =()=>{
+      setClick(!clicked)
+    }
     const handleLogOut = ()=>{
         logOut()
         .then(()=>{
@@ -31,7 +39,10 @@ const SellerNav = () => {
         .catch(error => console.log(error))
     }
     return (
-        <div className="z-20 h-full fixed w-[250px] bg-opacity-40 bg-base-100 py-3 px-4 shadow-md shadow-success">
+      <div className={`z-20 h-full fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${clicked? '': 'my-nav'}`}>
+      <div className="relative block md:hidden">
+        <img onClick={()=>controlNav()} className="top-[35px] right-[-60px] absolute h-[40px]" src={clicked?cancel : menu} alt="" />
+      </div>
         <div className="flex flex-col justify-between items-start h-full">
           <div>
             <img className="h-[80px] mx-auto" src={logo} alt="Logo" />

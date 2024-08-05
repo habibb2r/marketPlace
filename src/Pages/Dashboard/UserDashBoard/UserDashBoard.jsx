@@ -6,7 +6,7 @@ const UserDashBoard = () => {
     return (
         <>
         <UserNav></UserNav>
-        <div className="ml-[250px] pt-[3%] pl-5">
+        <div className="md:ml-[250px] pt-[3%] pl-5">
         <Outlet></Outlet>
         </div>
        
