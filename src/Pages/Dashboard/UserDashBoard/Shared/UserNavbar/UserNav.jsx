@@ -43,11 +43,11 @@ const UserNav = () => {
       <div className="relative block md:hidden">
         <img onClick={()=>controlNav()} className="top-[35px] right-[-60px] absolute h-[40px]" src={clicked?cancel : menu} alt="" />
       </div>
-        <div className="flex flex-col justify-between items-start h-full">
+        <div className="flex flex-col md:justify-between items-start h-full">
           <div>
             <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
           </div>
-          <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7"> 
+          <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7 pt-3"> 
             <NavLink className='flex justify-start items-center gap-2' to='userhome'><img className="h-[35px]" src={userHome} alt="Home" /> <p>User Home</p></NavLink>
             <NavLink className='flex justify-start items-center gap-2' to='cart'><img className="h-[35px]" src={cartUser} alt="All Products" /><p>Cart Items</p><span className="badge badge-accent">+{cart.length}</span></NavLink>
             <NavLink className='flex justify-start items-center gap-2' to='giverating'><img className="h-[35px]" src={ratingUser} alt="Dashboard" /><p>Give Rating</p></NavLink>

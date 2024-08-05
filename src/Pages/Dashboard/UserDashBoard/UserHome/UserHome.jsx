@@ -17,8 +17,8 @@ const UserHome = () => {
     return (
         <div>
             <SectionTitle title='Dashboard'></SectionTitle>
-            <div className="flex justify-center items-center gap-5 pt-5">
-                <div className="w-1/3 flex flex-col justify-center items-center gap-5 shadow-sm shadow-primary p-3 rounded-xl">
+            <div className="flex flex-col md:flex-row md:justify-center items-center gap-5 pt-5">
+                <div className="md:w-1/3 flex flex-col justify-center items-center gap-5 shadow-sm shadow-primary p-3 rounded-xl">
                     <img className="rounded-full w-[150px] h-[150px]" src={userInfo.picture?userInfo.picture: pp} alt="" />
                     <div className="flex flex-col justify-center items-start gap-2">
                         <p className="font-semibold">Name : {userInfo.name}</p>
@@ -30,8 +30,8 @@ const UserHome = () => {
                     </div>
                     <Link to='/dashboard/userUpdate' className="btn btn-secondary">Update Profile</Link>
                 </div>
-                <div className="w-2/3 flex flex-col justify-center items-center gap-5">
-                <div className="grid grid-cols-3 gap-5">
+                <div className="md:w-2/3 flex flex-col justify-center items-center gap-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
   <div className="stat shadow rounded-lg shadow-secondary">
     <div className="stat-figure text-primary">
      

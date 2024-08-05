@@ -126,7 +126,7 @@ const UpdateUser = () => {
           className="flex flex-col justify-center items-center gap-5"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             <input
               className="input input-bordered input-primary w-full max-w-xs"
               type="text"
