@@ -35,11 +35,11 @@ const PaymentShop = () => {
     return (
         <div>
             <SectionTitle title='Buy Shop'></SectionTitle>
-            <div className="flex justify-center items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4">
                 <p className="text-error font-mono">Before buying please keep updated your Info</p>
                 <Link className="btn btn-primary" to='/dashboard/userhome'>Update</Link>
             </div>
-            <div className="flex justify-around items-center font-mono text-xl gap-5 p-5">
+            <div className="flex flex-col md:flex-row justify-around md:items-center font-mono text-xl gap-5 p-5">
                 <p>Category: <span className="font-semibold">{shopData?.category}</span></p>
                 <div>
                 <p>Duration: <span className="font-semibold">{shopData?.features.duration} </span>Years</p>
@@ -48,7 +48,7 @@ const PaymentShop = () => {
                 </div>
                 <p>Shop Price: <span className="font-semibold">{shopData?.price}</span> Tk</p>
             </div>
-            <form className="flex justify-center items-center gap-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="flex flex-col md:flex-row justify-center items-center gap-4" onSubmit={handleSubmit(onSubmit)}>
                 <input className="input input-bordered input-primary w-full max-w-xs" type="text" placeholder="Shop Name" {...register("shopName")} />
                 <select className="select select-primary w-full max-w-xs" {...register("shopType")}>
                     <option disabled selected>Shop Categories?</option>
