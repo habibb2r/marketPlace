@@ -39,7 +39,7 @@ const SellerNav = () => {
         .catch(error => console.log(error))
     }
     return (
-      <div className={`z-20 h-full fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${clicked? '': 'my-nav'}`}>
+      <div className={`z-20 h-full fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success hover-nav ${clicked? '': 'my-nav'}`}>
       <div className="relative block md:hidden">
         <img onClick={()=>controlNav()} className="top-[35px] right-[-60px] absolute h-[40px]" src={clicked?cancel : menu} alt="" />
       </div>
