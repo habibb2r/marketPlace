@@ -60,7 +60,7 @@ const Navbar = () => {
               userInfo?.role == 'customer'? <Link to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /></Link> : ''
             }
             {
-              userInfo?.role == 'seller'? <Link to='/sellerdashboard'><img className="h-[35px]" src={sellerdash} alt="Dashboard" /></Link> : ''
+              userInfo?.role == 'seller'? <Link to='/sellerdashboard/sellerprofile'><img className="h-[35px]" src={sellerdash} alt="Dashboard" /></Link> : ''
             }
             {
               userInfo?.role == 'customer'? <Link to='/dashboard/cart' className="text-primary relative">

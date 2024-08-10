@@ -6,18 +6,73 @@ import { useState } from "react";
 import Loading from "../../../Shared/Loading/Loading";
 import useAddCategories from "../SellerHooks/useAddCategories";
 import useFeatureList from "../SellerHooks/useFeatureList";
+import Swal from "sweetalert2";
+import useSellerInfo from "../SellerHooks/useSellerInfo";
+const img_hosting_token = import.meta.env.VITE_imgbb_token;
 
 const AddItems = () => {
+  const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const [sellerInfo] = useSellerInfo();
   const [select, setSelect] = useState();
   const [cateList, ,] = useAddCategories();
   const [featureList, refetch, isLoading] = useFeatureList(select);
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const onSubmit = (data) => {
+    console.log(data);
+    const features = {};
+    featureList?.data?.forEach((feature) => {
+      if (data[feature]) {
+        features[feature] = data[feature];
+      }
+    });
+
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    fetch(hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageResponse) => {
+        if (imageResponse.success) {
+          const imgURL = imageResponse.data.display_url;
+
+          const features = {};
+          featureList?.data?.forEach((feature) => {
+            if (data[feature]) {
+              features[feature] = data[feature];
+            }
+          });
+          const additemdata = {
+            product_name: data.product_name,
+            product_image: imgURL,
+            product_category: select,
+            product_rating: 0,
+            total_rated : 0,
+            product_price: {
+              previous_price: data.previous_price,
+              present_price: data.present_price,
+              discount: data.discount
+            },
+            product_description: {
+              description: data.description,
+              features: features,
+            },
+            stall: {
+              name: sellerInfo.sellerProfile.stall_name,
+              id: sellerInfo.sellerProfile.stall_id,
+              type: sellerInfo.sellerProfile.stall_type
+            }
+          };
+        }
+      });
+  };
 
   const handleFilter = (e) => {
     console.log(e.target.value);
@@ -29,6 +84,7 @@ const AddItems = () => {
 
   console.log("CateList", cateList);
   console.log(featureList);
+  console.log('Seller',sellerInfo);
 
   return (
     <div>
@@ -64,7 +120,7 @@ const AddItems = () => {
               <span className="label-text">* Product Name</span>
             </div>
             <input
-              className="input input-bordered input-primary w-full max-w-xs"
+              className="input input-bordered input-primary md:w-full "
               type="text"
               placeholder="product_name"
               {...register("product_name", {})}
@@ -76,7 +132,7 @@ const AddItems = () => {
               <span className="label-text">* Product Description</span>
             </div>
             <textarea
-              className="textarea textarea-bordered textarea-lg w-[300px] md:w-[350px] h-[150px]  textarea-primary"
+              className="textarea textarea-bordered textarea-lg w-[300px] md:w-full h-[150px]  textarea-primary"
               {...register("description", {})}
             />
           </label>
@@ -115,8 +171,8 @@ const AddItems = () => {
                 {...register("discount")}
               >
                 <option value={""}>Discount?</option>
-                <option value="yes">yes</option>
-                <option value=" no"> no</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
             </label>
           </div>
@@ -139,6 +195,17 @@ const AddItems = () => {
               ))}
             </div>
           </div>
+
+          <label className="form-control w-full ">
+            <div className="label">
+              <span className="label-text">* Product Image</span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+              {...register("image")}
+            />
+          </label>
 
           <input className="btn btn-success" type="submit" />
         </form>
