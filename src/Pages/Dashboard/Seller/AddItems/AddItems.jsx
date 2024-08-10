@@ -41,8 +41,31 @@ const AddItems = () => {
       .then((res) => res.json())
       .then((imageResponse) => {
         if (imageResponse.success) {
-          const imgURL = imageResponse.data.display_url;
+          let timerInterval;
+          Swal.fire({
+            title: "Adding item to market place.!",
+            html: "I will close in <b></b> milliseconds.",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              const timer = Swal.getPopup().querySelector("b");
+              timerInterval = setInterval(() => {
+                timer.textContent = `${Swal.getTimerLeft()}`;
+              }, 100);
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          });
 
+
+          const imgURL = imageResponse.data.display_url;
           const features = {};
           featureList?.data?.forEach((feature) => {
             if (data[feature]) {
@@ -70,6 +93,20 @@ const AddItems = () => {
               type: sellerInfo.sellerProfile.stall_type
             }
           };
+          console.log(additemdata)
+          axiosSecure.post('/addItems',additemdata)
+          .then(res=>{
+              if(res.data){
+                reset()
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Added Items Successfully",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+          })
         }
       });
   };
@@ -82,9 +119,9 @@ const AddItems = () => {
     refetch();
   };
 
-  console.log("CateList", cateList);
-  console.log(featureList);
-  console.log('Seller',sellerInfo);
+  // console.log("CateList", cateList);
+  // console.log(featureList);
+  // console.log('Seller',sellerInfo);
 
   return (
     <div>

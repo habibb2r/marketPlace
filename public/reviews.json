@@ -81,3 +81,71 @@
     }
   ]
   
+
+
+  {
+    "_id": {
+      "$oid": "66aa18a1f77cbbcd1198556b"
+    },
+    "control": "admin_control",
+    "stall_types_list": [
+      "Fashion",
+      "Gadget Shop",
+      "Mobile Shop",
+      "Beauty Products",
+      "Toys",
+      "Kids Products",
+      "Electrocics Shop",
+      "Computer Shop"
+    ],
+    "products_types_list": [
+      "Mobile",
+      "Smart-Watch",
+      "Headphone",
+      "Men-Fashion",
+      "Kids-Fashion",
+      "Women-Fashion",
+      "Computer"
+    ],
+    "add_product": {
+      "Mobile": [
+        "ram",
+        "rom",
+        "proccessor",
+        "display"
+      ],
+      "Computer": [
+        "ssd",
+        "proccessor",
+        "ram"
+      ],
+      "Headphone": [
+        "wireless",
+        "battery",
+        "control"
+      ],
+      "Smart-Watch": [
+        "calling",
+        "bluetooth",
+        "display",
+        "battery"
+      ],
+      "Men-Fashion": [
+        "sizes",
+        "colors",
+        "style",
+        "material"
+      ],
+      "Women-Fashion":[
+        "material",
+        "size_description",
+        "colors",
+        "style"
+      ],
+      "Kids-Fashion":[
+        "material",
+        "size",
+        "age",
+      ]
+    }
+  }
