@@ -124,6 +124,10 @@ import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
         {
           path: 'manageallitems',
           element: <ManageAllItems></ManageAllItems>
+        },
+        {
+          path: 'userupdate',
+          element: <UpdateUser></UpdateUser>
         }
       ]
     },
@@ -146,6 +150,10 @@ import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
         {
           path: 'manageorders',
           element: <ManageOrders></ManageOrders>
+        },
+        {
+          path: 'userupdate',
+          element: <UpdateUser></UpdateUser>
         }
       ]
     }

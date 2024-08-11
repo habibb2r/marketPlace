@@ -127,6 +127,7 @@ const AddItems = () => {
     <div>
       <SectionTitle title="Add Items"></SectionTitle>
       <div className="flex flex-col justify-center items-center gap-5 py-5">
+        <p className="text-error font-semibold">Instruction : At first select a type then must click on Next Button</p>
         <div className="flex justify-center items-center gap-2">
           <select
             defaultValue={""}
@@ -233,7 +234,7 @@ const AddItems = () => {
             </div>
           </div>
 
-          <label className="form-control w-full ">
+          <label className="form-control pb-4">
             <div className="label">
               <span className="label-text">* Product Image</span>
             </div>
