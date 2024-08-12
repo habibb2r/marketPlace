@@ -81,7 +81,7 @@ const ManageAllItems = () => {
                          <Rating style={{ maxWidth: 100 }} value={item.product_rating} readOnly />
                         </td>
                         <td>
-                        <Link to={`/shopDetails/${item.stall_id}`} className='font-semibold text-primary'>{item.stall_name}</Link>
+                        <Link to={`/shopDetails/${item.stall.id}`} className='font-semibold text-primary'>{item.stall.name}</Link>
                         </td>
                         <td className=''>
                             <img onClick={()=>handleDeleteItems(item)} className="h-[45px]" src={trash} alt="" />

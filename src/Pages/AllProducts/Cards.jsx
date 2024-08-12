@@ -19,12 +19,13 @@ const Cards = ({data}) => {
   const axiosSecure = useAxiosSecure()
   const [, ,refetch] = useCart()
 
+  console.log(data)
   const {
     product_image,
     product_name,
     product_rating,
     product_price,
-    stall_name,
+    stall,
     _id
   } = data;
   
@@ -35,9 +36,10 @@ const Cards = ({data}) => {
         user : user.email,
         product_name: item.product_name,
         product_image : item.product_image,
-        price : item.product_price.present_price,
-        shop : item.stall_name,
-        rating: item.product_rating
+        price : parseInt(item.product_price.present_price),
+        stall : item.stall.name,
+        rating: item.product_rating,
+        stall_id: item.stall.id
       }
       axiosSecure.post('/addToCart', cartItem)
       .then(res =>{
@@ -101,7 +103,7 @@ const Cards = ({data}) => {
         )}
         <div className="flex justify-start items-center font-bold gap-2">
           <BsShop />
-          <p>{stall_name}</p>
+          <p>{stall.name}</p>
         </div>
         
       </div>

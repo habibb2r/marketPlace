@@ -9,7 +9,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_stripe_key);
 
 const Payment = () => {
     const [cart, , refetch] = useCart();
-    const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+    const totalPrice = cart.reduce((acc, item) => parseInt(acc) + parseInt(item.price), 0);
     return (
         <div>
             <SectionTitle title='Payments'></SectionTitle>

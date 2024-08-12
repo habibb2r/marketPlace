@@ -84,7 +84,7 @@ const CartUser = () => {
                   </div>
                 </td>
                 <td>
-                  <Link className="font-semibold">{item.shop}</Link>
+                  <Link className="font-semibold">{item.stall}</Link>
                 </td>
                 <td className="font-semibold">{item.price} tk</td>
                 <td className="flex justify-center items-center gap-5">

@@ -31,8 +31,9 @@ const ProductDetails = () => {
             user : user.email,
             product_name: item.product_name,
             product_image : item.product_image,
-            price : item.product_price.present_price,
-            shop : item.stall_name,
+            price : parseInt(item.product_price.present_price),
+            stall : item.stall.name,
+            stall_id : item.stall.id,
             rating: item.product_rating
           }
           axiosSecure.post('/addToCart', cartItem)
@@ -72,15 +73,16 @@ const ProductDetails = () => {
     return (
         <div className="">
             <SectionTitle title='Product Details'></SectionTitle>
-            <div className="flex flex-col md:flex-row justify-center md:justify-normal items-center md:gap-0 gap-3 md:px-10 py-5">
+            <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5">
                 <div className="md:w-2/5 flex flex-col justify-center items-center">
                     <h1 className="font-mono uppercase font-semibold text-xl px-3 py-2">{details.product_name}</h1>
                     <img className="md:h-[300px] h-[250px] rounded-lg shadow-sm shadow-secondary p-2" src={details.product_image} alt="" />
                 </div>
-                <div className="flex flex-col justify-center items-start gap-1 px-5">
-                {Object.entries(details.product_description).map(([key, value]) => (
+                <div className="md:w-3/5 flex flex-col justify-center items-start gap-1 px-5">
+                  <p className="py-3"><span className="font-bold font-serif">Description :</span> {details.product_description?.description}</p>
+                {Object.entries(details.product_description.features).map(([key, value]) => (
                         <p key={key}>
-                            <span className="font-bold font-serif">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
+                            <span className="font-bold font-serif uppercase">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
                             <span>{value}</span>
                         </p>
                     ))}
@@ -92,7 +94,7 @@ const ProductDetails = () => {
                        <p><span className="font-bold font-serif">Price : </span><span className="font-mono font-semibold">{details.product_price.present_price}</span> Tk</p></div>}
                        <div className="flex flex-col justify-center items-start gap-4 py-2">
                        <Rating style={{ maxWidth: 100}} value={details.product_rating} readOnly />
-                       <Link to={`/shopDetails/${details.stall_id}`} className="flex justify-start items-center gap-1"> <img className="h-[40px]" src={shop} alt="Shop" /> <p className="text-xl font-medium text-primary">{details.stall_name}</p></Link>
+                       <Link to={`/shopDetails/${details.stall.id}`} className="flex justify-start items-center gap-1"> <img className="h-[40px]" src={shop} alt="Shop" /> <p className="text-xl font-medium text-primary">{details.stall_name}</p></Link>
                         <div>
                             <button onClick={()=>addToCart(details)} className="btn btn-outline"><p className="font-semibold text-secondary">Add to Cart</p> <img className="h-[20px]" src={cart} alt="" /></button>
                         </div>
