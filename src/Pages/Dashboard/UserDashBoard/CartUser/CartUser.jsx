@@ -51,20 +51,20 @@ const CartUser = () => {
 <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* head */}
-    <thead className='text-sm'>
+    <thead className='text-sm bg-accent text-neutral'>
       <tr>
         
-        <th>Item Name</th>
-        <th>Shop</th>
-        <th>Price</th>
-        <th>Manage Items</th>
+        <th className=' border-2 border-neutral'>Item Name</th>
+        <th className=' border-2 border-neutral'>Shop</th>
+        <th className=' border-2 border-neutral'>Price</th>
+        <th className=' border-2 border-neutral'>Manage Items</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className='border-2'>
       {/* row 1 */}
       {
-                    cart.map(item=>  <tr key={item._id}>
-                        <td>
+                    cart.map(item=>  <tr className='border-b-2 border-success' key={item._id}>
+                        <td className='border-r-2'>
                           <div className="flex items-center gap-3">
                             <div className="avatar">
                               <div className="mask mask-squircle h-12 w-12">
@@ -79,10 +79,10 @@ const CartUser = () => {
                             </div>
                           </div>
                         </td>
-                        <td>
+                        <td className='border-r-2'>
                          <Link className='font-semibold'>{item.shop}</Link>
                         </td>
-                        <td className='font-semibold'>{item.price} tk</td>
+                        <td className='font-semibold border-r-2'>{item.price} tk</td>
                         <td className='flex justify-center items-center gap-5'>
                             <img onClick={()=>handleRemoveCart(item)} className="h-[40px]" src={remove} alt="" />
                           
@@ -92,12 +92,12 @@ const CartUser = () => {
   
     </tbody>
 
-    <tfoot>
-    <tr>
+    <tfoot >
+    <tr className='border-2 mt-5'>
         
         <th></th>
         <th></th>
-        <th className='text-xl'>Total: <span className='font-semibold text-secondary'>{totalPrice}</span></th>
+        <th className='text-xl border-l-2'>Total: <span className='font-semibold text-secondary'>{totalPrice}</span></th>
         <th className='flex justify-center items-center '><Link to={`/dashboard/payment`} className="btn btn-success">Pay</Link></th>
       </tr>
     </tfoot>

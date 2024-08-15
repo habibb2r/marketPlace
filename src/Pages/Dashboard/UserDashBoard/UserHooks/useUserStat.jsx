@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const useUserStat = () => {
     const {user, loading} = useAuth();
     const axiosSecure = useAxiosSecure()
-    const {data: stat, isLoading: statLoad} = useQuery({
+    const {data: stat, isLoading: statLoad, refetch} = useQuery({
         queryKey: ['userStat'],
         enabled: !loading,
         queryFn: async () => {
@@ -14,6 +14,6 @@ const useUserStat = () => {
             return res.data;
         }
     })
-    return [stat, statLoad]
+    return [stat, statLoad, refetch]
 }
 export default useUserStat;
