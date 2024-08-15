@@ -27,14 +27,16 @@ const ProductDetails = () => {
     const addToCart = item => {
         if(user && user.email){
           const cartItem = {
+            stall_id: item.stall.id,
+            cartData : {
             product_id : item._id,
             user : user.email,
             product_name: item.product_name,
             product_image : item.product_image,
             price : parseInt(item.product_price.present_price),
             stall : item.stall.name,
-            stall_id : item.stall.id,
-            rating: item.product_rating
+            rating: item.product_rating,
+            }
           }
           axiosSecure.post('/addToCart', cartItem)
           .then(res =>{

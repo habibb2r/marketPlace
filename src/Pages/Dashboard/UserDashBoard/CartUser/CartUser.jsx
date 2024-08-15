@@ -10,7 +10,7 @@ const CartUser = () => {
   const [cart, , refetch] = useCart();
   console.log(cart);
   const axiosSecure = useAxiosSecure();
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.cartData.price, 0);
   const handleRemoveCart = (item) => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,19 +64,19 @@ const CartUser = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={item.product_image}
+                          src={item.cartData.product_image}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
                       <div className="font-bold w-[250px] uppercase">
-                        {item.product_name}
+                        {item.cartData.product_name}
                       </div>
                       <div className="text-sm">
                         <Rating
                           style={{ maxWidth: 100 }}
-                          value={item.product_rating}
+                          value={item.cartData.product_rating}
                           readOnly
                         />
                       </div>
@@ -84,9 +84,9 @@ const CartUser = () => {
                   </div>
                 </td>
                 <td>
-                  <Link className="font-semibold">{item.stall}</Link>
+                  <Link className="font-semibold">{item.cartData.stall}</Link>
                 </td>
-                <td className="font-semibold">{item.price} tk</td>
+                <td className="font-semibold">{item.cartData.price} tk</td>
                 <td className="flex justify-center items-center gap-5">
                   <img
                     onClick={() => handleRemoveCart(item)}
