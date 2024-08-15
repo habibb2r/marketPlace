@@ -38,20 +38,20 @@ const SlideDiscount = () => {
       {offers.map((offer) => (
         <SwiperSlide key={offer._id} className="swiper-slide-offer rounded-lg">
           <div className="h-[400px] md:w-[650px] md:h-[300px] bg-base-100 shadow-xl shadow-success px-4 py-4 flex flex-col md:flex-row justify-around items-center rounded-lg md:gap-5">
-            <figure>
+            <figure className="md:w-2/5">
               <img className="h-[150px] md:h-[290px] rounded-md"
                 src={offer.product_image}
                 alt="Discount Products"
               />
             </figure>
-            <div className="flex flex-col justify-start items-start gap-3">
+            <div className="flex flex-col justify-start items-start gap-3 md:w-3/5">
               <div className="flex flex-col justify-start items-start text-start">
-              <h2 className="font-bold text-sm md:text-xl pb-2">{offer.product_name}</h2>
+              <h2 className="font-bold text-sm md:text-xl pb-2 overflow-ellipsis overflow-hidden whitespace-nowrap w-[200px] md:w-[350px]">{offer.product_name}</h2>
               <div className="text-sm md:text-xl">Discount Available on : <br />
               <div className="flex items-center gap-1 p-1">
               <FcShop className="text-4xl" />
-              <Link className="font-mono font-semibold shadow-sm  p-1 rounded-lg shadow-primary">
-              {offer.stall_name}</Link>
+              <Link className="font-mono font-semibold shadow-sm  p-1 rounded-lg shadow-primary ">
+              {offer.stall.name}</Link>
               </div>
               </div>
 

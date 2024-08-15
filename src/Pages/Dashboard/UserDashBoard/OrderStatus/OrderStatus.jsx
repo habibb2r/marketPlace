@@ -3,6 +3,7 @@ import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useOrderStatus from "../UserHooks/useOrderStatus";
 import statusOk from '../../../../assets/check.png'
 import statusPen from '../../../../assets/pending.png'
+import { CiShoppingTag } from "react-icons/ci";
 
 const OrderStatus = () => {
     const [orderStatus, orderLoad] = useOrderStatus();
@@ -29,13 +30,13 @@ const OrderStatus = () => {
       {
                     orderStatus?.map(item=>  <tr key={item._id}>
                         <td>
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center">
                             <div>
                                 {
-                                    item.itemNames.map(product => <div key={product} className="font-bold w-[300px] uppercase">{product}</div>)
+                                    item.itemNames.map(product => <div key={product} className="font-bold w-[350px] uppercase flex items-start gap-1 py-2"><CiShoppingTag /><span>{product}</span></div>)
                                 }
                                 <div className="font-light text-sm pt-2">Quantity : {item.quantity}</div>
-                                <div className="font-light text-sm">{item.price} Tk</div>
+                                <div className="font-light text-sm">{item.total_price} Tk</div>
                               
                             </div>
                           </div>

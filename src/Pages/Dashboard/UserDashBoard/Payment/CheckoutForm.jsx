@@ -20,7 +20,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
 
 
             
-
+    console.log(price)
 
     useEffect(()=>{
        if(price> 0){
@@ -90,12 +90,15 @@ const CheckoutForm = ({price, cart, refetch}) => {
                 date: dateTimeString,
                 time: timeString,
                 quantity: cart.length,
-                price: price,
+                total_price: price,
+                stall_id: cart[0].stall_id,
                 cartItems: cart.map(item=> item._id),
-                product_items : cart.map(item=> item.product_id),
-                itemNames: cart.map(item=> item.product_name),
+                product_items : cart.map(item=> item.cartData.product_id),
+                itemNames: cart.map(item=> item.cartData.product_name),
+                product_prices: cart.map(item=> item.cartData.price),
                 payment_status: true,
-                delivered : false
+                delivered: false,
+                
             }
 
             axiosSecure.post('/payments', paymentSlip)

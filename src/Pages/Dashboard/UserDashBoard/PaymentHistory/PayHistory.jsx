@@ -37,7 +37,7 @@ const PayHistory = () => {
                           <div className="flex items-center gap-3">
                             <div>
                                 {
-                                    item.itemNames.map(product => <div key={product} className="font-bold w-[200px] uppercase">{product}</div>)
+                                    item.itemNames.map(product => <div key={product} className="font-bold w-[300px] uppercase">➵ {product}</div>)
                                 }
                                 <div className="font-thin text-sm pt-2">{item.date}</div>
                                 <div className="font-thin text-sm">{item.time}</div>
@@ -46,11 +46,11 @@ const PayHistory = () => {
                           </div>
                         </td>
                         <td>
-                         <div className='font-semibold'>{item.price} tk</div>
+                         <div className='font-semibold'>{item.total_price} tk</div>
                         </td>
                         <td className='font-semibold'>{item.quantity}</td>
-                        <td className='flex justify-start items-start gap-5'>
-                            <p className="font-semibold">{item.traxId}</p>
+                        <td className=''>
+                            <p className="flex justify-start items-start gap-5 font-semibold">{item.traxId}</p>
                           
                         </td>
                       </tr>)

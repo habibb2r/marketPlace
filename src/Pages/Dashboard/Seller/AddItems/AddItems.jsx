@@ -81,7 +81,7 @@ const AddItems = () => {
             product_price: {
               previous_price: data.previous_price,
               present_price: data.present_price,
-              discount: data.discount
+              discount: Boolean(data.discount)
             },
             product_description: {
               description: data.description,

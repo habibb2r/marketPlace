@@ -19,7 +19,6 @@ const Cards = ({data}) => {
   const axiosSecure = useAxiosSecure()
   const [, ,refetch] = useCart()
 
-  console.log(data)
   const {
     product_image,
     product_name,
@@ -56,9 +55,16 @@ const Cards = ({data}) => {
           });
           refetch()
         }
+        else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...Cannot add item from multiple shop at a time",
+            text: "Pay previously added item..!",
+          });
+          
+        }
         
       })
-      console.log(cartItem);
       
     }else{
       Swal.fire({

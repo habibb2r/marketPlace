@@ -45,10 +45,10 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  const removeUser = (email)=>{
+  const removeUser = (email) => {
     setLoading(true);
-    return deleteUser(auth, email)
-  }
+    return deleteUser(auth, email);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
 
       //Get set token
       // if(currentUser){
-      //     axios.post('http://localhost:5000/jwt', {email: currentUser.email})
+      //     axios.post('https://market-server-two.vercel.app/jwt', {email: currentUser.email})
       //     .then(data=> {
       //         // console.log(data.data.token)
       //         localStorage.setItem('token', data.data.token);
@@ -81,8 +81,7 @@ const AuthProvider = ({ children }) => {
     signin,
     signInGoogle,
     logOut,
-    removeUser
-    
+    removeUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

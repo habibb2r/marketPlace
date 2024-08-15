@@ -62,15 +62,15 @@ const SellerProfile = () => {
             <div className="bg-primary bg-opacity-10 px-3 py-5 rounded-md">
               <p className="text-xl font-semibold border-b-2 border-success py-3">Stall Information</p>
               <div className="font-mono py-3">
-                <p className="md:text-center">Stall Name : <span className="text-xl font-semibold">{sellerInfo.sellerProfile?.stall_name}</span></p>
+                <p className="">Stall Name : <span className="text-xl font-semibold">{sellerInfo.sellerProfile?.stall_name}</span></p>
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 py-3">
-                <p className="">Stall Type :<span className="">{sellerInfo.sellerProfile?.stall_type}</span></p>
-                <p>Stall Category :<span className="">{sellerInfo.sellerProfile?.stall_quality}</span></p>
+                <p className="">Stall Type :<span className="font-semibold">{sellerInfo.sellerProfile?.stall_type}</span></p>
+                <p>Stall Category :<span className="font-semibold">{sellerInfo.sellerProfile?.stall_quality}</span></p>
                 
                 </div>
-                <div className="flex justify-between items-center gap-4">
-                <p>Stall ID : <span className="">{sellerInfo.sellerProfile?.stall_id}</span></p>
-                <p>Purchase Date : <span className="">{sellerInfo.sellerProfile?.date}</span></p>
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                <p>Stall ID : <span className="font-semibold">{sellerInfo.sellerProfile?.stall_id}</span></p>
+                <p>Purchase Date : <span className="font-semibold">{sellerInfo.sellerProfile?.date}</span></p>
                 </div>
               </div>
             </div>
