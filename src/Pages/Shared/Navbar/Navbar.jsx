@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/Logo/Logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -17,12 +17,16 @@ import cancel from '../../../assets/basic/002-button.png'
 import './Navbar.css'
 
 const Navbar = () => {
+ 
+  const navigate = useNavigate();
+  // const location = useLocation();
+  const from = "/";
   const [clicked, setClick] = useState(false)
   const [cart] = useCart()
   const {user, logOut} = useContext(AuthContext)
   const [userInfo, refetch, isLoading] = useGetUserInfo()
   if(isLoading){
-    <Loading></Loading>
+    return <Loading></Loading>
   }
 
   const controlNav =()=>{
@@ -39,6 +43,7 @@ const Navbar = () => {
           showConfirmButton: false,
           timer: 1500
         });
+        navigate(from, { replace: true });
       })
       .catch(error => console.log(error))
   }

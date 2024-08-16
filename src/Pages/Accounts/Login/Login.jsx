@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login = () => {
   const today = new Date()
   const dateTimeString = today.toLocaleDateString();
   const timeString = today.toLocaleTimeString()
+  const [,refetch, ] =useGetUserInfo()
 
   const from = location.state?.from?.pathname || "/";
 
@@ -42,6 +44,7 @@ const axiosSecure = useAxiosSecure();
             timer: 1500
           });
           reset()
+          refetch()
           navigate(from, { replace: true });
         }
         console.log(user);
@@ -71,6 +74,7 @@ const axiosSecure = useAxiosSecure();
               showConfirmButton: false,
               timer: 1500
             });
+            refetch();
             navigate(from, { replace: true });
           }
         })

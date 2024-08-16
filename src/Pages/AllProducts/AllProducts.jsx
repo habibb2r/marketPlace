@@ -10,9 +10,7 @@ const AllProducts = () => {
   const [sort, setSort] = useState(0);
 
   useEffect(() => {
-    fetch(
-      `https://market-server-two.vercel.app/allProducts/${filter}?sort=${sort}`
-    )
+    fetch(`http://localhost:5000/allProducts/${filter}?sort=${sort}`)
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data.results);

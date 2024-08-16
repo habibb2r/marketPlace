@@ -5,12 +5,16 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const Signup = () => {
   const [,refetch, ] =useGetUserInfo()
+  const navigate = useNavigate();
+  // const location = useLocation();
+  const from = "/";
+
   const today = new Date()
   const dateTimeString = today.toLocaleDateString();
   const timeString = today.toLocaleTimeString()
@@ -18,14 +22,12 @@ const Signup = () => {
     const{createUser} = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const onSubmit = data => {
-    console.log(data);
     createUser(data.Email, data.Password)
     .then(result =>{
         const loggedUser = result.user;
         console.log(loggedUser)
         if(loggedUser.email){
-     
-         
+
             const userData = {
                 email: loggedUser.email,
                 name: data.name,
@@ -34,7 +36,6 @@ const Signup = () => {
                 createdDate: dateTimeString,
                 createdTime: timeString
               }
-              console.log(userData);
               axiosSecure.post('/user', userData)
               .then(res=> {
                 if(res.data){
@@ -47,7 +48,7 @@ const Signup = () => {
                     timer: 1500
                   });
                   reset();
-                  <Navigate to={'/'}></Navigate>
+                  navigate(from, { replace: true });
                 }
               })
 
