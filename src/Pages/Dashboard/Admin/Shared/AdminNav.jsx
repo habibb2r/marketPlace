@@ -41,7 +41,7 @@ const AdminNav = () => {
           <div className="relative block md:hidden">
             <img onClick={()=>controlNav()} className="top-[35px] right-[-60px] absolute h-[40px]" src={clicked?cancel : menu} alt="" />
           </div>
-        <div className="flex flex-col justify-between items-start h-full">
+        <div onClick={()=>controlNav()} className="flex flex-col justify-between items-start h-full">
           <div>
             <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
           </div>

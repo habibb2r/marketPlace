@@ -2,6 +2,16 @@ import { Link } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useSellerInfo from "../SellerHooks/useSellerInfo";
+import shopIcon from '../../../../icons/006-store.png'
+import userName from "../../../../assets/seller/001-agent.png"
+import userBirth from "../../../../assets/seller/005-pediatrics.png"
+import userEmail from "../../../../assets/seller/002-gmail.png"
+import userPhone from "../../../../assets/seller/003-add-contact.png"
+import userUpdate from "../../../../assets/seller/004-updated.png"
+import userGender from "../../../../assets/seller/006-equality.png"
+import userDate from "../../../../assets/seller/008-calendar.png"
+import userRole from "../../../../assets/seller/007-management.png"
+import userTime from "../../../../assets/seller/009-clock.png"
 
 const SellerProfile = () => {
   const [sellerInfo, , isLoading] = useSellerInfo();
@@ -15,57 +25,72 @@ const SellerProfile = () => {
       <div>
         <div className="grid md:grid-cols-2 gap-10">
           <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5">
-            <div className="flex justify-start items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-start items-center gap-4">
               <img
-                className="rounded-md h-[100px] w-[100px] md:h-[150px] md:w-[150px] shadow-sm"
+                className="rounded-2xl h-[120px] w-[120px] md:h-[150px] md:w-[150px] shadow-lg shadow-primary"
                 src={sellerInfo.sellerBio?.picture}
                 alt=""
               />
-              <div className="flex flex-col justify-center items-center gap-3 font-semibold font-mono">
-                <div>
-                  <h2>Name : {sellerInfo.sellerBio?.name}</h2>
-                  <h2>Email : {sellerInfo.sellerBio?.email}</h2>
-                  <h2>
-                    Phone :{" "}
+              <div className="flex flex-col  md:justify-center items-start md:items-center  gap-3 font-semibold font-sans">
+                <div className="flex flex-col justify-start items-start gap-4">
+                  <div className="flex items-center gap-2">
+                  <img className="h-[30px]" src={userName} alt="" /> 
+                  <h2 className="text-xl">{sellerInfo.sellerBio?.name}</h2>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                  <img className="h-[25px]" src={userEmail} alt="" />
+                  <h2 className="text-md">{sellerInfo.sellerBio?.email}</h2>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                  <img className="h-[30px]" src={userPhone} alt="" />
+                  <h2 className="text-md">
                     {sellerInfo.sellerBio?.phone
                       ? sellerInfo.sellerBio.phone
                       : <span className="text-error">Update Profile</span>}
                   </h2>
+                  </div>
+                  
                 </div>
                 <Link
-                  className="btn btn-secondary"
+                  className="btn btn-success"
                   to="/sellerdashboard/userupdate"
                 >
-                  {" "}
-                  Update Profile
+                  <div className="flex items-center gap-1"><img className="h-[30px]" src={userUpdate} alt="" />
+                  <span>Update Profile</span></div>
                 </Link>
               </div>
             </div>
             <div>
               <h1 className="text-xl font-semibold border-b-2 border-secondary py-2">Addtional Information</h1>
-              <div className="flex flex-col justify-start items-start font-mono">
-                <p><span className="font-semibold">Birth</span> : {sellerInfo.sellerBio?.dob}</p>
-                <p><span className="font-semibold">Gender</span> : {sellerInfo.sellerBio?.gender}</p>
-                <p><span className="font-semibold">Role</span> : {sellerInfo.sellerBio?.role}</p>
-                <div className="flex justify-center items-start gap-2">
-                  <p><span className="font-semibold">Account Created</span> :</p>
-                  <div>
-                    <p><span className="font-semibold">Date</span>: {sellerInfo.sellerBio?.createdDate}</p>
-                    <p><span className="font-semibold">Time</span> : {sellerInfo.sellerBio?.createdTime}</p>
-                  </div>
-                </div>
+              <div className="flex flex-col md:flex-row justify-between items-start font-sans gap-4 py-3">
+                <div className="flex items-center gap-2"><img className="h-[40px]" src={userBirth} alt="" /><span className="font-semibold">{sellerInfo.sellerBio?.dob}</span> </div>
+                <p className="flex items-center gap-2"><img className="h-[40px]" src={userGender} alt="" /><span className="font-semibold">{sellerInfo.sellerBio?.gender}</span></p>
+                <p className="flex items-center gap-2"><img className="h-[40px]" src={userRole} alt="" /> <span className="font-semibold">{sellerInfo.sellerBio?.role}</span></p>
+                
                 
               </div>
+              <div className="flex flex-col md:flex-row justify-start items-start gap-3 py-3">
+                  <p className="border-b-2 border-secondary"><span className="font-semibold">Account Created</span> :</p>
+                  <div className="flex items-center justify-around gap-4">
+                    <p className="flex items-center gap-2"> <img className="h-[40px]" src={userDate} alt="" /><span className="font-semibold">{sellerInfo.sellerBio?.createdDate}</span></p>
+                    <p className="flex items-center gap-2"> <img className="h-[40px]" src={userTime} alt="" /><span className="font-semibold">{sellerInfo.sellerBio?.createdTime}</span></p>
+                  </div>
+                </div>
             </div>
           </div>
           <div>
-            <div className="bg-primary bg-opacity-10 px-3 py-5 rounded-md">
-              <p className="text-xl font-semibold border-b-2 border-success py-3">Stall Information</p>
-              <div className="font-mono py-3">
-                <p className="">Stall Name : <span className="text-xl font-semibold">{sellerInfo.sellerProfile?.stall_name}</span></p>
+            <div className="bg-secondary bg-opacity-10 px-3 py-5 rounded-lg shadow-inner shadow-success">
+              <div className=" flex items-center gap-2 border-b-2 border-success py-3">
+              <img className="h-[40px]" src={shopIcon} alt="" />
+              <p className="text-xl font-semibold ">Stall Information</p>
+              </div>
+              <div className="font-sans py-3 bg-secondary bg-opacity-15 px-2 shadow-inner shadow-success rounded-xl">
+                <p className="">Name : <span className="text-xl font-semibold">{sellerInfo.sellerProfile?.stall_name}</span></p>
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 py-3">
-                <p className="">Stall Type :<span className="font-semibold">{sellerInfo.sellerProfile?.stall_type}</span></p>
-                <p>Stall Category :<span className="font-semibold">{sellerInfo.sellerProfile?.stall_quality}</span></p>
+                <p className="">Type : <span className="font-semibold">{sellerInfo.sellerProfile?.stall_type}</span></p>
+                <p>Category : <span className="font-semibold">{sellerInfo.sellerProfile?.stall_quality}</span></p>
                 
                 </div>
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">

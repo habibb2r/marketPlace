@@ -56,14 +56,13 @@ const AddItems = () => {
             },
             willClose: () => {
               clearInterval(timerInterval);
-            }
+            },
           }).then((result) => {
             /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
               console.log("I was closed by the timer");
             }
           });
-
 
           const imgURL = imageResponse.data.display_url;
           const features = {};
@@ -77,11 +76,11 @@ const AddItems = () => {
             product_image: imgURL,
             product_category: select,
             product_rating: 0,
-            total_rated : 0,
+            total_rated: 0,
             product_price: {
               previous_price: data.previous_price,
               present_price: data.present_price,
-              discount: Boolean(data.discount)
+              discount: data.discount,
             },
             product_description: {
               description: data.description,
@@ -90,23 +89,22 @@ const AddItems = () => {
             stall: {
               name: sellerInfo.sellerProfile.stall_name,
               id: sellerInfo.sellerProfile.stall_id,
-              type: sellerInfo.sellerProfile.stall_type
-            }
+              type: sellerInfo.sellerProfile.stall_type,
+            },
           };
-          console.log(additemdata)
-          axiosSecure.post('/addItems',additemdata)
-          .then(res=>{
-              if(res.data){
-                reset()
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Added Items Successfully",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-              }
-          })
+          console.log(additemdata);
+          axiosSecure.post("/addItems", additemdata).then((res) => {
+            if (res.data) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Added Items Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
         }
       });
   };
@@ -126,8 +124,10 @@ const AddItems = () => {
   return (
     <div>
       <SectionTitle title="Add Items"></SectionTitle>
-      <div className="flex flex-col justify-center items-center gap-5 py-5">
-        <p className="text-error font-semibold">Instruction : At first select a type then must click on Next Button</p>
+      <div className="flex flex-col justify-center items-center gap-5 py-5 pb-10 bg-primary bg-opacity-15 rounded-lg">
+        <p className="text-error font-semibold">
+          Instruction : At first select a type then must click on Next Button
+        </p>
         <div className="flex justify-center items-center gap-2">
           <select
             defaultValue={""}
@@ -150,7 +150,7 @@ const AddItems = () => {
           </button>
         </div>
         <form
-          className="flex flex-col justify-center items-center gap-3 border-primary border-2 px-5 py-5 rounded-md"
+          className="flex flex-col justify-center items-center gap-3 shadow-md shadow-primary bg-accent bg-opacity-20 px-5 py-5 rounded-md"
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className="form-control w-full ">
@@ -206,11 +206,14 @@ const AddItems = () => {
               </div>
               <select
                 className="input input-bordered input-primary w-full max-w-xs"
-                {...register("discount")}
+                {...register("discount", {
+                  setValueAs: (value) =>
+                    value === "true" ? true : value === "false" ? false : "",
+                })}
               >
                 <option value={""}>Discount?</option>
-                <option value={true}>Yes</option>
-                <option value={false}>No</option>
+                <option value={"true"}>Yes</option>
+                <option value={"false"}>No</option>
               </select>
             </label>
           </div>

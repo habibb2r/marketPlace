@@ -122,7 +122,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
         {
         transactionId && <p className="font-mono text-success py-5 font-semibold">Transaction Completed. TrxID: {transactionId}</p>
       }
-        <form className="px-10 w-[50%]" onSubmit={handleSubmit}>
+        <form className=" px-4 md:px-10 w-[100%] md:w-[50%]" onSubmit={handleSubmit}>
       <CardElement
         options={{
           style: {
