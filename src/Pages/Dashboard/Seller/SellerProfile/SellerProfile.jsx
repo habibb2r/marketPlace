@@ -12,6 +12,8 @@ import userGender from "../../../../assets/seller/006-equality.png"
 import userDate from "../../../../assets/seller/008-calendar.png"
 import userRole from "../../../../assets/seller/007-management.png"
 import userTime from "../../../../assets/seller/009-clock.png"
+import ico from '../../../../assets/for title/006-businessman.png'
+import ict from '../../../../assets/for title/023-businessman-1.png'
 
 const SellerProfile = () => {
   const [sellerInfo, , isLoading] = useSellerInfo();
@@ -21,10 +23,10 @@ const SellerProfile = () => {
   console.log(sellerInfo);
   return (
     <div>
-      <SectionTitle title="Seller Profile"></SectionTitle>
+      <SectionTitle title="Seller Profile" ico={ico} ict={ict}></SectionTitle>
       <div>
         <div className="grid md:grid-cols-2 gap-10">
-          <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5">
+          <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400">
             <div className="flex flex-col md:flex-row justify-start items-center gap-4">
               <img
                 className="rounded-2xl h-[120px] w-[120px] md:h-[150px] md:w-[150px] shadow-lg shadow-primary"
@@ -34,17 +36,17 @@ const SellerProfile = () => {
               <div className="flex flex-col  md:justify-center items-start md:items-center  gap-3 font-semibold font-sans">
                 <div className="flex flex-col justify-start items-start gap-4">
                   <div className="flex items-center gap-2">
-                  <img className="h-[30px]" src={userName} alt="" /> 
+                  <img className="h-[20px]" src={userName} alt="" /> 
                   <h2 className="text-xl">{sellerInfo.sellerBio?.name}</h2>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                  <img className="h-[25px]" src={userEmail} alt="" />
+                  <img className="h-[15px]" src={userEmail} alt="" />
                   <h2 className="text-md">{sellerInfo.sellerBio?.email}</h2>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                  <img className="h-[30px]" src={userPhone} alt="" />
+                  <img className="h-[20px]" src={userPhone} alt="" />
                   <h2 className="text-md">
                     {sellerInfo.sellerBio?.phone
                       ? sellerInfo.sellerBio.phone
@@ -52,14 +54,16 @@ const SellerProfile = () => {
                   </h2>
                   </div>
                   
-                </div>
-                <Link
-                  className="btn btn-success"
+                  <Link
+                  className=""
                   to="/sellerdashboard/userupdate"
                 >
-                  <div className="flex items-center gap-1"><img className="h-[30px]" src={userUpdate} alt="" />
-                  <span>Update Profile</span></div>
+                  <div className="flex items-center gap-1">
+                    <img className="h-[50px]" src={userUpdate} alt="" />
+                  </div>
                 </Link>
+                </div>
+                
               </div>
             </div>
             <div>

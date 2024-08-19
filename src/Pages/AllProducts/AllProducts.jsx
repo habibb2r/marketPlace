@@ -2,6 +2,8 @@ import { TbShoppingBagSearch } from "react-icons/tb";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import Cards from "./Cards";
 import { useEffect, useState } from "react";
+import ico from "../../assets/for title/002-online-store-location.png";
+import ict from "../../assets/for title/001-marketplace.png";
 
 const AllProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -10,7 +12,9 @@ const AllProducts = () => {
   const [sort, setSort] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allProducts/${filter}?sort=${sort}`)
+    fetch(
+      `https://market-server-two.vercel.app/allProducts/${filter}?sort=${sort}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data.results);
@@ -63,7 +67,11 @@ const AllProducts = () => {
           </select>
         </div>
         <div>
-          <SectionTitle title={`${filter} Products`}></SectionTitle>
+          <SectionTitle
+            title={`${filter} Products`}
+            ico={ico}
+            ict={ict}
+          ></SectionTitle>
           <div className="pt-10 grid md:grid-cols-4 gap-10">
             {allProducts.map((product) => (
               <Cards key={product._id} data={product}></Cards>

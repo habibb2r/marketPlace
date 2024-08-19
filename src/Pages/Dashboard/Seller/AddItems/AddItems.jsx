@@ -9,6 +9,8 @@ import useFeatureList from "../SellerHooks/useFeatureList";
 import Swal from "sweetalert2";
 import useSellerInfo from "../SellerHooks/useSellerInfo";
 const img_hosting_token = import.meta.env.VITE_imgbb_token;
+import ico from '../../../../assets/for title/025-playlist.png'
+import ict from '../../../../assets/for title/026-shopping-bag.png'
 
 const AddItems = () => {
   const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -112,6 +114,7 @@ const AddItems = () => {
   const handleFilter = (e) => {
     console.log(e.target.value);
     setSelect(e.target.value);
+    
   };
   const handleNext = () => {
     refetch();
@@ -123,8 +126,8 @@ const AddItems = () => {
 
   return (
     <div>
-      <SectionTitle title="Add Items"></SectionTitle>
-      <div className="flex flex-col justify-center items-center gap-5 py-5 pb-10 bg-primary bg-opacity-15 rounded-lg">
+      <SectionTitle title="Add Items" ico={ico} ict={ict}></SectionTitle>
+      <div className="flex flex-col justify-center items-center gap-5 py-5 pb-10 bg-accent bg-opacity-10 rounded-lg">
         <p className="text-error font-semibold">
           Instruction : At first select a type then must click on Next Button
         </p>
@@ -132,7 +135,7 @@ const AddItems = () => {
           <select
             defaultValue={""}
             onClick={handleFilter}
-            className="select select-primary select-bordered w-full max-w-xs"
+            className="select select-primary w-full max-w-xs"
           >
             <option value={""}>Select Type</option>
             {cateList?.products_types_list?.map((category) => (
@@ -161,7 +164,7 @@ const AddItems = () => {
               className="input input-bordered input-primary md:w-full "
               type="text"
               placeholder="product_name"
-              {...register("product_name", {})}
+              {...register("product_name", {required: true})}
             />
           </label>
 
@@ -171,10 +174,19 @@ const AddItems = () => {
             </div>
             <textarea
               className="textarea textarea-bordered textarea-lg w-[300px] md:w-full h-[150px]  textarea-primary"
-              {...register("description", {})}
+              {...register("description", {required: true})}
             />
           </label>
-
+          <label className="form-control pb-4">
+            <div className="label">
+              <span className="label-text">* Product Image</span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+              {...register("image")}
+            />
+          </label>
           <div className="grid md:grid-cols-3 gap-2">
             <label className="form-control w-full ">
               <div className="label">
@@ -184,7 +196,7 @@ const AddItems = () => {
                 className="input input-bordered input-primary w-full max-w-xs"
                 type="number"
                 placeholder="present_price"
-                {...register("present_price", {})}
+                {...register("present_price", {required: true})}
               />
             </label>
 
@@ -196,7 +208,7 @@ const AddItems = () => {
                 className="input input-bordered input-primary w-full max-w-xs"
                 type="number"
                 placeholder="previous_price"
-                {...register("previous_price", {})}
+                {...register("previous_price", {required: true})}
               />
             </label>
 
@@ -219,8 +231,10 @@ const AddItems = () => {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2 py-2">
-            <p className="font-mono font-semibold">Product Features</p>
+            <p className="font-mono font-semibold">* Product Features</p>
+            {select? '': <p className="text-error font-semibold">Select a type from above and Click Next to Unlock</p>}
             <div className="grid md:grid-cols-2 gap-2">
+
               {featureList?.data?.map((feature) => (
                 <label key={feature} className="form-control w-full ">
                   <div className="label">
@@ -230,23 +244,14 @@ const AddItems = () => {
                     className="input input-bordered input-primary w-full max-w-xs"
                     type="text"
                     placeholder={`${feature}`}
-                    {...register(`${feature}`)}
+                    {...register(`${feature}`,{required: true})}
                   />
                 </label>
               ))}
             </div>
           </div>
 
-          <label className="form-control pb-4">
-            <div className="label">
-              <span className="label-text">* Product Image</span>
-            </div>
-            <input
-              type="file"
-              className="file-input file-input-bordered file-input-primary w-full max-w-xs"
-              {...register("image")}
-            />
-          </label>
+
 
           <input className="btn btn-success" type="submit" />
         </form>

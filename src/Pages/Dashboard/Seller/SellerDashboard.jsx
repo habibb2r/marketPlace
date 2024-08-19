@@ -6,7 +6,7 @@ const SellerDashboard = () => {
     return (
         <>
             <SellerNav></SellerNav>
-            <div className="md:ml-[250px] pt-[3%] pl-5">
+            <div className="md:ml-[250px] px-2 pt-[3%] md:pl-5">
             <Outlet></Outlet>
             </div>
         </>

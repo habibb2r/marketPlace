@@ -5,7 +5,7 @@ import useGetUserInfo from "../UserHooks/useGetUserInfo";
 import Loading from "../../../Shared/Loading/Loading";
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({price, cart, refetch}) => {
+const CheckoutForm = ({price, cart, refetch, addressData, reset}) => {
     const [userInfo, ,isLoading] = useGetUserInfo()
     if(isLoading){
         <Loading></Loading>
@@ -19,8 +19,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
     const [transactionId, setTransactionId]= useState('')
 
 
-            
-    console.log(price)
+          
 
     useEffect(()=>{
        if(price> 0){
@@ -35,7 +34,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
     const handleSubmit = async(event)=>{
         event.preventDefault();
         const today = new Date()
-
+        // console.log(event)
         const dateTimeString = today.toLocaleDateString();
 
         const timeString = today.toLocaleTimeString()
@@ -76,7 +75,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
           if(confirmError){
             console.log(confirmError)
           }
-          console.log(paymentIntent)
+          // console.log(paymentIntent)
           setProcessing(false)
           if(paymentIntent.status ==='succeeded'){
             const traxID = paymentIntent.id;
@@ -98,6 +97,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
                 product_prices: cart.map(item=> item.cartData.price),
                 payment_status: true,
                 delivered: false,
+                address: addressData.address
                 
             }
 
@@ -113,6 +113,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
                         timer: 1500,
                       });
                       refetch()
+                      reset()
                 }
             })
           }
@@ -144,7 +145,7 @@ const CheckoutForm = ({price, cart, refetch}) => {
       {
         errorMessage && <p className="font-mono text-red-700 py-5">{errorMessage}</p>
       }
-      <button className="btn btn-success mt-5 mx-auto" type="submit" disabled={!stripe || !clientSecret || processing}>
+      <button className="btn btn-success mt-5 mx-auto" type="submit" disabled={!stripe || !clientSecret || processing || !addressData}>
         Pay
       </button>
       </div>

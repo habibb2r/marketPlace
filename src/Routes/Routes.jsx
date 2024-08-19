@@ -29,6 +29,7 @@ import ManageUser from "../Pages/Dashboard/Admin/ManageUser/ManageUser";
 import ManageShop from "../Pages/Dashboard/Admin/ManageShop/ManageShop";
 import ManageAllItems from "../Pages/Dashboard/Admin/ManageAllItems/ManageAllItems";
 import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
+import UpdateItem from "../Pages/Dashboard/Seller/ManageItems/UpdateItem";
 
   export const router = createBrowserRouter([
     {
@@ -154,6 +155,14 @@ import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
         {
           path: 'userupdate',
           element: <UpdateUser></UpdateUser>
+        },
+        {
+          path: 'updateitem/:id',
+          element: <UpdateItem></UpdateItem>
+        },
+        {
+          path: 'itemdetails/:id',
+          element: <ProductDetails></ProductDetails>
         }
       ]
     }

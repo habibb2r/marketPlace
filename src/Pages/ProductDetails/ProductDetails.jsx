@@ -9,6 +9,8 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useCart from "../../Hooks/useCart";
 import useAuth from "../../Hooks/useAuth";
+import ico from '../../assets/for title/012-seo.png'
+import ict from '../../assets/for title/010-map.png'
 
 
 const ProductDetails = () => {
@@ -74,7 +76,7 @@ const ProductDetails = () => {
    
     return (
         <div className="">
-            <SectionTitle title='Product Details'></SectionTitle>
+            <SectionTitle title='Product Details' ico={ico} ict={ict}></SectionTitle>
             <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5">
                 <div className="md:w-2/5 flex flex-col justify-center items-center">
                     <h1 className="font-mono uppercase font-semibold text-xl px-3 py-2">{details.product_name}</h1>

@@ -3,6 +3,8 @@ import useShopDetails from "../../Hooks/useShopDetails";
 import Loading from "../Shared/Loading/Loading";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import Cards from "../AllProducts/Cards";
+import ico from '../../assets/for title/019-store-management.png'
+import ict from '../../assets/for title/013-shop.png'
 
 
 const ShopDetails = () => {
@@ -14,7 +16,7 @@ const ShopDetails = () => {
   console.log(shopDetails)
     return (
         <div>
-            <SectionTitle title='Shop Detials'></SectionTitle>
+            <SectionTitle title='Shop Details' ico={ico}  ict={ict}></SectionTitle>
             <div className="px-3 py-5">
             <div className="flex flex-col md:flex-row justify-between md:items-center gap-2">
                 <p className="text-xl  font-extralight"><span className="font-mono font-bold">Stall Name : </span> {shopDetails[0]? shopDetails[0].stall.name : 'Loading..'}</p>
