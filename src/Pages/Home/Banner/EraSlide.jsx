@@ -1,13 +1,13 @@
 import "./myCSS.css";
 import bannerjson from './banner.json'
 import image1 from "../../../assets/ad/headphone.png";
-import image2 from "../../../assets/ad/headphone2.png";
+import image2 from "../../../assets/ad/ad1.png";
 import image3 from "../../../assets/ad/ii2.png";
 import image4 from "../../../assets/ad/readmi.png";
 import image5 from "../../../assets/ad/redmi1.png";
 import image6 from "../../../assets/ad/watch.png";
 import image7 from "../../../assets/ad/watch2.png";
-import image8 from "../../../assets/ad/iii.png";
+// import image8 from "../../../assets/ad/iii.png";
 import Lottie from "lottie-react";
 const EraSlide = () => {
   return (

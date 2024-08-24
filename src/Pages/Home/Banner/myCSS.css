@@ -33,7 +33,7 @@
 .my-bannner .my-slider {
     position: absolute;
     width: 350px;
-    height: 250px;
+    height: 200px;
     top: 10%;
     left: calc(50% - 150px);
     transform-style: preserve-3d;

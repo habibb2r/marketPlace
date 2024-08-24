@@ -10,7 +10,7 @@ const CardRow = (data) => {
       
       <div className="flex justify-center items-center gap-2">
       <img
-        className="h-[80px] rounded-2xl"
+        className="w-[65px] h-[80px] rounded-2xl"
         src={item.product_image}
         alt=""
       />

@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../../assets/Logo/Logo.png";
 
 import Swal from "sweetalert2";
@@ -17,6 +17,8 @@ import '../../dashboard.css'
 
 
 const AdminNav = () => {
+  const navigate = useNavigate();
+  const from = "/";
   const [clicked, setClick] = useState(false)
     const {user, logOut} = useAuth();
 
@@ -26,6 +28,7 @@ const AdminNav = () => {
     const handleLogOut = ()=>{
         logOut()
         .then(()=>{
+          navigate(from, { replace: true });
           Swal.fire({
             position: "top-end",
             icon: "success",

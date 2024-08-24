@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../../../assets/Logo/Logo.png";
 import { FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -19,6 +19,8 @@ import cancel from '../../../../../assets/basic/002-button.png'
 import '../../../dashboard.css'
 
 const UserNav = () => {
+  const navigate = useNavigate();
+  const from = "/";
     const [cart] = useCart()
     const {user, logOut} = useAuth()
     const [clicked, setClick] = useState(false)
@@ -28,6 +30,7 @@ const UserNav = () => {
     const handleLogOut = ()=>{
         logOut()
         .then(()=>{
+          navigate(from, { replace: true });
           Swal.fire({
             position: "top-end",
             icon: "success",
