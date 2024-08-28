@@ -15,6 +15,7 @@ const Home = () => {
            <Categories></Categories>
            <DiscountProducts></DiscountProducts>
            <BuyStall></BuyStall>
+           <TopStalls></TopStalls>
            <Reviews></Reviews>
         </>
     );

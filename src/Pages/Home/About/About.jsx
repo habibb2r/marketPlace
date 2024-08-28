@@ -6,7 +6,9 @@ import abouticon from "../../../assets/for title/001-marketplace.png";
 import abouticont from "../../../assets/for title/003-market-segment.png";
 import { AttentionSeeker, Bounce } from "react-awesome-reveal";
 
+
 const About = () => {
+
   return (
     <div className="md:py-10">
       <SectionTitle

@@ -14,6 +14,8 @@ import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserIn
 import Loading from "../Loading/Loading";
 import menu from '../../../assets/basic/001-menu-bar.png'
 import cancel from '../../../assets/basic/002-button.png'
+import guestPic from '../../../assets/basic/do-not.png'
+import noPic from '../../../assets/basic/no-photo.png'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -54,22 +56,20 @@ const Navbar = () => {
           <div>
             <img className="h-[65px] md:h-[80px]" src={logo} alt="" />
           </div>
-          <div className="shadow-sm rounded-md p-1 font-thin hidden md:block"> Hey, {user? userInfo?.name : 'Guest' }</div>
           <div onClick={()=>controlNav()} className={`flex align-middle items-center gap-5 font-semibold text-md ${clicked? 'navbar-res': 'navbar-res navbar-active'}`}>
-          <div className="shadow-sm rounded-md p-1 font-thin block md:hidden"> Hey, {user? userInfo?.name : 'Guest' }</div>
-            <Link className="flex items-center gap-2"   to='/'><img className="h-[40px]" src={home} alt="Home" /><span className="block md:hidden">Home</span></Link>
-            <Link className="flex items-center gap-2"  to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /><span className="block md:hidden">All Products</span></Link>
+            <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Home"   to='/'><img className="h-[40px]" src={home} alt="Home" /><span className="block md:hidden">Home</span></Link>
+            <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="All Products"  to='/allProducts'><img className="h-[35px]" src={allproducts} alt="All Products" /><span className="block md:hidden">All Products</span></Link>
             {
-              userInfo?.role == 'admin'? <Link className="flex items-center gap-2"  to='/adminpanel/adminhome'><img className="h-[35px]" src={adminpanel} alt="AdminPanel" /><span className="block md:hidden">Admin Panel</span></Link> : ''
+              userInfo?.role == 'admin'? <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Admin Panel"  to='/adminpanel/adminhome'><img className="h-[35px]" src={adminpanel} alt="AdminPanel" /><span className="block md:hidden">Admin Panel</span></Link> : ''
             }
             {
-              userInfo?.role == 'customer'? <Link className="flex items-center gap-2"  to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /><span className="block md:hidden">Dashboard</span></Link> : ''
+              userInfo?.role == 'customer'? <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Dashboard"  to='/dashboard/userhome'><img className="h-[35px]" src={dashboard} alt="Dashboard" /><span className="block md:hidden">Dashboard</span></Link> : ''
             }
             {
-              userInfo?.role == 'seller'? <Link className="flex items-center gap-2"  to='/sellerdashboard/sellerprofile'><img className="h-[35px]" src={sellerdash} alt="Dashboard" /><span className="block md:hidden">Seller Dashboard</span></Link> : ''
+              userInfo?.role == 'seller'? <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Seller Dashboard"  to='/sellerdashboard/sellerprofile'><img className="h-[35px]" src={sellerdash} alt="Dashboard" /><span className="block md:hidden">Seller Dashboard</span></Link> : ''
             }
             {
-              userInfo?.role == 'customer'? <Link  to='/dashboard/cart' className="flex items-center gap-2">
+              userInfo?.role == 'customer'? <Link  to='/dashboard/cart' className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Cart">
               <div className="text-primary relative">
               <img className="h-[42px]" src={cartlogo} alt="Cart" />
               <div className="badge badge-md badge-primary top-[-15px] right-[-10px] absolute">{cart?.length || 0}</div>
@@ -77,7 +77,9 @@ const Navbar = () => {
               <span className="block md:hidden">Cart</span>
               </Link> : ''
             }
-            
+            {
+              user ? (userInfo?.picture ? <div className="flex items-center gap-2 lg:tooltip lg:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] rounded-full shadow-md shadow-success border-2 border-success" src={userInfo?.picture} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div> : <div className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] rounded-full" src={noPic} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div>): <div className="md:tooltip md:tooltip-bottom" data-tip='Guest'><img className="h-[42px]" src={guestPic} alt="Cart" /></div>
+            }
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>
             }

@@ -4,6 +4,8 @@ import useOrderStatus from "../UserHooks/useOrderStatus";
 import statusOk from '../../../../assets/check.png'
 import statusPen from '../../../../assets/pending.png'
 import { CiShoppingTag } from "react-icons/ci";
+import ico from '../../../../assets/basic/007-delivery.png'
+import ict from '../../../../assets/basic/008-travel.png'
 
 const OrderStatus = () => {
     const [orderStatus, orderLoad] = useOrderStatus();
@@ -12,12 +14,12 @@ const OrderStatus = () => {
     }
     return (
         <div>
-            <SectionTitle title='Order Status'></SectionTitle>
+            <SectionTitle ico={ico} ict={ict} title='Order Status'></SectionTitle>
             <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* head */}
     <thead className='text-sm'>
-      <tr>
+      <tr className="bg-accent bg-opacity-20 shadow-md shadow-accent">
         
         <th>Item Information</th>
         <th>Payment Date & Time</th>
@@ -26,9 +28,11 @@ const OrderStatus = () => {
       </tr>
     </thead>
     <tbody>
-      {/* row 1 */}
+    {
+              orderStatus.length == 0 ? <tr className="flex justify-center items-center text-xl text-error font-semibold py-3 px-3">No orders have placed yet...</tr> : ''
+            }
       {
-                    orderStatus?.map(item=>  <tr key={item._id}>
+                    orderStatus?.map(item=>  <tr className="bg-success bg-opacity-10 shadow-inner shadow-success hover:bg-accent hover:bg-opacity-10" key={item._id}>
                         <td>
                           <div className="flex items-center">
                             <div>

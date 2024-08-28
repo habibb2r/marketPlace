@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import { Slide } from "react-awesome-reveal";
+import ico from '../../../assets/basic/003-sign-up.png'
+import ict from '../../../assets/basic/004-add-friend.png'
 
 const Signup = () => {
   const [,refetch, ] =useGetUserInfo()
@@ -61,14 +64,23 @@ const Signup = () => {
   
     return (
         <div>
-            <SectionTitle title='Signup Now'></SectionTitle>
+            <SectionTitle ico={ico} ict={ict} title='Signup Now'></SectionTitle>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 py-5">
-                <Lottie  className="h-[350px]" animationData={ani}></Lottie>
+              <Slide duration={1200} className="h-[350px]">
+              <Lottie className="h-[350px]"  animationData={ani}></Lottie>
+              </Slide>
+                
             <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
-            <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
-            <input  className="input input-bordered input-info w-full max-w-md" type="email" placeholder="Email" {...register("Email", {required: true})} />
-            <input  className="input input-bordered input-info w-full max-w-md" type="password" placeholder="Password" {...register("Password", {required: true, max: 12, min: 4})} />
+            <Slide direction="down" delay={1500}>
+              <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
+            </Slide>
+            <Slide direction="down" delay={1300}>
+              <input  className="input input-bordered input-info w-full max-w-md" type="email" placeholder="Email" {...register("Email", {required: true})} />
+            </Slide>
+           <Slide direction="down" delay={1}>
+             <input  className="input input-bordered input-info w-full max-w-md" type="password" placeholder="Password" {...register("Password", {required: true, max: 12, min: 4})} />
 
+           </Slide>
             <button className="btn btn-success px-5 py-3" type="submit">Signup</button>
     </form>
             </div>

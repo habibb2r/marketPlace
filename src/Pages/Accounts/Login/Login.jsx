@@ -11,6 +11,9 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import { AttentionSeeker, Slide } from "react-awesome-reveal";
+import ico from '../../../assets/basic/001-key.png'
+import ict from '../../../assets/basic/002-profile.png'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -83,16 +86,20 @@ const axiosSecure = useAxiosSecure();
   }
   return (
     <div className="">
-      <SectionTitle title="Login"></SectionTitle>
-      <div className="py-[5%] flex flex-col md:flex-row justify-center items-center gap-16">
-        <Lottie className="h-[250px] md:h-auto" animationData={loginani}></Lottie>
-        <div>
+      <SectionTitle ico={ico} ict={ict} title="Login"></SectionTitle>
+      <div className="py-[5%] flex flex-col md:flex-row justify-center items-center gap-5 md:gap-16">
+        <Slide direction="left" className="h-[250px] md:h-full">
+        <Lottie className="h-[250px] md:h-full"  animationData={loginani}></Lottie>
+        </Slide>
+       <Slide direction="right">
+       <div>
           <div>
             <Lottie
               className="hidden md:block h-[150px] py-3 "
               animationData={apndaani}
             ></Lottie>
           </div>
+          <AttentionSeeker effect="jello" delay={1800} duration={1200}>
           <form
             className="flex flex-col justify-center items-center gap-5"
             onSubmit={handleSubmit(onSubmit)}
@@ -114,6 +121,7 @@ const axiosSecure = useAxiosSecure();
               Login
             </button>
           </form>
+          </AttentionSeeker>
           <div className="divider divider-primary">Or continue with</div>
           <div className="flex justify-center items-center gap-10">
             <button onClick={handleLogInWithGoogle} className="text-5xl rounded-full">
@@ -133,6 +141,7 @@ const axiosSecure = useAxiosSecure();
             </p>
           </div>
         </div>
+       </Slide>
       </div>
     </div>
   );

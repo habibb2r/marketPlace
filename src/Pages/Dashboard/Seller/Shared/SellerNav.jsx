@@ -52,10 +52,10 @@ const SellerNav = () => {
             <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
           </div>
           <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7"> 
-            <NavLink className='flex justify-start items-center gap-2' to='sellerprofile'><img className="h-[35px]" src={sellerProfile} alt="Home" /> <p>Seller Profile</p></NavLink>
-            <NavLink className='flex justify-start items-center gap-2' to='additems'><img className="h-[35px]" src={addItems} alt="All Products" /><p>Add Items</p></NavLink>
-            <NavLink className='flex justify-start items-center gap-2' to='manageitems'><img className="h-[35px]" src={manageItems} alt="Dashboard" /><p>Manage Items</p></NavLink>
-            <NavLink className='flex justify-start items-center gap-2' to='manageorders'><img className="h-[35px]" src={manageOrders} alt="Dashboard" /><p>Manage Orders</p></NavLink>
+            <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='sellerprofile'><img className="h-[35px]" src={sellerProfile} alt="Home" /> <p>Seller Profile</p></NavLink>
+            <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='additems'><img className="h-[35px]" src={addItems} alt="All Products" /><p>Add Items</p></NavLink>
+            <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='manageitems'><img className="h-[35px]" src={manageItems} alt="Dashboard" /><p>Manage Items</p></NavLink>
+            <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='manageorders'><img className="h-[35px]" src={manageOrders} alt="Dashboard" /><p>Manage Orders</p></NavLink>
           </div>
           <div className="divider divider-success"></div>
           <div className="flex flex-col items-center gap-5 font-semibold text-md mt-5">

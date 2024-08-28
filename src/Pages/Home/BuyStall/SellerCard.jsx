@@ -12,7 +12,7 @@ const SellerCard = ({ data }) => {
   const backgroundColor = getCategoryColor(data.category);
 
   return (
-    <AttentionSeeker duration={1500} effect="rubberBand">
+    <AttentionSeeker duration={1000} effect="jello">
       <div
         className={`flex flex-col justify-center items-center gap-4 px-4 py-10 rounded-lg shadow-md text-black`}
         style={{ backgroundColor }}

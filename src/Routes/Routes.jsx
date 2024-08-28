@@ -30,6 +30,8 @@ import ManageShop from "../Pages/Dashboard/Admin/ManageShop/ManageShop";
 import ManageAllItems from "../Pages/Dashboard/Admin/ManageAllItems/ManageAllItems";
 import PaymentShop from "../Pages/Home/BuyStall/PaymentShop";
 import UpdateItem from "../Pages/Dashboard/Seller/ManageItems/UpdateItem";
+import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
 
   export const router = createBrowserRouter([
     {
@@ -108,7 +110,7 @@ import UpdateItem from "../Pages/Dashboard/Seller/ManageItems/UpdateItem";
     },
     {
       path: 'adminpanel',
-      element: <AdminPanel></AdminPanel>,
+      element: <AdminRoute><AdminPanel></AdminPanel></AdminRoute>,
       children: [
         {
           path: 'adminhome',
@@ -134,7 +136,7 @@ import UpdateItem from "../Pages/Dashboard/Seller/ManageItems/UpdateItem";
     },
     {
       path: 'sellerdashboard',
-      element: <SellerDashboard></SellerDashboard>,
+      element: <SellerRoute><SellerDashboard></SellerDashboard></SellerRoute>,
       children: [
         {
           path: 'sellerprofile',

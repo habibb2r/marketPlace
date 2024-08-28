@@ -22,7 +22,7 @@ const Categories = () => {
   return (
     <div className="py-5">
       <SectionTitle title={"Categories"} ico={cateic} ict={cateict}></SectionTitle>
-      <div className=" flex flex-col md:flex-row justify-center overflow-hidden pb-5">
+      <div className=" flex flex-col lg:flex-row justify-center overflow-hidden pb-5">
 
         <AttentionSeeker  effect="pulse"  className="shadow-md shadow-primary w-[100%] ">
         <div className="  flex flex-col justify-between items-start gap-3 p-2 py-10">

@@ -9,7 +9,7 @@ const DiscountProducts = () => {
     return (
         <div className="py-10">
             <SectionTitle title={'Offer on Products'} ico={ico} ict={ict}></SectionTitle>
-            <Slide direction="down">
+            <Slide direction="up">
             <SlideDiscount></SlideDiscount>
             </Slide>
            
