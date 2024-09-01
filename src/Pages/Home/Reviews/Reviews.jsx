@@ -8,7 +8,7 @@ import ict from "../../../assets/for title/008-feedback.png";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("https://market-server-two.vercel.app/reviews")
+    fetch(`${import.meta.env.VITE_backend_server}/reviews`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

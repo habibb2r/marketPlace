@@ -8,8 +8,8 @@ import ict from "../../../../assets/basic/006-payment-1.png";
 
 const PayHistory = () => {
   const [payHistory, isLoading] = usePaymentHistory();
-  const [dateTime, setTime] = useState({});
-  console.log(dateTime);
+  // const [dateTime, setTime] = useState({});
+
   if (isLoading) {
     return <Loading></Loading>;
   }

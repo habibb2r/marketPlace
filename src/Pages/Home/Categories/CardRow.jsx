@@ -1,12 +1,12 @@
 import { Rating } from "@smastrom/react-rating";
-import shop from "../../../icons/008-shop.png";
-import info from "../../../icons/001-info.png";
+import shop from "../../../icons/online-shop.png";
+import info from "../../../icons/information.png";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
 const CardRow = (data) => {
   const item = data.data;
   return (
-    <div className="flex justify-between items-center gap-3 p-3 w-full shadow-sm shadow-primary rounded-lg">
+    <div className="flex justify-between items-center gap-3 p-3 w-full shadow-sm shadow-primary rounded-lg hover:shadow-inner hover:shadow-success">
       
       <div className="flex justify-center items-center gap-2">
       <img
@@ -30,9 +30,9 @@ const CardRow = (data) => {
           />
         </div>
       </div>
-      <div className="flex justify-center items-center gap-2">
-        <Link to={`/shopDetails/${item.stall_id}`}><img className="h-[50px]" src={shop} alt="" /></Link>
-        <Link to={`/details/${item._id}`}><img className="h-[50px] rounded-xl" src={info} alt="" /></Link>
+      <div className="flex flex-col justify-center items-center gap-2">
+        <Link to={`/shopDetails/${item.stall.id}`}><img className="h-[40px]" src={shop} alt="" /></Link>
+        <Link to={`/details/${item._id}`}><img className="h-[50px] rounded-full" src={info} alt="" /></Link>
       </div>
     </div>
   );

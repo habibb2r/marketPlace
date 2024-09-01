@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useSellerInfo from "../SellerHooks/useSellerInfo";
@@ -16,6 +16,9 @@ import ico from '../../../../assets/for title/006-businessman.png'
 import ict from '../../../../assets/for title/023-businessman-1.png'
 
 const SellerProfile = () => {
+  const location = useLocation()
+  const mystate = location.pathname
+
   const [sellerInfo, , isLoading] = useSellerInfo();
   if (isLoading) {
     return <Loading></Loading>;
@@ -57,6 +60,7 @@ const SellerProfile = () => {
                   <Link
                   className=""
                   to="/sellerdashboard/userupdate"
+                  state={mystate}
                 >
                   <div className="flex items-center gap-1">
                     <img className="h-[50px]" src={userUpdate} alt="" />

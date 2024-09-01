@@ -16,7 +16,6 @@ const Payment = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
         setAddressData(data)
-        console.log(data);
     }
     console.log(errors);
 

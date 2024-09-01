@@ -8,25 +8,33 @@ import useAddCategories from "../SellerHooks/useAddCategories";
 import useFeatureList from "../SellerHooks/useFeatureList";
 import Swal from "sweetalert2";
 import useSellerInfo from "../SellerHooks/useSellerInfo";
-const img_hosting_token = import.meta.env.VITE_imgbb_token;
+// const img_hosting_token = import.meta.env.VITE_imgbb_token;
+const img_hosting = import.meta.env.VITE_img_host;
+const img_upload_preset = import.meta.env.VITE_preset;
+const img_cloud_name = import.meta.env.VITE_cloud;
 import ico from '../../../../assets/for title/025-playlist.png'
 import ict from '../../../../assets/for title/026-shopping-bag.png'
 
+
 const AddItems = () => {
-  const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  // const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const hosting_url = img_hosting;
+
+  // console.log(hosting_url);
   const [sellerInfo] = useSellerInfo();
   const [select, setSelect] = useState();
   const [cateList, ,] = useAddCategories();
   const [featureList, refetch, isLoading] = useFeatureList(select);
   const axiosSecure = useAxiosSecure();
+  // const [image, setImage] = useState(null)
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    // console.log(data);
     const features = {};
     featureList?.data?.forEach((feature) => {
       if (data[feature]) {
@@ -34,68 +42,50 @@ const AddItems = () => {
       }
     });
 
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
-    fetch(hosting_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageResponse) => {
-        if (imageResponse.success) {
-          let timerInterval;
-          Swal.fire({
-            title: "Adding item to market place.!",
-            html: "I will close in <b></b> milliseconds.",
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading();
-              const timer = Swal.getPopup().querySelector("b");
-              timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-              }, 100);
-            },
-            willClose: () => {
-              clearInterval(timerInterval);
-            },
-          }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-              console.log("I was closed by the timer");
-            }
-          });
+    const imgdata = new FormData();
+    const image = data.image[0]
+    imgdata.append("file", image);
+    imgdata.append("upload_preset", img_upload_preset);
+    imgdata.append("cloud_name", img_cloud_name);
 
-          const imgURL = imageResponse.data.display_url;
-          const features = {};
-          featureList?.data?.forEach((feature) => {
-            if (data[feature]) {
-              features[feature] = data[feature];
-            }
-          });
-          const additemdata = {
-            product_name: data.product_name,
-            product_image: imgURL,
-            product_category: select,
-            product_rating: 0,
-            total_rated: 0,
-            product_price: {
-              previous_price: data.previous_price,
-              present_price: data.present_price,
-              discount: data.discount,
-            },
-            product_description: {
-              description: data.description,
-              features: features,
-            },
-            stall: {
-              name: sellerInfo.sellerProfile.stall_name,
-              id: sellerInfo.sellerProfile.stall_id,
-              type: sellerInfo.sellerProfile.stall_type,
-            },
-          };
-          console.log(additemdata);
-          axiosSecure.post("/addItems", additemdata).then((res) => {
+    try {
+      if(image === null){
+        return alert("Please Upload image")
+      }
+
+      const res = await fetch(hosting_url,{
+        method : "POST",
+        body : imgdata
+      })
+
+      const cloudData = await res.json();
+      // console.log(cloudData);
+      const imgURL = cloudData.url
+      if(imgURL){
+        const additemdata = {
+                  product_name: data.product_name,
+                  product_image: imgURL,
+                  product_category: select,
+                  product_rating: 0,
+                  total_rated: 0,
+                  product_price: {
+                    previous_price: data.previous_price,
+                    present_price: data.present_price,
+                    discount: data.discount,
+                  },
+                  product_description: {
+                    description: data.description,
+                    features: features,
+                  },
+                  stall: {
+                    name: sellerInfo.sellerProfile.stall_name,
+                    id: sellerInfo.sellerProfile.stall_id,
+                    type: sellerInfo.sellerProfile.stall_type,
+                  },
+                };
+
+
+            axiosSecure.post("/addItems", additemdata).then((res) => {
             if (res.data) {
               reset();
               Swal.fire({
@@ -107,8 +97,89 @@ const AddItems = () => {
               });
             }
           });
-        }
+      }else{
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+  
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `{error.message}`,
+        showConfirmButton: false,
+        timer: 1500,
       });
+      console.log(error)
+    }
+
+
+
+
+    //Imgbb options
+
+    // const formData = new FormData();
+
+    // formData.append("image", data.image[0]);
+    // fetch(hosting_url, {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((imageResponse) => {
+    //     console.log(imageResponse)
+    //     if (imageResponse.success) {
+
+    //       const imgURL = imageResponse.data.display_url;
+    //       const features = {};
+    //       featureList?.data?.forEach((feature) => {
+    //         if (data[feature]) {
+    //           features[feature] = data[feature];
+    //         }
+    //       });
+    //       const additemdata = {
+    //         product_name: data.product_name,
+    //         product_image: imgURL,
+    //         product_category: select,
+    //         product_rating: 0,
+    //         total_rated: 0,
+    //         product_price: {
+    //           previous_price: data.previous_price,
+    //           present_price: data.present_price,
+    //           discount: data.discount,
+    //         },
+    //         product_description: {
+    //           description: data.description,
+    //           features: features,
+    //         },
+    //         stall: {
+    //           name: sellerInfo.sellerProfile.stall_name,
+    //           id: sellerInfo.sellerProfile.stall_id,
+    //           type: sellerInfo.sellerProfile.stall_type,
+    //         },
+    //       };
+    //       console.log('additemdata',additemdata);
+    //       axiosSecure.post("/addItems", additemdata).then((res) => {
+    //         if (res.data) {
+    //           reset();
+    //           Swal.fire({
+    //             position: "top-end",
+    //             icon: "success",
+    //             title: "Added Items Successfully",
+    //             showConfirmButton: false,
+    //             timer: 1500,
+    //           });
+    //         }
+    //       });
+    //     }
+    //   });
+
+    
   };
 
   const handleFilter = (e) => {

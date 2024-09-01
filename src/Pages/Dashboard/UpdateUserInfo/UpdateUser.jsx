@@ -4,15 +4,25 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useGetUserInfo from "../UserDashBoard/UserHooks/useGetUserInfo";
 import useAuth from "../../../Hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Slide } from "react-awesome-reveal";
 
-const img_hosting_token = import.meta.env.VITE_imgbb_token;
+// const img_hosting_token = import.meta.env.VITE_imgbb_token;
+
+const img_hosting = import.meta.env.VITE_img_host;
+const img_upload_preset = import.meta.env.VITE_preset;
+const img_cloud_name = import.meta.env.VITE_cloud;
 
 const UpdateUser = () => {
+  const navigate = useNavigate();
+  const location = useLocation()
+  const from = location?.state || location?.pathname
   const [, refetch] = useGetUserInfo();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const hosting_url = img_hosting;
+  // const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   const {
     register,
@@ -20,29 +30,8 @@ const UpdateUser = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    let timerInterval;
-    Swal.fire({
-      title: "Updating Profile ",
-      html: "Please wait <b></b>",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const timer = Swal.getPopup().querySelector("b");
-        timerInterval = setInterval(() => {
-          timer.textContent = `${Swal.getTimerLeft()}`;
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-      }
-    });
+  const onSubmit = async(data) => {
+    
     const formData = new FormData();
     formData.append("image", data.image[0]);
     const dateTimeString = data.dob;
@@ -70,28 +59,47 @@ const UpdateUser = () => {
             });
             reset();
             refetch();
+            navigate(from, { replace: true });
           }
-          console.log(res.data);
+          // console.log(res.data);
         });
     } else {
-      fetch(hosting_url, {
-        method: "POST",
-        body: formData,
+      const imgdata = new FormData();
+      const image = data.image[0]
+      imgdata.append("file", image);
+      imgdata.append("upload_preset", img_upload_preset);
+      imgdata.append("cloud_name", img_cloud_name);
+
+
+      
+    try {
+      if(image === null){
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please insert image correctly!",
+        });
+      }
+
+      const res = await fetch(hosting_url,{
+        method : "POST",
+        body : imgdata
       })
-        .then((res) => res.json())
-        .then((imageResponse) => {
-          if (imageResponse.success) {
-            const imgURL = imageResponse.data.display_url;
-            const updateData = {
-              name: data.name,
-              picture: imgURL,
-              gender: data.gender,
-              dob: date,
-              time: time,
-              phone: data.phone,
-            };
-            axiosSecure
-              .patch(`/userupdate?email=${user?.email}`, updateData)
+
+      const cloudData = await res.json();
+      // console.log(cloudData);
+      const imgURL = cloudData.url
+
+        if(imgURL){
+          const updateData = {
+            name: data.name,
+            picture: imgURL,
+            gender: data.gender,
+            dob: date,
+            time: time,
+            phone: data.phone,
+          };
+          axiosSecure.patch(`/userupdate?email=${user?.email}`, updateData)
               .then((res) => {
                 if (res.data.modifiedCount) {
                   Swal.fire({
@@ -103,18 +111,72 @@ const UpdateUser = () => {
                   });
                   reset();
                   refetch();
+                  navigate(from, { replace: true });
                 }
                 console.log(res.data);
               });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong!",
-            });
-          }
-        });
-      console.log(data);
+        }else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong!",
+                });
+              }
+            
+        }catch(error){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `{error.message}`,
+          });
+        }
+
+
+
+
+        //imgbb
+
+      // fetch(hosting_url, {
+      //   method: "POST",
+      //   body: formData,
+      // })
+      //   .then((res) => res.json())
+      //   .then((imageResponse) => {
+      //     if (imageResponse.success) {
+      //       const imgURL = imageResponse.data.display_url;
+      //       const updateData = {
+      //         name: data.name,
+      //         picture: imgURL,
+      //         gender: data.gender,
+      //         dob: date,
+      //         time: time,
+      //         phone: data.phone,
+      //       };
+      //       axiosSecure
+      //         .patch(`/userupdate?email=${user?.email}`, updateData)
+      //         .then((res) => {
+      //           if (res.data.modifiedCount) {
+      //             Swal.fire({
+      //               position: "center",
+      //               icon: "success",
+      //               title: "Profile Updated",
+      //               showConfirmButton: false,
+      //               timer: 1500,
+      //             });
+      //             reset();
+      //             refetch();
+      //           }
+      //           console.log(res.data);
+      //         });
+      //     } else {
+      //       Swal.fire({
+      //         icon: "error",
+      //         title: "Oops...",
+      //         text: "Something went wrong!",
+      //       });
+      //     }
+      //   });
+      // console.log(data);
     }
   };
   console.log(errors);
@@ -126,6 +188,8 @@ const UpdateUser = () => {
           className="flex flex-col justify-center items-center gap-5"
           onSubmit={handleSubmit(onSubmit)}
         >
+          
+          <Slide direction="right">
           <div className="grid md:grid-cols-2 gap-3">
             <input
               className="input input-bordered input-primary w-full max-w-xs"
@@ -159,6 +223,7 @@ const UpdateUser = () => {
               {...register("image")}
             />
           </div>
+          </Slide>
           <input className="btn btn-success" type="submit" />
         </form>
       </div>

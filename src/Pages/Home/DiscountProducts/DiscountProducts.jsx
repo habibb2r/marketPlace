@@ -7,7 +7,7 @@ import { Slide } from "react-awesome-reveal";
 
 const DiscountProducts = () => {
     return (
-        <div className="py-10">
+        <div className="py-10 pb-20">
             <SectionTitle title={'Offer on Products'} ico={ico} ict={ict}></SectionTitle>
             <Slide direction="up">
             <SlideDiscount></SlideDiscount>

@@ -67,14 +67,6 @@ const SlideDiscount = () => {
           </div>
         </SwiperSlide>
       ))}
-      {/* <SwiperSlide className='swiper-slide-offer'>Slide 2</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 3</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 4</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 5</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 6</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 7</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 8</SwiperSlide>
-        <SwiperSlide className='swiper-slide-offer'>Slide 9</SwiperSlide> */}
     </Swiper>
   );
 };

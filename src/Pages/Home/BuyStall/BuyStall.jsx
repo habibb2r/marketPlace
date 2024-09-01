@@ -8,7 +8,6 @@ import ict from '../../../assets/for title/007-best-seller.png'
 
 const BuyStall = () => {
     const [buyShop, isLoading] = useBuyShop()
-    console.log(buyShop)
 
     if (isLoading) {
         <Loading></Loading>

@@ -15,7 +15,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     fetch(
-      `https://market-server-two.vercel.app/allProducts/${filter}?sort=${sort}`
+      `${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -69,9 +69,18 @@ const AllProducts = () => {
             onClick={handleFilter}
             className="select select-primary select-bordered w-full max-w-xs"
           >
-            <option className="bg-accent bg-opacity-20 font-semibold"  value={"All"}>All Products</option>
+            <option
+              className="bg-accent bg-opacity-20 font-semibold"
+              value={"All"}
+            >
+              All Products
+            </option>
             {categories.map((category) => (
-              <option className="bg-accent bg-opacity-20 font-semibold" key={category} value={category}>
+              <option
+                className="bg-accent bg-opacity-20 font-semibold"
+                key={category}
+                value={category}
+              >
                 {category}
               </option>
             ))}
@@ -82,11 +91,25 @@ const AllProducts = () => {
             onClick={handleSorting}
             className="select select-primary w-full max-w-xs"
           >
-            <option className="bg-success bg-opacity-20 font-semibold" value={0} disabled>
+            <option
+              className="bg-success bg-opacity-20 font-semibold"
+              value={0}
+              disabled
+            >
               Sort By
             </option>
-            <option className="bg-success bg-opacity-20 font-semibold" value={1}>Price low to high</option>
-            <option className="bg-success bg-opacity-20 font-semibold" value={-1}>Price high to low</option>
+            <option
+              className="bg-success bg-opacity-20 font-semibold"
+              value={1}
+            >
+              Price low to high
+            </option>
+            <option
+              className="bg-success bg-opacity-20 font-semibold"
+              value={-1}
+            >
+              Price high to low
+            </option>
           </select>
         </div>
         <div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useGetUserInfo from "../UserHooks/useGetUserInfo";
@@ -11,11 +11,13 @@ import ict from "../../../../assets/basic/002-user.png";
 const UserHome = () => {
   const [userInfo, , isLoading] = useGetUserInfo();
   const [stat, statLoad] = useUserStat();
-  console.log(stat);
+  const location = useLocation()
+  const mystate = location.pathname
+
   if (isLoading || statLoad) {
     return <Loading></Loading>;
   }
-  console.log(userInfo);
+
   return (
     <div>
       <SectionTitle ico={ico} ict={ict} title="Dashboard"></SectionTitle>
@@ -43,7 +45,7 @@ const UserHome = () => {
                 Account Created : {userInfo.createdDate}
               </p>
             </div>
-            <Link to="/dashboard/userUpdate" className="btn btn-secondary">
+            <Link to="/dashboard/userUpdate" state={mystate} className="btn btn-secondary">
               Update Profile
             </Link>
           </div>
@@ -70,7 +72,7 @@ const UserHome = () => {
               <div className="stat shadow rounded-lg shadow-secondary">
                 <div className="stat-figure text-secondary"></div>
                 <div className="stat-title">Total Spending</div>
-                <div className="stat-value text-secondary">
+                <div className="md:stat-value text-xl font-semibold text-secondary">
                   {stat.totalSpend}TK
                 </div>
                 <div className="stat-desc">Thats fair</div>

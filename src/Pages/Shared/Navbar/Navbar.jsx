@@ -78,7 +78,7 @@ const Navbar = () => {
               </Link> : ''
             }
             {
-              user ? (userInfo?.picture ? <div className="flex items-center gap-2 lg:tooltip lg:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] rounded-full shadow-md shadow-success border-2 border-success" src={userInfo?.picture} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div> : <div className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] rounded-full" src={noPic} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div>): <div className="md:tooltip md:tooltip-bottom" data-tip='Guest'><img className="h-[42px]" src={guestPic} alt="Cart" /></div>
+              user ? (userInfo?.picture ? <div className="flex items-center gap-2 lg:tooltip lg:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] w-[42px] rounded-full shadow-md shadow-success border-2 border-success" src={userInfo?.picture} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div> : <div className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip={`${userInfo?.name}`}><img className="h-[42px] w-[42px] rounded-full" src={noPic} alt="Cart" /><span className="block md:hidden">{userInfo?.name}</span></div>): <div className="md:tooltip md:tooltip-bottom" data-tip='Guest'><img className="h-[42px] w-[42px]" src={guestPic} alt="Cart" /></div>
             }
             {
              user? <button onClick={handleLogOut} className="btn btn-active btn-secondary text-md">Logout</button> : <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>

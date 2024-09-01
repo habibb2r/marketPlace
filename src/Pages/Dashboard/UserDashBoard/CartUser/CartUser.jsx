@@ -11,7 +11,6 @@ import ict from "../../../../icons/userfull-cart.png";
 
 const CartUser = () => {
   const [cart, , refetch] = useCart();
-  console.log(cart);
   const axiosSecure = useAxiosSecure();
   const totalPrice = cart.reduce((acc, item) => acc + item.cartData.price, 0);
   const handleRemoveCart = (item) => {

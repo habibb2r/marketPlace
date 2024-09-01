@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosSecure = axios.create({
-  baseURL: "https://market-server-two.vercel.app",
+  baseURL: `${import.meta.env.VITE_backend_server}`,
 });
 
 const useAxiosSecure = () => {
