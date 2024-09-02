@@ -35,11 +35,11 @@ const PaymentShop = () => {
     return (
         <div>
             <SectionTitle title='Buy Shop'></SectionTitle>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-                <p className="text-error font-mono">Before buying please keep updated your Info</p>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 bg-accent bg-opacity-20 px-3 py-4 shadow-inner shadow-success">
+                <p className="text-error font-mono font-bold">Before buying please keep updated your Info</p>
                 <Link className="btn btn-primary" to='/dashboard/userhome'>Update</Link>
             </div>
-            <div className="flex flex-col md:flex-row justify-around md:items-center font-mono text-xl gap-5 p-5">
+            <div className="flex flex-col md:flex-row justify-around md:items-center font-mono text-xl gap-5 p-5 bg-success bg-opacity-25  mb-5 shadow-md">
                 <p>Category: <span className="font-semibold">{shopData?.category}</span></p>
                 <div>
                 <p>Duration: <span className="font-semibold">{shopData?.features.duration} </span>Years</p>

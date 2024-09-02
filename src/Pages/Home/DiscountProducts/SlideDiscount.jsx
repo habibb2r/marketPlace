@@ -24,7 +24,7 @@ const SlideDiscount = () => {
   return (
     <Swiper
     autoplay={{
-      delay: 1500,
+      delay: 1800,
       disableOnInteraction: false,
     }}
       freeMode={true}
@@ -39,7 +39,7 @@ const SlideDiscount = () => {
         <SwiperSlide key={offer._id} className="swiper-slide-offer rounded-lg">
           <div className="h-[400px] md:w-[650px] md:h-[300px] bg-base-100 shadow-xl shadow-success px-4 py-4 flex flex-col md:flex-row justify-around items-center rounded-lg md:gap-5">
             <figure className="md:w-2/5">
-              <img className="h-[150px] md:h-[290px] rounded-md"
+              <img className="h-[150px] md:h-[290px] rounded-md p-3"
                 src={offer.product_image}
                 alt="Discount Products"
               />
@@ -55,9 +55,9 @@ const SlideDiscount = () => {
               </div>
               </div>
 
-              <div className="font-medium md:py-2 text-sm md:text-xl">
-                <p className="flex items-center mb-2"><span>Previous Price : <span className="font-semibold text-error">{offer.product_price.previous_price}</span></span> <FaBangladeshiTakaSign /></p>
-                <p className="flex items-center"><span>Present Price : <span className="font-semibold text-primary">{offer.product_price.present_price}</span></span> <FaBangladeshiTakaSign /></p>
+              <div className="font-medium md:py-2 text-sm md:text-xl flex items-center gap-3">
+                <p className="flex items-center"><span>Price : <span className="font-semibold text-error line-through">{offer.product_price.previous_price}</span></span> <FaBangladeshiTakaSign /></p>
+                <p className="flex items-center"><span className="font-semibold text-primary">{offer.product_price.present_price}</span><FaBangladeshiTakaSign /></p>
               </div>
               </div>
               <Link to={`/details/${offer._id}`} className="card-actions justify-end">

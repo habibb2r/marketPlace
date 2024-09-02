@@ -62,7 +62,7 @@ const ManageItems = () => {
             {/* row 1 */}
             {getAllShopItems?.map((item) => (
               <tr
-                className="shadow-inner shadow-success rounded-md"
+                className="shadow-inner shadow-success rounded-md transition-transform duration-300 ease-in-out hover:scale-[102%] hover:bg-accent hover:bg-opacity-20"
                 key={item._id}
               >
                 <td>
@@ -109,7 +109,7 @@ const ManageItems = () => {
                 </td>
                 <td>
                   <div className="flex items-center gap-5">
-                    <Link to={`/sellerdashboard/updateitem/${item._id}`}>
+                    <Link to={`/sellerdashboard/updateitem/${item._id}`} state={{item}}>
                       <img
                         className="h-[40px] md:h-[50px]"
                         src={sellerUpdate}

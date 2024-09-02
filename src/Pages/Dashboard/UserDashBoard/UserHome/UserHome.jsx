@@ -54,14 +54,14 @@ const UserHome = () => {
         <Slide direction="right" className="md:w-2/3">
           <div className=" flex flex-col justify-center items-center gap-5 px-3 md:px-0">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-primary"></div>
                 <div className="stat-title">Total Cart</div>
                 <div className="stat-value text-primary">{stat.cart}</div>
                 <div className="stat-desc">Pay as soon as possible</div>
               </div>
 
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-secondary"></div>
                 <div className="stat-title">Ordered Item</div>
                 <div className="stat-value text-secondary">
@@ -69,7 +69,7 @@ const UserHome = () => {
                 </div>
                 <div className="stat-desc">Give rating those items</div>
               </div>
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-secondary"></div>
                 <div className="stat-title">Total Spending</div>
                 <div className="md:stat-value text-xl font-semibold text-secondary">
@@ -78,7 +78,7 @@ const UserHome = () => {
                 <div className="stat-desc">Thats fair</div>
               </div>
 
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-primary"></div>
                 <div className="stat-title">Total Rating</div>
                 <div className="stat-value text-primary">
@@ -87,14 +87,14 @@ const UserHome = () => {
                 <div className="stat-desc">We respect your opinion</div>
               </div>
 
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-secondary"></div>
                 <div className="stat-title">Order Pending</div>
                 <div className="stat-value text-secondary">{stat.pending}</div>
                 <div className="stat-desc">Please wait</div>
               </div>
 
-              <div className="stat shadow rounded-lg shadow-secondary">
+              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
                 <div className="stat-figure text-secondary"></div>
                 <div className="stat-title">Order Received</div>
                 <div className="stat-value text-secondary">

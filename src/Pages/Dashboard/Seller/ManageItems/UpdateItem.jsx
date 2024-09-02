@@ -2,27 +2,28 @@ import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import ico from "../../../../assets/seller/004-updated.png";
 import ict from "../../../../assets/seller/updateico.png";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
-import useGetItemInfo from "../SellerHooks/useGetItemInfo";
+
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const img_hosting_token = import.meta.env.VITE_imgbb_token;
 
 const UpdateItem = () => {
-    const itemid = useParams();
   const navigate = useNavigate();
+  const location = useLocation()
+  const itemDetails = location?.state?.item
+  const axiosSecure = useAxiosSecure();
   const from = "/sellerdashboard/manageitems";
   const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
  
-  const [itemDetails, refetch, isLoading] = useGetItemInfo(itemid);
-  const axiosSecure = useAxiosSecure();
-  if (isLoading) {
+  
+  if (!itemDetails) {
 
     return <Loading></Loading>;
   }
   
-  // console.log(itemDetails)
+  console.log(location)
   const {
     register,
     handleSubmit,
@@ -259,7 +260,7 @@ const UpdateItem = () => {
           <p className="font-mono font-semibold">* Product Features</p>
 
           <div className="grid md:grid-cols-2 gap-2">
-            {Object.entries(itemDetails?.product_description.features).map(
+            {Object.entries(itemDetails?.product_description?.features).map(
               ([feature, value]) => (
                 <label key={feature} className="form-control w-full ">
                   <div className="label">

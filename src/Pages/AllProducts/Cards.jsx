@@ -11,6 +11,7 @@ import useCart from "../../Hooks/useCart";
 import cart from "../../icons/005-add-to-cart.png";
 import details from "../../icons/info.png";
 import { Slide } from "react-awesome-reveal";
+import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const Cards = ({ data }) => {
   const { user } = useAuth();
@@ -18,6 +19,10 @@ const Cards = ({ data }) => {
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const [, , refetch] = useCart();
+  const [userInfo, , ] = useGetUserInfo()
+
+
+
 
   const {
     product_image,
@@ -29,7 +34,7 @@ const Cards = ({ data }) => {
   } = data;
 
   const addToCart = (item) => {
-    if (user && user.email) {
+    if (user && user.email && userInfo?.role == 'customer') {
       const cartItem = {
         stall_id: item.stall.id,
         cartData: {
@@ -61,25 +66,41 @@ const Cards = ({ data }) => {
         }
       });
     } else {
-      Swal.fire({
-        title: "You don't have any account",
-        text: "You have to login first",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Login Now",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login", { state: { from: location } });
-        }
-      });
+      if(userInfo?.role == "admin" || userInfo?.role == "seller"){
+        Swal.fire({
+          title: "Admin and Seller Cannot Buy Items",
+          text: "You have to login with customer account",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Login Now",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/login", { state: { from: location } });
+          }
+        });
+      }else{
+        Swal.fire({
+          title: "You don't have any account",
+          text: "You have to login first",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Login Now",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/login", { state: { from: location } });
+          }
+        });
+      }
     }
   };
   return (
     <Slide direction="right" duration={1100}>
-      <div className="shadow-sm shadow-success px-5 py-5 rounded-md">
-        <div className="flex flex-col justify-center items-center gap-3">
+      <div className="shadow-md shadow-success px-5 py-5 rounded-md bg-primary bg-opacity-5">
+        <div className="flex flex-col justify-center items-center gap-3 transition-transform duration-300 ease-in-out hover:scale-105">
           <img className="h-[250px] rounded-md" src={product_image} alt="" />
         </div>
         <div className="flex flex-col justify-start items-start gap-3 py-2">

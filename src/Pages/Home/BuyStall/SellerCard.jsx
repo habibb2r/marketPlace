@@ -1,8 +1,10 @@
 import { AttentionSeeker } from "react-awesome-reveal";
 import { FaHandPointRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const SellerCard = ({ data }) => {
+  const [userInfo] = useGetUserInfo();
   const getCategoryColor = (category) => {
     if (category === "Gold") return "#FFD700";
     if (category === "Bronze") return "#CD7F32";
@@ -12,9 +14,9 @@ const SellerCard = ({ data }) => {
   const backgroundColor = getCategoryColor(data.category);
 
   return (
-    <AttentionSeeker duration={1000} effect="jello">
+    <AttentionSeeker className="" duration={1000} effect="jello">
       <div
-        className={`flex flex-col justify-center items-center gap-4 px-4 py-10 rounded-lg shadow-md text-black`}
+        className={`flex flex-col justify-center items-center gap-4 px-4 py-10 rounded-lg shadow-md text-black transition-transform duration-300 ease-in-out hover:scale-105`}
         style={{ backgroundColor }}
       >
         <div className="text-2xl font-mono font-semibold">{data.category}</div>
@@ -40,9 +42,13 @@ const SellerCard = ({ data }) => {
         <div className="text-xl">
           Price : <span className="font-semibold">{data.price} only</span>
         </div>
-        <Link to={`/buyshop/${data._id}`}>
+        <Link
+          className={`${userInfo?.role == "customer" ? "block" : "hidden"}`}
+          to={`/buyshop/${data._id}`}
+        >
           <button className="btn btn-secondary">Buy Now</button>
         </Link>
+        
       </div>
     </AttentionSeeker>
   );

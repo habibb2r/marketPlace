@@ -12,12 +12,30 @@ import manageItems from '../../../../assets/admin/png/004-checklist.png'
 import menu from '../../../../assets/basic/001-menu-bar.png'
 import cancel from '../../../../assets/basic/002-button.png'
 import useAuth from "../../../../Hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../../dashboard.css'
 
 
 const AdminNav = () => {
   const navigate = useNavigate();
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem('themeMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem('themeMode');
+    if (savedMode) {
+      setMode(JSON.parse(savedMode));
+    }
+  }, []);
+
+  const handleChangeTheme = () => {
+    const newMode = !mode;
+    setMode(newMode);
+    localStorage.setItem('themeMode', JSON.stringify(newMode));
+  };
+
   const from = "/";
   const [clicked, setClick] = useState(false)
     const {user, logOut} = useAuth();
@@ -83,6 +101,8 @@ const AdminNav = () => {
                 type="checkbox"
                 value="forest"
                 className="toggle theme-controller"
+                onChange={handleChangeTheme}
+                checked={mode}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"

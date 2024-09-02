@@ -28,7 +28,7 @@ const PayHistory = () => {
               <th>TrxID</th>
             </tr>
           </thead>
-          <tbody className="bg-accent bg-opacity-15">
+          <tbody className="bg-accent bg-opacity-15 ">
             {payHistory.length == 0 ? (
               <tr className="flex justify-center items-center text-xl text-error font-semibold py-3 px-3">
                 No payments have done yet...
@@ -38,7 +38,7 @@ const PayHistory = () => {
             )}
             {payHistory?.map((item) => (
               <tr
-                className="px-2 shadow-inner shadow-success hover:bg-success hover:bg-opacity-30"
+                className="px-2 shadow-inner shadow-success hover:bg-success hover:bg-opacity-30 transition-transform duration-300 ease-in-out hover:scale-[102%]"
                 key={item._id}
               >
                 <td>

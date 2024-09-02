@@ -11,16 +11,18 @@ import useCart from "../../Hooks/useCart";
 import useAuth from "../../Hooks/useAuth";
 import ico from "../../assets/for title/012-seo.png";
 import ict from "../../assets/for title/010-map.png";
-import Typewriter from 'typewriter-effect';
+import Typewriter from "typewriter-effect";
+import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 
 const ProductDetails = () => {
   const itemId = useParams();
-  const [details, isLoading] = useDetails(itemId);
+  const [details, ,isLoading] = useDetails(itemId);
   const [, , refetch] = useCart();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
+  const [userInfo, , ] = useGetUserInfo()
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -73,21 +75,20 @@ const ProductDetails = () => {
     <div className="">
       <SectionTitle title="Product Details" ico={ico} ict={ict}></SectionTitle>
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 px-5 py-5 bg-success bg-opacity-30 rounded-lg shadow-md md:shadow-lg md:shadow-secondary">
-      {/* <h1 className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
+        {/* <h1 className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
             {details.product_name}
           </h1> */}
-<div className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
-<Typewriter
-  options={{
-    strings: [`${details.product_name}`],
-    autoStart: true,
-    loop: true,
-  }}
-/>
-</div>
+        <div className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
+          <Typewriter
+            options={{
+              strings: [`${details.product_name}`],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+        </div>
 
-
-        <div className="flex justify-between md:justify-center items-center gap-4">
+        <div className={`flex justify-between md:justify-center items-center gap-4 ${userInfo?.role == "customer" ? 'block' : 'hidden'}`}>
           <button
             onClick={() => addToCart(details)}
             className="btn btn-error shadow-md shadow-success"
@@ -95,12 +96,10 @@ const ProductDetails = () => {
             <p className="font-semibold">Add to Cart</p>{" "}
             <img className="h-[20px]" src={cart} alt="" />
           </button>
-          
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5 shadow-md">
-        <div className="md:w-2/5 flex flex-col justify-center items-center">
-          
+        <div className="md:w-2/5 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out hover:scale-110">
           <img
             className="md:h-[300px] h-[250px] rounded-lg shadow-md shadow-secondary p-2"
             src={details.product_image}
@@ -153,15 +152,15 @@ const ProductDetails = () => {
               readOnly
             />
             <Link
-            to={`/shopDetails/${details.stall.id}`}
-            className="flex justify-start items-center gap-1"
-          >
-            {" "}
-            <img className="h-[40px]" src={shop} alt="Shop" />{" "}
-            <p className="text-xl font-medium text-primary">
-              {details.stall.name}
-            </p>
-          </Link>
+              to={`/shopDetails/${details.stall.id}`}
+              className="flex justify-start items-center gap-1"
+            >
+              {" "}
+              <img className="h-[40px]" src={shop} alt="Shop" />{" "}
+              <p className="text-xl font-medium text-primary">
+                {details.stall.name}
+              </p>
+            </Link>
           </div>
         </div>
       </div>

@@ -68,7 +68,7 @@ const CartUser = () => {
               )}
               {cart.map((item) => (
                 <tr
-                  className="hover:shadow-md hover:shadow-success hover:bg-accent hover:bg-opacity-15"
+                  className="hover:shadow-md hover:shadow-success hover:bg-accent hover:bg-opacity-15 transition-transform duration-300 ease-in-out hover:scale-[102%]"
                   key={item._id}
                 >
                   <td>

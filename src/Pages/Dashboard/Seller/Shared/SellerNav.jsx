@@ -13,13 +13,32 @@ import manageOrders from '../../../../assets/seller/004-order.png'
 import userDash from '../../../../icons/user-Dash.png'
 import useCart from "../../../../Hooks/useCart";
 import useAuth from "../../../../Hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import menu from '../../../../assets/basic/001-menu-bar.png'
 import cancel from '../../../../assets/basic/002-button.png'
 import '../../dashboard.css'
 
 const SellerNav = () => {
   const navigate = useNavigate();
+
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem('themeMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem('themeMode');
+    if (savedMode) {
+      setMode(JSON.parse(savedMode));
+    }
+  }, []);
+
+  const handleChangeTheme = () => {
+    const newMode = !mode;
+    setMode(newMode);
+    localStorage.setItem('themeMode', JSON.stringify(newMode));
+  };
+
   const from = "/";
 
     
@@ -86,6 +105,8 @@ const SellerNav = () => {
                 type="checkbox"
                 value="forest"
                 className="toggle theme-controller"
+                onChange={handleChangeTheme}
+                checked={mode}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"

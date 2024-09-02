@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CardRow = (data) => {
   const item = data.data;
   return (
-    <div className="flex justify-between items-center gap-3 p-3 w-full shadow-sm shadow-primary rounded-lg hover:shadow-inner hover:shadow-success">
+    <div className="flex justify-between items-center gap-3 p-3 w-full shadow-sm shadow-primary rounded-lg hover:shadow-md hover:shadow-success transition-transform duration-300 ease-in-out hover:scale-[103%]">
       
       <div className="flex justify-center items-center gap-2">
       <img

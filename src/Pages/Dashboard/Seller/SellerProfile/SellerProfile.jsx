@@ -29,7 +29,7 @@ const SellerProfile = () => {
       <SectionTitle title="Seller Profile" ico={ico} ict={ict}></SectionTitle>
       <div>
         <div className="grid md:grid-cols-2 gap-10">
-          <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400">
+          <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400 transition-transform duration-300 ease-in-out hover:scale-105">
             <div className="flex flex-col md:flex-row justify-start items-center gap-4">
               <img
                 className="rounded-2xl h-[120px] w-[120px] md:h-[150px] md:w-[150px] shadow-lg shadow-primary"
@@ -89,7 +89,7 @@ const SellerProfile = () => {
             </div>
           </div>
           <div>
-            <div className="bg-secondary bg-opacity-10 px-3 py-5 rounded-lg shadow-inner shadow-success">
+            <div className="bg-secondary bg-opacity-10 px-3 py-5 rounded-lg shadow-inner shadow-success transition-transform duration-300 ease-in-out hover:scale-105">
               <div className=" flex items-center gap-2 border-b-2 border-success py-3">
               <img className="h-[40px]" src={shopIcon} alt="" />
               <p className="text-xl font-semibold ">Stall Information</p>

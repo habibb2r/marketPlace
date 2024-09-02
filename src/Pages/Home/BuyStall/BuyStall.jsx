@@ -6,8 +6,11 @@ import ico from '../../../assets/for title/006-businessman.png'
 import ict from '../../../assets/for title/007-best-seller.png'
 
 
+
 const BuyStall = () => {
     const [buyShop, isLoading] = useBuyShop()
+    
+    
 
     if (isLoading) {
         <Loading></Loading>
