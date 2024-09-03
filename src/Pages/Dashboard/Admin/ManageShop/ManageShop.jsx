@@ -5,10 +5,46 @@ import trash from '../../../../assets/admin/png/trash.png'
 import ids from '../../../../assets/admin/png/001-id.png'
 import stalltype from '../../../../assets/admin/png/003-application.png'
 import totalProducts from '../../../../assets/admin/png/002-cubes.png'
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import Loading from '../../../Shared/Loading/Loading';
 
 const ManageShop = () => {
     const [allshops, refetch, loadShops] = useGetAllShops()
-    console.log(allshops)
+    const axiosSecure = useAxiosSecure()
+ 
+    if(loadShops){
+        return <Loading></Loading>
+    }
+
+    const handleDeleteShop = (id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to delete this shop!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(id)
+                axiosSecure.delete(`/deleteShop/${id}`)
+                .then(res=>{
+                    if(res.data){
+                        console.log(res.data)
+                        refetch()
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Shop has been deleted.",
+                            icon: "success"
+                          });
+                    }
+                })
+              
+            }
+          });
+    }
     return (
         <div>
             <SectionTitle title='Manage Shops'></SectionTitle>
@@ -34,7 +70,7 @@ const ManageShop = () => {
                         </div>
                     </div>
                     <div className='flex justify-center bg-success bg-opacity-25 py-2 rounded-md'>
-                        <img className='h-[45px]' src={trash} alt="" />
+                        <img onClick={()=>handleDeleteShop(shop.shopId)} className='h-[45px]' src={trash} alt="" />
                     </div>
                 </div>)}
             </div>

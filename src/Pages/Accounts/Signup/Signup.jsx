@@ -25,6 +25,7 @@ const Signup = () => {
     const{createUser} = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const onSubmit = data => {
+    console.log(data)
     createUser(data.Email, data.Password)
     .then(result =>{
         const loggedUser = result.user;
@@ -70,19 +71,15 @@ const Signup = () => {
               <Lottie className="h-[350px]"  animationData={ani}></Lottie>
               </Slide>
                 
-            <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
-            <Slide direction="down" delay={1500}>
+           <Slide duration={1300} direction="down">
+           <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
               <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
-            </Slide>
-            <Slide direction="down" delay={1300}>
               <input  className="input input-bordered input-info w-full max-w-md" type="email" placeholder="Email" {...register("Email", {required: true})} />
-            </Slide>
-           <Slide direction="down" delay={1}>
              <input  className="input input-bordered input-info w-full max-w-md" type="password" placeholder="Password" {...register("Password", {required: true, max: 12, min: 4})} />
 
-           </Slide>
             <button className="btn btn-success px-5 py-3" type="submit">Signup</button>
     </form>
+           </Slide>
             </div>
         </div>
     );
