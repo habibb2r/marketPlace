@@ -27,11 +27,16 @@ const Payment = () => {
                     errors?.address?.type == 'required' ? <p className="text-error font-mono">Must need a Address</p>: ''
                 }
             <textarea
-              className="textarea textarea-bordered textarea-lg w-[300px] md:w-[450px] h-[150px]  textarea-primary" placeholder="Must need a address"
-              {...register("address", {required: true})}
-            />
+  className="textarea textarea-bordered textarea-lg w-[300px] md:w-[450px] h-[150px]  textarea-primary"
+  placeholder="Must need a phone and address"
+  {...register("address", { required: true })}
+>
+  {"Phone:\nAddress:"}
+</textarea>
+
             <button className={`btn ${addressData? 'btn-success': 'btn-error'}`} type="submit">Save</button>
             </form>
+            <p className="text-primary text-center py-3">Trial Card Number: 4242 4242 4242 4242 , Year Sould be more than 24 and CVC, Postal Code : Any digits</p>
             <Elements stripe={stripePromise}>
                 <CheckoutForm price={totalPrice} cart={cart} refetch={refetch} addressData={addressData} reset={reset}></CheckoutForm>
             </Elements>
