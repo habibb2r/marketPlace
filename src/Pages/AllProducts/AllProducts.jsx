@@ -11,7 +11,7 @@ const AllProducts = () => {
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState(0);
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     fetch(
@@ -34,16 +34,12 @@ const AllProducts = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
+
+    // Todo
+    event.preventDefault(); //
     const searchQuery = event.target.elements.searchInput.value;
     console.log(searchQuery);
-    // axiosSecure.get(`/searchItem?item=${searchQuery}`)
-    // .then(res=>{
-    //   console.log(res.data)
-    //   if(res.data){
-    //     setAllProducts(res.data)
-    //   }
-    // })
+  
   };
   
   return (
