@@ -83,7 +83,9 @@ const Navbar = () => {
             <img className="h-[35px]" src={allproducts} alt="All Products" />
             <span className="block md:hidden">All Products</span>
           </Link>
-          {userInfo?.role === 'admin' && (
+          {
+            user ? <div className="flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-5 md:px-2">
+            {userInfo?.role === 'admin' && (
             <Link className="flex items-center gap-2 md:tooltip md:tooltip-bottom" data-tip="Admin Panel" to="/adminpanel/adminhome">
               <img className="h-[35px]" src={adminpanel} alt="AdminPanel" />
               <span className="block md:hidden">Admin Panel</span>
@@ -109,7 +111,8 @@ const Navbar = () => {
               <img className="h-[35px]" src={sellerdash} alt="Seller Dashboard" />
               <span className="block md:hidden">Seller Dashboard</span>
             </Link>
-          )}
+          )}</div> : ''
+          }
           {user ? (
             userInfo?.picture ? (
               <div className="flex items-center gap-2 lg:tooltip lg:tooltip-bottom" data-tip={userInfo?.name}>
