@@ -8,7 +8,6 @@ import useAuth from '../../../../Hooks/useAuth';
 
 const ManageUser = () => {
     const [manageUsers, refetch] =useManageUser();
-    const {removeUser} = useAuth()
     const axiosSecure = useAxiosSecure();
  
     const handleManageUser = (user)=>{
@@ -47,11 +46,6 @@ const ManageUser = () => {
                         axiosSecure.delete(`/manageUsers?email=${user.email}`)
                 .then(res=>{
                     if(res.data.status){
-                        removeUser(user.email)
-                        .then(res=>{
-                          console.log(res)
-                          console.log('Removed')
-                        })
                         refetch()
                         Swal.fire({
                             title: "Removed!",

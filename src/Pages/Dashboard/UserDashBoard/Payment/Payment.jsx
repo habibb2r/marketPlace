@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import useCart from "../../../../Hooks/useCart";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import CopyText from "../../../Shared/CopyText/CopyText";
 
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_key);
 
@@ -36,7 +37,8 @@ const Payment = () => {
 
             <button className={`btn ${addressData? 'btn-success': 'btn-error'}`} type="submit">Save</button>
             </form>
-            <p className="text-primary text-center py-3">Trial Card Number: 4242 4242 4242 4242 , Year Sould be more than 24 and CVC, Postal Code : Any digits</p>
+            <p className="text-primary text-center py-3">Trial Card Number: <CopyText text={'4242 4242 4242 4242'}></CopyText> Year Sould be more than 24 and CVC, Postal Code : Any digits</p>
+            
             <Elements stripe={stripePromise}>
                 <CheckoutForm price={totalPrice} cart={cart} refetch={refetch} addressData={addressData} reset={reset}></CheckoutForm>
             </Elements>
