@@ -29,19 +29,6 @@ const CopyText = ({ text }) => {
           ></div>
           <button className='btn btn-success' onClick={() => copyToClipboard(text)}>Copy</button>
           <ToastContainer/>
-          {/* <ToastContainer
-            position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            transition: Bounce
-            /> */}
         </div>
       );
 };

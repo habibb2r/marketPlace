@@ -14,6 +14,7 @@ import shopduration from '../../../assets/basic/002-hourglass.png'
 import shopmaxcat from '../../../assets/basic/003-classification.png'
 import shopmaxprod from '../../../assets/basic/004-products.png'
 import shopprice from '../../../assets/basic/005-price-tag.png'
+import CopyText from "../../Shared/CopyText/CopyText";
 
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_key);
 const PaymentShop = () => {
@@ -89,7 +90,7 @@ const PaymentShop = () => {
 
                 <button className="btn btn-primary" type="submit">Save</button>
             </form>
-            <p className="text-primary text-center py-3">Trial Card Number: 4242 4242 4242 4242 , Year Sould be more than 24 and CVC, Postal Code : Any digits</p>
+            <p className="text-primary text-center py-3">Trial Card Number: <CopyText text={'4242 4242 4242 4242'}></CopyText> Year Sould be more than 24 and CVC, Postal Code : Any digits</p>
             <Elements stripe={stripePromise}>
                 <CheckOut price={shopData?.price} shopData={shopData} shopInfo={shopInfo}></CheckOut>
             </Elements>

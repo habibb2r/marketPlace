@@ -45,7 +45,7 @@ const AllProducts = () => {
     //   }
     // })
   };
-
+  
   return (
     <div className="">
       <div>

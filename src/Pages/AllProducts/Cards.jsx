@@ -12,6 +12,7 @@ import cart from "../../icons/005-add-to-cart.png";
 import details from "../../icons/info.png";
 import { Slide } from "react-awesome-reveal";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import quanityimg from '../../assets/basic/quantity.png'
 
 const Cards = ({ data }) => {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ const Cards = ({ data }) => {
     product_name,
     product_rating,
     product_price,
+    quantity,
     stall,
     _id,
   } = data;
@@ -109,7 +111,8 @@ const Cards = ({ data }) => {
           </p>
           <Rating style={{ maxWidth: 100 }} value={product_rating} readOnly />
           {product_price.discount ? (
-            <div className="flex flex-row justify-between items-center gap-5 ">
+            <div className="flex justify-between items-center gap-5 w-full">
+              <div className="flex flex-row justify-between items-center gap-5 ">
               <div className="flex justify-start items-center font-bold text-error line-through">
                 <TbCurrencyTaka />
                 <p>{product_price.previous_price}</p>
@@ -119,10 +122,23 @@ const Cards = ({ data }) => {
                 <p>{product_price.present_price}</p>
               </div>
             </div>
+
+            <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
+              <img className="h-[35px]" src={quanityimg} alt="" />
+              <p className="font-semibold font-sans text-primary">{quantity}</p>
+            </div>
+
+            </div>
           ) : (
-            <div className="flex justify-start items-center font-bold text-primary">
+            <div className="flex justify-between items-center gap-5 w-full">
+              <div className="flex justify-start items-center font-bold text-primary">
               <TbCurrencyTaka />
               <p>{product_price.present_price}</p>
+            </div>
+            <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
+              <img className="h-[35px]" src={quanityimg} alt="" />
+              <p className="font-semibold font-sans text-primary">{quantity}</p>
+            </div>
             </div>
           )}
           <div className="flex justify-start items-center font-bold gap-2">
