@@ -21,12 +21,12 @@ import "../../../dashboard.css";
 const UserNav = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem('themeMode');
+    const savedMode = localStorage.getItem("themeMode");
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
   useEffect(() => {
-    const savedMode = localStorage.getItem('themeMode');
+    const savedMode = localStorage.getItem("themeMode");
     if (savedMode) {
       setMode(JSON.parse(savedMode));
     }
@@ -35,7 +35,7 @@ const UserNav = () => {
   const handleChangeTheme = () => {
     const newMode = !mode;
     setMode(newMode);
-    localStorage.setItem('themeMode', JSON.stringify(newMode));
+    localStorage.setItem("themeMode", JSON.stringify(newMode));
   };
 
   const from = "/";
@@ -61,7 +61,7 @@ const UserNav = () => {
   };
   return (
     <div
-      className={`z-20 h-full fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${
+      className={`z-20 h-[560px] fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${
         clicked ? "" : "my-nav"
       }`}
     >
@@ -80,7 +80,7 @@ const UserNav = () => {
         <div>
           <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
         </div>
-        <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7 pt-3">
+        <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-3 pt-3">
           <NavLink
             className={({ isActive }) =>
               `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${
@@ -139,25 +139,19 @@ const UserNav = () => {
           </NavLink>
         </div>
         <div className="divider divider-success"></div>
-        <div className="flex flex-col items-center gap-5 font-semibold text-md mt-5">
+        <div className="flex justify-between items-center w-full gap-3 font-semibold text-md mt-5">
           <NavLink className="flex justify-start items-center gap-2" to="/">
             <img className="h-[40px]" src={home} alt="Home" />
             <p>Home</p>
           </NavLink>
-          <Link to="/"></Link>
-          {user ? (
-            <button
-              onClick={handleLogOut}
-              className="btn btn-active btn-secondary text-md"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link to="/login" className="btn btn-active btn-accent text-xl">
-              Login
-            </Link>
-          )}
-          <label className="flex cursor-pointer gap-2 mt-5">
+          <button
+            onClick={handleLogOut}
+            className="btn btn-active btn-secondary text-md"
+          >
+            Logout
+          </button>
+        </div>
+        <label className="flex cursor-pointer gap-2 mt-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -193,7 +187,6 @@ const UserNav = () => {
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </label>
-        </div>
       </div>
     </div>
   );

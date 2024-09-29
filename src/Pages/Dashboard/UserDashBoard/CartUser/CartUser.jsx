@@ -26,7 +26,7 @@ const CartUser = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/removeCart/${item._id}`).then((res) => {
           console.log(res.data);
-          if (res.data) {
+          if (res.data?.result?.status) {
             Swal.fire({
               position: "center",
               icon: "success",

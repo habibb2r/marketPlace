@@ -5,32 +5,63 @@ import { useEffect, useState } from "react";
 import ico from "../../assets/for title/002-online-store-location.png";
 import ict from "../../assets/for title/001-marketplace.png";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loading from "../Shared/Loading/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const AllProducts = () => {
-  const [allProducts, setAllProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState(0);
-  // const axiosSecure = useAxiosSecure();
+  // const [allItems, refetchAllItems, loadItems] = useAllProducts({filter, sort})
+ 
 
-  useEffect(() => {
-    fetch(
-      `${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProducts(data.results);
-        setCategories(data.uniqueProductCategories);
-      });
-  }, [filter, sort]);
+  // console.log(allItems)
+
+  const axiosSecure = useAxiosSecure()
+  const { data : allItems, refetch: refetchAllItems, isLoading: loadItems} = useQuery({
+      queryKey: ['allProducts'],
+      queryFn: async()=>{
+          const res = await axiosSecure.get(`${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`)
+          return res.data
+      }
+  })
+
+  useEffect(()=>{
+    refetchAllItems()
+  },[sort, filter, refetchAllItems])
+
+
+    if(loadItems){
+    return <Loading></Loading>
+  }
+
+
+  // return [allItems, refetchAllItems, loadItems]
+
+
+
+  // setCategories(allItems?.uniqueProductCategories)
+  // setAllProducts(allItems?.results)
+  // useEffect(() => {
+  //   fetch(
+  //     `${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAllProducts(data.results);
+  //       setCategories(data.uniqueProductCategories);
+  //     });
+  // }, [filter, sort]);
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
+    // refetchAllItems()
   };
 
   const handleSorting = (e) => {
     const sorting = parseInt(e.target.value);
     setSort(sorting);
+    // refetchAllItems()
   };
 
   const handleSubmit = (event) => {
@@ -42,6 +73,8 @@ const AllProducts = () => {
   
   };
   
+
+
   return (
     <div className="">
       <div>
@@ -71,7 +104,7 @@ const AllProducts = () => {
             >
               All Products
             </option>
-            {categories.map((category) => (
+            {allItems?.uniqueProductCategories?.map((category) => (
               <option
                 className="bg-accent bg-opacity-20 font-semibold"
                 key={category}
@@ -115,8 +148,8 @@ const AllProducts = () => {
             ict={ict}
           ></SectionTitle>
           <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {allProducts.map((product) => (
-              <Cards key={product._id} data={product}></Cards>
+            {allItems?.results?.map((product) => (
+              <Cards key={product._id} data={product} refetchAllItems={refetchAllItems}></Cards>
             ))}
           </div>
         </div>

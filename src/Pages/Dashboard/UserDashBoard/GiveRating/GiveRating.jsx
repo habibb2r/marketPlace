@@ -7,78 +7,41 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import ico from "../../../../assets/basic/003-review.png";
 import ict from "../../../../assets/basic/004-rate.png";
+import { Link } from "react-router-dom";
+import prod from '../../../../assets/basic/001-box.png'
+import marktplce from '../../../../assets/basic/003-online-shopping.png'
+import stall from '../../../../assets/basic/002-market.png'
 
-const myStyles = {
-  itemShapes: ThinStar,
-  activeFillColor: "#ffe40d",
-  inactiveFillColor: "#D19C00",
-};
+
 
 const GiveRating = () => {
-  const axiosSecure = useAxiosSecure();
-  const [userInfo] = useGetUserInfo();
-  const [rating, setRating] = useState(3);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-    const reviewData = {
-      review: data.review,
-      email: data.email,
-      userImg: userInfo.picture
-        ? userInfo.picture
-        : "https://i.ibb.co/7vcgsfr/profile.png",
-      name: userInfo.name,
-      rate: rating,
-    };
-    axiosSecure.post("/giveReview", reviewData).then((res) => {
-      if (res.data) {
-        Swal.fire({
-          position: "Center",
-          icon: "success",
-          title: "Thanks for your feedback",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        reset();
-      }
-    });
-  };
+
 
   return (
     <div>
       <SectionTitle ico={ico} ict={ict} title="Give a review"></SectionTitle>
 
-      <div className="flex flex-col justify-center items-center gap-5 pt-5">
-        <form
-          className="flex flex-col justify-center items-center gap-5"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Rating
-            isRequired
-            style={{ maxWidth: 350 }}
-            value={rating}
-            onChange={setRating}
-            itemStyles={myStyles}
-          />
-          <textarea
-            className="textarea textarea-bordered textarea-lg w-[350px] h-[200px]  textarea-primary"
-            placeholder="Share your valuable review"
-            {...register("review", {})}
-          />
-          <input
-            className="input input-bordered input-primary w-full"
-            type="email"
-            placeholder="email"
-            value={userInfo?.email}
-            {...register("email", {})}
-          />
+      <div className="grid lg:grid-cols-3 gap-3 px-5 ">
+        <Link to='product' className="bg-accent bg-opacity-20 rounded-lg shadow-md hover:bg-success hover:bg-opacity-20 transition-transform duration-300 ease-in-out hover:scale-[102%]">
+        <div className="flex justify-center items-center gap-3 px-3 py-4">
+          <img className="h-[35px]" src={prod} alt="" />
+          <p className="font-semibold">Product Review</p>
+        </div>
+        </Link>
 
-          <input className="btn btn-primary" type="submit" />
-        </form>
+        <Link to='marketplace' className="bg-accent bg-opacity-20 rounded-lg shadow-md hover:bg-success hover:bg-opacity-20 transition-transform duration-300 ease-in-out hover:scale-[102%]">
+        <div className="flex justify-center items-center gap-3 px-3 py-4">
+          <img className="h-[35px]" src={marktplce} alt="" />
+          <p className="font-semibold">Marketplace Review</p>
+        </div>
+        </Link>
+
+        <Link className="bg-accent bg-opacity-20 rounded-lg shadow-md hover:bg-success hover:bg-opacity-20 transition-transform duration-300 ease-in-out hover:scale-[102%]">
+        <div className="flex justify-center items-center gap-3 px-3 py-4">
+          <img className="h-[35px]" src={stall} alt="" />
+          <p className="font-semibold">Stall Review</p>
+        </div>
+        </Link>
       </div>
     </div>
   );

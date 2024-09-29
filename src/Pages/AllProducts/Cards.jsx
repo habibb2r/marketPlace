@@ -14,7 +14,7 @@ import { Slide } from "react-awesome-reveal";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import quanityimg from '../../assets/basic/quantity.png'
 
-const Cards = ({ data }) => {
+const Cards = ({ data, refetchAllItems}) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,7 +50,8 @@ const Cards = ({ data }) => {
         },
       };
       axiosSecure.post("/addToCart", cartItem).then((res) => {
-        if (res.data.insertedId) {
+        console.log(res.data)
+        if (res.data?.result?.status) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -58,6 +59,7 @@ const Cards = ({ data }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          refetchAllItems()
           refetch();
         } else {
           Swal.fire({

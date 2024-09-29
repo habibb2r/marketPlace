@@ -16,7 +16,7 @@ import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo"
 
 const ProductDetails = () => {
   const itemId = useParams();
-  const [details, ,isLoading] = useDetails(itemId);
+  const [details, itemRefetch,isLoading] = useDetails(itemId);
   const [, , refetch] = useCart();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -43,7 +43,7 @@ const ProductDetails = () => {
         },
       };
       axiosSecure.post("/addToCart", cartItem).then((res) => {
-        if (res.data.insertedId) {
+        if (res.data?.result?.status) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -52,6 +52,7 @@ const ProductDetails = () => {
             timer: 1500,
           });
           refetch();
+          itemRefetch()
         }
       });
     } else {

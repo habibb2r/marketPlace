@@ -94,6 +94,7 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
         payment_status: true,
         delivered: false,
         address: addressData.address,
+        rating: false
       };
 
       axiosSecure.post("/payments", paymentSlip).then((res) => {
