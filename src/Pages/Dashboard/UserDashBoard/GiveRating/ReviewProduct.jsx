@@ -6,6 +6,7 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { createRoot } from 'react-dom/client';
+import nextprocess from '../../../../assets/basic/004-rate.png'
 
 
 const myStyles = {
@@ -32,13 +33,14 @@ const ReviewProduct = () => {
 
   // Create a React component that can be rendered into the wrapper
   const RatingComponent = () => (
-    <div>
-      <p>{name}</p>
+    <div className="flex flex-col justify-center items-center gap-3">
+      <p className="font-semibold">{name}</p>
       <Rating
       isRequired
       style={{ maxWidth: 150 }}
       value={rating}
-      onChange={setRating}
+      readOnly={true}
+      // onChange={setRating}
       itemStyles={myStyles}
     />
     </div>
@@ -105,16 +107,17 @@ const ReviewProduct = () => {
                     </div>
                         
                     {
-                        product.product_rating == false? <button onClick={()=>handleRating(product,item.itemNames[i])}>
+                        product.product_rating == false? <div className="flex items-center gap-3">
                           <Rating
                         isRequired
                         style={{ maxWidth: 150 }}
                         value={rating}
-                        readOnly={true}
-                        // onChange={setRating}
+                        // readOnly={true}
+                        onChange={setRating}
                         itemStyles={myStyles}
                       />
-                        </button> : <div className="flex flex-col justify-center items-center"><p className="font-semibold text-success">Already rated</p> 
+                      <button className="tooltip" data-tip="Click Here" onClick={()=>handleRating(product,item.itemNames[i])}><img className="h-[45px] rounded-full shadow-md shadow-success" src={nextprocess} alt="" /></button>
+                        </div> : <div className="flex flex-col justify-center items-center"><p className="font-semibold text-success">Already rated</p> 
                       <Rating
                       isRequired
                       style={{ maxWidth: 150 }}
