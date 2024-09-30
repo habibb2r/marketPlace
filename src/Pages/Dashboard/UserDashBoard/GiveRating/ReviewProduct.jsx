@@ -7,6 +7,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { createRoot } from 'react-dom/client';
 import nextprocess from '../../../../assets/basic/004-rate.png'
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 
 const myStyles = {
@@ -22,16 +23,17 @@ const myStyles = {
   };
 
 const ReviewProduct = () => {
+  const axiosSecure = useAxiosSecure();
   const [orderStatus, refetch, orderLoad] = useOrderStatus();
   const [rating, setRating] = useState(3);
   const filteredArray = orderStatus?.filter((item) => item.delivered === true);
   console.log(filteredArray);
 
 
- const handleRating = async (itemdata, data, name)=>{
+ const handleRating = async (itemdata, data, name, price)=>{
   const wrapper = document.createElement("div");
 
-  // Create a React component that can be rendered into the wrapper
+ console.log(itemdata, data, name)
   const RatingComponent = () => (
     <div className="flex flex-col justify-center items-center gap-3">
       <p className="font-semibold">{name}</p>
@@ -68,16 +70,34 @@ const ReviewProduct = () => {
 
   if (text) {
     const reviewData = {
+     email: itemdata?.email,
+     order_date: itemdata?.date,
+     order_time: itemdata?.time,
+     stall_id: itemdata?.stall_id,
+     payslip_id: itemdata?._id,
+     product_info: {
+      name: name,
+      product_id: data?.product_id,
       rating: rating,
-      data,
-      name,
+      review: text,
+      price: price,
+     }
     };
-    console.log(reviewData, text);
-    Swal.fire({
-      title: "Thank You!",
-      text: "Your review has been submitted.",
-      icon: "success",
-    });
+
+    axiosSecure.post('/productReview', reviewData)
+      .then(res =>{
+        console.log(res.data)
+        if(res.data){
+          refetch()
+          Swal.fire({
+            title: "Thank You!",
+            text: "Your review has been submitted.",
+            icon: "success",
+          });
+        }
+      })
+    
+    
   }
  }
   return (
@@ -121,7 +141,7 @@ const ReviewProduct = () => {
                         onChange={setRating}
                         itemStyles={myStyles}
                       />
-                      <button className="tooltip" data-tip="Click Here" onClick={()=>handleRating(item,product,item.itemNames[i])}><img className="h-[45px] rounded-full shadow-md shadow-success" src={nextprocess} alt="" /></button>
+                      <button className="tooltip" data-tip="Click Here" onClick={()=>handleRating(item,product,item.itemNames[i], item.product_prices[i])}><img className="h-[45px] rounded-full shadow-md shadow-success" src={nextprocess} alt="" /></button>
                         </div> : <div className="flex flex-col justify-center items-center"><p className="font-semibold text-success">Already rated</p> 
                       <Rating
                       isRequired
