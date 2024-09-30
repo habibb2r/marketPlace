@@ -28,7 +28,7 @@ const ReviewProduct = () => {
   console.log(filteredArray);
 
 
- const handleRating = (data, name)=>{
+ const handleRating = async (itemdata, data, name)=>{
   const wrapper = document.createElement("div");
 
   // Create a React component that can be rendered into the wrapper
@@ -49,31 +49,36 @@ const ReviewProduct = () => {
   const root = createRoot(wrapper);
   root.render(<RatingComponent />);
   console.log(data, name)
-  Swal.fire({
-    title: "Give Your Valuable Rating",
+  const { value: text } = await Swal.fire({
+    title: "Tell Us About Your Experience",
     icon: "info",
     html: wrapper,
+    input: "textarea",
+    inputPlaceholder: "Type your review here...",
+    inputAttributes: {
+      "aria-label": "Type your review here",
+    },
     showCloseButton: true,
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const reviewdata = {
-        rating: rating,
-        data,
-        name
-      }
-      console.log(reviewdata)
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success"
-      });
-    }
+    confirmButtonText: "Submit",
   });
+
+  if (text) {
+    const reviewData = {
+      rating: rating,
+      data,
+      name,
+    };
+    console.log(reviewData, text);
+    Swal.fire({
+      title: "Thank You!",
+      text: "Your review has been submitted.",
+      icon: "success",
+    });
+  }
  }
   return (
     <div>
@@ -116,7 +121,7 @@ const ReviewProduct = () => {
                         onChange={setRating}
                         itemStyles={myStyles}
                       />
-                      <button className="tooltip" data-tip="Click Here" onClick={()=>handleRating(product,item.itemNames[i])}><img className="h-[45px] rounded-full shadow-md shadow-success" src={nextprocess} alt="" /></button>
+                      <button className="tooltip" data-tip="Click Here" onClick={()=>handleRating(item,product,item.itemNames[i])}><img className="h-[45px] rounded-full shadow-md shadow-success" src={nextprocess} alt="" /></button>
                         </div> : <div className="flex flex-col justify-center items-center"><p className="font-semibold text-success">Already rated</p> 
                       <Rating
                       isRequired
