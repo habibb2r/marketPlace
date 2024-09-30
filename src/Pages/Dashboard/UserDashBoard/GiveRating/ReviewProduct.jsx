@@ -27,7 +27,7 @@ const ReviewProduct = () => {
   const [orderStatus, refetch, orderLoad] = useOrderStatus();
   const [rating, setRating] = useState(3);
   const filteredArray = orderStatus?.filter((item) => item.delivered === true);
-  console.log(filteredArray);
+ 
 
 
  const handleRating = async (itemdata, data, name, price)=>{

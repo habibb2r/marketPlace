@@ -5,7 +5,7 @@ import ict from "../../../../assets/basic/004-rate.png";
 
 const MyReviews = () => {
     const [myReview, refetch, loadReview] = useMyReview()
-    console.log(myReview)
+    // console.log(myReview)
     return (
         <div>
             <SectionTitle ico={ico} ict={ict} title="My Reviews"></SectionTitle>

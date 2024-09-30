@@ -23,7 +23,7 @@ import ict from '../../../../assets/for title/027-order.png'
 const ManageOrders = () => {
   const [getOrderSeller, refetch, orderLoading] = useManageOrders();
   const axiosSecure = useAxiosSecure();
-
+console.log(getOrderSeller)
   if (orderLoading) {
     return <Loading></Loading>;
   }

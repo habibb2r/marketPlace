@@ -13,7 +13,7 @@ const UserHome = () => {
   const [stat, statLoad] = useUserStat();
   const location = useLocation()
   const mystate = location.pathname
-  console.log(userInfo)
+
   if (isLoading || statLoad) {
     return <Loading></Loading>;
   }
