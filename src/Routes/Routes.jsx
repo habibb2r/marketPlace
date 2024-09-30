@@ -34,6 +34,8 @@ import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import ReviewMarketPlace from "../Pages/Dashboard/UserDashBoard/GiveRating/ReviewMarketPlace";
 import ReviewProduct from "../Pages/Dashboard/UserDashBoard/GiveRating/ReviewProduct";
+import MyReviews from "../Pages/Dashboard/UserDashBoard/GiveRating/MyReviews";
+import StallReview from "../Pages/Dashboard/UserDashBoard/GiveRating/StallReview";
 
   export const router = createBrowserRouter([
     {
@@ -99,6 +101,14 @@ import ReviewProduct from "../Pages/Dashboard/UserDashBoard/GiveRating/ReviewPro
           {
             path: 'giverating/product',
             element: <ReviewProduct></ReviewProduct>
+          },
+          {
+            path: 'giverating/stall',
+            element: <StallReview></StallReview>
+          },
+          {
+            path: 'giverating/myReviews',
+            element: <MyReviews></MyReviews>
           },
           {
             path: 'userUpdate',

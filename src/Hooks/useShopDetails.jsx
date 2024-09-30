@@ -3,7 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 
 const useShopDetails = (id) => {
-
+    console.log(id)
     const axiosSecure = useAxiosSecure()
     const {data: shopDetails= [], isLoading} = useQuery({
         queryKey: ['shopDetails'],

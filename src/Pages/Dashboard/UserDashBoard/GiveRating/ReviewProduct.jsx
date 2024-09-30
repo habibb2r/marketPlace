@@ -87,7 +87,7 @@ const ReviewProduct = () => {
     axiosSecure.post('/productReview', reviewData)
       .then(res =>{
         console.log(res.data)
-        if(res.data){
+        if(res.data.status){
           refetch()
           Swal.fire({
             title: "Thank You!",
