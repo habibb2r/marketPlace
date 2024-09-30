@@ -8,7 +8,7 @@ import ico from '../../../../assets/basic/007-delivery.png'
 import ict from '../../../../assets/basic/008-travel.png'
 
 const OrderStatus = () => {
-    const [orderStatus, orderLoad] = useOrderStatus();
+    const [orderStatus, , orderLoad] = useOrderStatus();
     if(orderLoad){
         return <Loading></Loading>
     }

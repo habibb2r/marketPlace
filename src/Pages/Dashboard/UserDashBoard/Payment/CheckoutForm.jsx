@@ -88,7 +88,11 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
         total_price: price,
         stall_id: cart[0].stall_id,
         cartItems: cart.map((item) => item._id),
-        product_items: cart.map((item) => item.cartData.product_id),
+        product_items: cart.map((item) => ({
+          product_id: item.cartData.product_id,
+          product_rating: false,
+          rate_given: 3,
+        })),
         itemNames: cart.map((item) => item.cartData.product_name),
         product_prices: cart.map((item) => item.cartData.price),
         payment_status: true,
