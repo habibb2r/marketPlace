@@ -34,7 +34,7 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const today = new Date();
-    // console.log(event)
+    
     const dateTimeString = today.toLocaleDateString();
 
     const timeString = today.toLocaleTimeString();
@@ -72,6 +72,7 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
     if (confirmError) {
       console.log(confirmError);
     }
+
     // console.log(paymentIntent)
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
