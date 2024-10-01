@@ -110,9 +110,9 @@ const ReviewProduct = () => {
             key={index}
           >
             <div>
-              <div className="flex justify-between items-center gap-4 py-3">
-                <p className="text-xl font-semibold">Purchased Information : {index+1}</p>
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-3">
+                <p className="text-xl font-semibold">Purchased Product : {index+1}</p>
+                <div className="flex flex-col md:flex-row items-center gap-3">
                   <p>
                     {" "}
                     Order Date & Time :{" "}
@@ -125,7 +125,7 @@ const ReviewProduct = () => {
               </div>
               <div className="grid grid-cols-1 gap-2">
                 {item.product_items.map((product, i) => (
-                  <div className="flex justify-between items-center gap-5 py-3 bg-white rounded-md shadow-sm px-2" key={i}>
+                  <div className="flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-white rounded-md shadow-sm px-2" key={i}>
                     <div className="flex items-center gap-1">
                     <p>{item.itemNames[i]} - </p>
                     <p>( <span className="font-semibold">{item.product_prices[i]} $</span> )</p>
