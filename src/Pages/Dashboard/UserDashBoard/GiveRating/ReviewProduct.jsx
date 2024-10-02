@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { createRoot } from 'react-dom/client';
 import nextprocess from '../../../../assets/basic/004-rate.png'
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Loading from "../../../Shared/Loading/Loading";
 
 
 const myStyles = {
@@ -26,9 +27,11 @@ const ReviewProduct = () => {
   const axiosSecure = useAxiosSecure();
   const [orderStatus, refetch, orderLoad] = useOrderStatus();
   const [rating, setRating] = useState(3);
-  const filteredArray = orderStatus?.filter((item) => item.delivered === true);
+  const filteredArray = orderStatus?.result.filter((item) => item.delivered === true);
  
-
+  if(orderLoad){
+    return <Loading></Loading>
+  }
 
  const handleRating = async (itemdata, data, name, price)=>{
   const wrapper = document.createElement("div");
@@ -127,8 +130,8 @@ const ReviewProduct = () => {
                 {item.product_items.map((product, i) => (
                   <div className="flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-white rounded-md shadow-sm px-2" key={i}>
                     <div className="flex items-center gap-1">
-                    <p>{item.itemNames[i]} - </p>
-                    <p>( <span className="font-semibold">{item.product_prices[i]} $</span> )</p>
+                    <p>{item.itemNames[i]} - ( <span className="font-semibold">{item.product_prices[i]} $</span> )</p>
+                    
                     </div>
                         
                     {

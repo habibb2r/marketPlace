@@ -9,6 +9,7 @@ import ict from '../../../../assets/basic/008-travel.png'
 
 const OrderStatus = () => {
     const [orderStatus, , orderLoad] = useOrderStatus();
+    console.log(orderStatus)
     if(orderLoad){
         return <Loading></Loading>
     }
@@ -29,10 +30,10 @@ const OrderStatus = () => {
     </thead>
     <tbody>
     {
-              orderStatus.length == 0 ? <tr className="flex justify-center items-center text-xl text-error font-semibold py-3 px-3">No orders have placed yet...</tr> : ''
+              orderStatus?.result.length == 0 ? <tr className="flex justify-center items-center text-xl text-error font-semibold py-3 px-3">No orders have placed yet...</tr> : ''
             }
       {
-                    orderStatus?.map(item=>  <tr className="bg-success bg-opacity-10 shadow-inner shadow-success hover:bg-accent hover:bg-opacity-10 transition-transform duration-300 ease-in-out hover:scale-[102%]" key={item._id}>
+                    orderStatus?.result.map(item=>  <tr className="bg-success bg-opacity-10 shadow-inner shadow-success hover:bg-accent hover:bg-opacity-10 transition-transform duration-300 ease-in-out hover:scale-[102%]" key={item._id}>
                         <td>
                           <div className="flex items-center">
                             <div>
