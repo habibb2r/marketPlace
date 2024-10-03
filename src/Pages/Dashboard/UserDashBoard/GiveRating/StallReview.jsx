@@ -10,8 +10,8 @@ import './review.css'
 
 const alreadyRated = {
   itemShapes: Star,
-  activeFillColor: "#52cc00",
-  inactiveFillColor: "#d1d3cf",
+  activeFillColor: "#faf200",
+  inactiveFillColor: "#b3c2c1",
   activeStrokeColor: 'mycolor',
   activeBoxColor: 'mycolor',
 //   activeBoxBorderColor: '#000000',
@@ -36,7 +36,7 @@ const StallReview = () => {
       <div className="flex flex-col justify-start items-start gap-5">
         {datas.map((shop, index) => (
           <div
-            className="px-5 py-3 shadow-md shadow-success w-full bg-accent bg-opacity-40 rounded-md"
+            className="px-5 py-3 shadow-md shadow-success w-full bg-success bg-opacity-40 rounded-md"
             key={index}
           >
             <div className="flex justify-between items-start gap-3 w-full">
@@ -73,7 +73,7 @@ const StallReview = () => {
                         <div className="grid grid-cols-1 gap-2">
                           {order.product_items.map((product, i) => (
                             <div
-                              className=" w-full flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-secondary bg-opacity-50 rounded-md shadow-sm px-2"
+                              className=" w-full flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-primary bg-opacity-10 rounded-md shadow-sm px-2"
                               key={i}
                             >
                               <div className="flex items-center gap-1">
