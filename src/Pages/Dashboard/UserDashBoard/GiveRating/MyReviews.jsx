@@ -3,6 +3,7 @@ import useMyReview from "../UserHooks/useMyReview";
 import ico from "../../../../assets/basic/003-review.png";
 import ict from "../../../../assets/basic/004-rate.png";
 import { Rating, Star } from "@smastrom/react-rating";
+import Loading from "../../../Shared/Loading/Loading";
 
 const myStyles = {
   itemShapes: Star,
@@ -10,8 +11,10 @@ const myStyles = {
   inactiveFillColor: "#ffdde4",
 };
 const MyReviews = () => {
-  const [myReview, refetch, loadReview] = useMyReview();
-  console.log(myReview);
+  const [myReview, , loadReview] = useMyReview();
+  if(loadReview){
+    return <Loading />
+  }
   return (
     <div>
       <SectionTitle ico={ico} ict={ict} title="My Reviews"></SectionTitle>
@@ -28,7 +31,7 @@ const MyReviews = () => {
             </div>
           </div>
           <div className="collapse-content">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               {myReview?.product?.map((item, index) => (
                 <div
                   className="flex flex-col justify-start items-start gap-2 shadow-md shadow-secondary rounded-lg px-3 py-4"
@@ -64,7 +67,7 @@ const MyReviews = () => {
             </div>
           </div>
           <div className="collapse-content">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-4">
               {myReview?.stall?.map((item, index) => (
                 <div
                   className="flex flex-col justify-start items-start gap-2 shadow-md shadow-secondary rounded-lg px-3 py-4"
