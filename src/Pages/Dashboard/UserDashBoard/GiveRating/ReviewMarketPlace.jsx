@@ -6,12 +6,12 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../UserHooks/useGetUserInfo";
 import { useState } from "react";
-import { Rating, ThinStar } from "@smastrom/react-rating";
+import { Rating, Star } from "@smastrom/react-rating";
 
 const myStyles = {
-  itemShapes: ThinStar,
+  itemShapes: Star,
   activeFillColor: "#ffe40d",
-  inactiveFillColor: "#D19C00",
+  inactiveFillColor: "#ffdde4",
 };
 
 const ReviewMarketPlace = () => {

@@ -6,12 +6,16 @@ import Loading from "../../../Shared/Loading/Loading";
 import { Rating, Star } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 import './review.css'
+import nextprocess from '../../../../assets/basic/004-rate.png'
+import Swal from "sweetalert2";
+import useGetUserInfo from "../UserHooks/useGetUserInfo";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 
 const alreadyRated = {
   itemShapes: Star,
-  activeFillColor: "#faf200",
-  inactiveFillColor: "#b3c2c1",
+  activeFillColor: "#b10326",
+  inactiveFillColor: "#ff94a9",
   activeStrokeColor: 'mycolor',
   activeBoxColor: 'mycolor',
 //   activeBoxBorderColor: '#000000',
@@ -23,25 +27,102 @@ const alreadyRated = {
 };
 
 const StallReview = () => {
+  const axiosSecure = useAxiosSecure()
+  const [userInfo, , ] = useGetUserInfo()
   const [orderStatus, refetch, orderLoad] = useOrderStatus();
   if (orderLoad) {
     return <Loading />;
   }
   const datas = orderStatus?.shopDetails;
   console.log(datas);
+
+  const handleStallReview = async(shop)=>{
+    const inputOptions = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          1: "😡",
+          2: "🙁",
+          3: "😐",
+          4: "😊",
+          5: "😍",
+        });
+      }, 1000);
+    });
+    const { value: rating } = await Swal.fire({
+      title: "Give Ratings",
+      input: "radio",
+      inputOptions,
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to choose something!";
+        }
+      }
+    });
+    const { value: text } = await Swal.fire({
+      title: `Tell Us About Your Experience With ${shop?.stall_name}`,
+      icon: "info",
+      input: "textarea",
+      inputPlaceholder: "Type your review here...",
+      inputAttributes: {
+        "aria-label": "Type your review here",
+      },
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to write something!";
+        }
+      },
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Submit",
+    })
+    if (text && rating) {
+      const reviewData = {
+        review: text,
+        rating: parseInt(rating),
+        email: userInfo?.email,
+        name: userInfo?.name,
+        stall_id: shop?.stall_id,
+        stall_name: shop?.stall_name,
+        products: shop?.products
+      };
+      axiosSecure.post('/stallReview', reviewData)
+      .then(res=>{
+        if(res.data.status){
+          refetch()
+          Swal.fire({
+            title: "Thank You!",
+            text: "Your review has been submitted.",
+            icon: "success",
+          });
+        }
+      })
+   
+      
+      
+    }else{
+      Swal.fire({
+        title: "Error",
+        text: "Please fill out all fields",
+        icon: "error",
+      });
+    }
+  }
   return (
-    <div>
+    <div className="px-2">
       <SectionTitle ico={ico} ict={ict} title="Stall review"></SectionTitle>
 
       <div className="flex flex-col justify-start items-start gap-5">
         {datas.map((shop, index) => (
           <div
-            className="px-5 py-3 shadow-md shadow-success w-full bg-success bg-opacity-40 rounded-md"
+            className="px-1 md:px-5 py-3 shadow-md shadow-success w-full bg-success bg-opacity-20 rounded-md"
             key={index}
           >
-            <div className="flex justify-between items-start gap-3 w-full">
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-3 w-full">
               <div className="w-full">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col md:flex-row items-center gap-2">
                   <h3 className="text-xl font-semibold">{shop.stall_name} </h3>
                   <Rating
                     isRequired
@@ -54,7 +135,7 @@ const StallReview = () => {
                   />
                 </div>
                 <div className="pt-3">
-                  <p className="text-sm font-semibold">
+                  <p className="text-sm font-semibold text-center md:text-start">
                     Category : {shop?.stall_type}
                   </p>
                   <div className="w-full">
@@ -73,7 +154,7 @@ const StallReview = () => {
                         <div className="grid grid-cols-1 gap-2">
                           {order.product_items.map((product, i) => (
                             <div
-                              className=" w-full flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-primary bg-opacity-10 rounded-md shadow-sm px-2"
+                              className=" w-full flex flex-col md:flex-row justify-between items-center gap-5 py-3 bg-success bg-opacity-30 rounded-md shadow-sm px-2"
                               key={i}
                             >
                               <div className="flex items-center gap-1">
@@ -116,7 +197,7 @@ const StallReview = () => {
                 </div>
               </div>
 
-              <p>icon</p>
+              <button onClick={()=>handleStallReview(shop)} className=" "><img className="h-[60px] bg-white rounded-full shadow-md shadow-secondary" src={nextprocess} alt="" /></button>
             </div>
           </div>
         ))}
