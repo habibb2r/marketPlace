@@ -14,6 +14,7 @@ const Main = () => {
     return isLoading ? <div className="flex flex-col h-[100vh] items-center justify-center pt-[45%] md:pt-[15%]"><Lottie className="h-[300px]" animationData={anidata}></Lottie><span className="text-success font-bold font-mono">Connecting to server</span><span className="loading loading-dots loading-lg text-success"></span></div> :  <>  
     <Navbar></Navbar>
     <div className="pt-[25%] md:pt-[8%]">
+    
     <Outlet></Outlet>
     </div>
     <Footer></Footer>

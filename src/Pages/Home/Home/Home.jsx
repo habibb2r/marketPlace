@@ -1,5 +1,6 @@
 import About from "../About/About";
 import Banner from "../Banner/Banner";
+import NewBanner from "../Banner/NewBanner";
 import BuyStall from "../BuyStall/BuyStall";
 import Categories from "../Categories/Categories";
 import DiscountProducts from "../DiscountProducts/DiscountProducts";
@@ -11,6 +12,7 @@ const Home = () => {
     return (
         <>
            <Banner></Banner>
+           {/* <NewBanner></NewBanner> */}
            <About></About>
            <Categories></Categories>
            <DiscountProducts></DiscountProducts>
