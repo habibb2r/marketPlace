@@ -78,9 +78,11 @@ const UserNav = () => {
         className="flex flex-col md:justify-between items-start h-full"
       >
         <div>
+        <NavLink className="flex justify-start items-center gap-2 tooltip tooltip-right tooltip-accent" data-tip="Home" to="/">
           <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
+        </NavLink>
         </div>
-        <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-3 pt-3">
+        <div className="shadow-sm rounded-md p-1 flex flex-col justify-center items-start gap-3 pt-3">
           <NavLink
             className={({ isActive }) =>
               `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${
@@ -139,19 +141,14 @@ const UserNav = () => {
           </NavLink>
         </div>
         <div className="divider divider-success"></div>
-        <div className="flex justify-between items-center w-full gap-3 font-semibold text-md mt-5">
-          <NavLink className="flex justify-start items-center gap-2" to="/">
-            <img className="h-[40px]" src={home} alt="Home" />
-            <p>Home</p>
-          </NavLink>
+        <div className="flex justify-center items-center w-full gap-3 font-semibold text-md mt-5">
           <button
             onClick={handleLogOut}
             className="btn btn-active btn-secondary text-md"
           >
             Logout
           </button>
-        </div>
-        <label className="flex cursor-pointer gap-2 mt-5">
+          <label className="flex cursor-pointer gap-2 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -187,6 +184,8 @@ const UserNav = () => {
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </label>
+        </div>
+        
       </div>
     </div>
   );

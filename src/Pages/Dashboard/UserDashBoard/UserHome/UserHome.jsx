@@ -21,7 +21,7 @@ const UserHome = () => {
   return (
     <div>
       <SectionTitle ico={ico} ict={ict} title="Dashboard"></SectionTitle>
-      <div className="flex flex-col md:flex-row md:justify-center items-center gap-5 pt-5">
+      <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-5 pt-5">
         <Slide direction="left" className="md:w-1/3 ">
           <div className="flex flex-col justify-center items-center gap-5 shadow-sm shadow-primary p-3 rounded-xl">
             <img
