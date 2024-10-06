@@ -6,7 +6,7 @@ import Loading from "../../../Shared/Loading/Loading";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
+const CheckoutForm = ({ price, cart, refetch, data, reset }) => {
   const [userInfo, , isLoading] = useGetUserInfo();
   if (isLoading) {
     <Loading></Loading>;
@@ -25,7 +25,7 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
   useEffect(() => {
     if (price > 0) {
       axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-        console.log(res.data.clientSecret);
+        // console.log(res.data.clientSecret);
         setclientSecret(res.data.clientSecret);
       });
     }
@@ -98,7 +98,8 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
         product_prices: cart.map((item) => item.cartData.price),
         payment_status: true,
         delivered: false,
-        address: addressData.address,
+        address: data.address,
+        phone: data.phone,
         rating: false
       };
 
@@ -153,7 +154,7 @@ const CheckoutForm = ({ price, cart, refetch, addressData, reset }) => {
           <button
             className="btn btn-success mt-5 mx-auto"
             type="submit"
-            disabled={!stripe || !clientSecret || processing || !addressData}
+            disabled={!stripe || !clientSecret || processing || !data}
           >
             Pay
           </button>
