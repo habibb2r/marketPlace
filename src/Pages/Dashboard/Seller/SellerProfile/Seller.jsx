@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Seller = ({seller, mystate}) => {
     return (
-        <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400 transition-transform duration-300 ease-in-out hover:scale-105">
+        <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400">
             <div className="flex flex-col md:flex-row justify-start items-center gap-4">
               <img
                 className="rounded-2xl h-[120px] w-[120px] md:h-[150px] md:w-[150px] shadow-lg shadow-primary"

@@ -1,11 +1,14 @@
 import useSellerStats from "../SellerHooks/useSellerStats";
 import shopIcon from "../../../../icons/006-store.png";
+import Loading from "../../../Shared/Loading/Loading";
 
 
 
 const Stall = ({stallInfo}) => {
-    const [sellerStats, refetch, loadSellerStat] = useSellerStats();
-    console.log(sellerStats);
+    const [sellerStats, , loadSellerStat] = useSellerStats();
+    if(loadSellerStat){
+        return <Loading></Loading>
+    }
   return (
     <div>
       <div className="bg-secondary bg-opacity-10 px-3 py-5 rounded-lg shadow-inner shadow-success ">
@@ -13,7 +16,7 @@ const Stall = ({stallInfo}) => {
           <img className="h-[40px]" src={shopIcon} alt="" />
           <p className="text-xl font-semibold ">Stall Information</p>
         </div>
-        <div className="font-sans py-3 bg-secondary bg-opacity-15 px-2 shadow-inner shadow-success rounded-xl transition-transform duration-300 ease-in-out hover:scale-105">
+        <div className="font-sans py-3 bg-secondary bg-opacity-15 px-2 shadow-inner shadow-success rounded-xl">
           <p className="">
             Name :{" "}
             <span className="text-xl font-semibold">
