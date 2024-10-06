@@ -36,6 +36,7 @@ import ReviewMarketPlace from "../Pages/Dashboard/UserDashBoard/GiveRating/Revie
 import ReviewProduct from "../Pages/Dashboard/UserDashBoard/GiveRating/ReviewProduct";
 import MyReviews from "../Pages/Dashboard/UserDashBoard/GiveRating/MyReviews";
 import StallReview from "../Pages/Dashboard/UserDashBoard/GiveRating/StallReview";
+import AddItemCategory from "../Pages/Dashboard/Seller/AddItems/AddItemCategory";
 
   export const router = createBrowserRouter([
     {
@@ -163,7 +164,11 @@ import StallReview from "../Pages/Dashboard/UserDashBoard/GiveRating/StallReview
           element: <SellerProfile></SellerProfile>
         },
         {
-          path: 'additems',
+          path: 'additemcategory',
+          element: <AddItemCategory></AddItemCategory>
+        },
+        {
+          path: 'additemcategory/additems',
           element: <AddItems></AddItems>
         },
         {
