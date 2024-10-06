@@ -10,9 +10,9 @@ const AddItemCategory = () => {
         <div>
             <SectionTitle title="Select A Category" ico={ico} ict={ict}></SectionTitle>
             
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 py-5 px-3">
                 {
-                    cateList?.products_types_list?.map(category=> <Link state={{category}} className="py-3 px-4 bg-accent bg-opacity-30 rounded-lg text-center" to='additems' key={category}>{category}</Link>)
+                    cateList?.products_types_list?.map(category=> <Link state={{category}} className="py-3 px-2 md:px-4 bg-accent bg-opacity-35 rounded-lg text-center shadow-md shadow-primary font-semibold" to='additems' key={category}>{category}</Link>)
                 }
             </div>
         </div>
