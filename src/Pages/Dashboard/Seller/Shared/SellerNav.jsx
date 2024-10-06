@@ -66,19 +66,20 @@ const SellerNav = () => {
       <div className="relative block md:hidden">
         <img onClick={()=>controlNav()} className="top-[35px] right-[-60px] absolute h-[40px]" src={clicked?cancel : menu} alt="" />
       </div>
-        <div onClick={()=>controlNav()} className="flex flex-col justify-between items-start h-full">
+        <div onClick={()=>controlNav()} className="flex flex-col justify-start items-start h-full">
           <div>
-            <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
+          <NavLink className="flex justify-start items-center gap-2 tooltip tooltip-right tooltip-accent" data-tip="Home" to="/">
+          <img className="h-[80px] mx-auto" src={logo} alt="Logo" />
+          </NavLink>
           </div>
-          <div className="shadow-sm rounded-md p-1 flex flex-col justify-between items-start gap-7"> 
+          <div className="shadow-sm rounded-md p-1 flex flex-col justify-center items-start gap-3"> 
             <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='sellerprofile'><img className="h-[35px]" src={sellerProfile} alt="Home" /> <p>Seller Profile</p></NavLink>
             <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='additems'><img className="h-[35px]" src={addItems} alt="All Products" /><p>Add Items</p></NavLink>
             <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='manageitems'><img className="h-[35px]" src={manageItems} alt="Dashboard" /><p>Manage Items</p></NavLink>
             <NavLink className={({ isActive }) => `w-full px-3 py-3 rounded-md flex justify-start items-center gap-2 ${isActive ? 'shadow-inner shadow-success' : ''}`} to='manageorders'><img className="h-[35px]" src={manageOrders} alt="Dashboard" /><p>Manage Orders</p></NavLink>
           </div>
           <div className="divider divider-success"></div>
-          <div className="flex flex-col items-center gap-5 font-semibold text-md mt-5">
-          <NavLink className='flex justify-start items-center gap-2' to='/'><img className="h-[40px]" src={home} alt="Home" /><p>Home</p></NavLink>
+          <div className="flex flex-col md:flex-row items-center gap-5 font-semibold text-md mt-2">
             <Link to='/'></Link>
             {
               user ? 
@@ -86,7 +87,7 @@ const SellerNav = () => {
               : 
               <Link to='/login' className="btn btn-active btn-accent text-xl">Login</Link>
             }
-            <label className="flex cursor-pointer gap-2 mt-5">
+            <label className="flex cursor-pointer gap-2 mt-5 md:mt-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
