@@ -19,11 +19,12 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { ImLocation } from "react-icons/im";
 import ico from '../../../../assets/for title/028-back-office.png'
 import ict from '../../../../assets/for title/027-order.png'
+import phone from '../../../../assets/seller/003-add-contact.png'
 
 const ManageOrders = () => {
   const [getOrderSeller, refetch, orderLoading] = useManageOrders();
   const axiosSecure = useAxiosSecure();
-console.log(getOrderSeller)
+// console.log(getOrderSeller)
   if (orderLoading) {
     return <Loading></Loading>;
   }
@@ -94,7 +95,7 @@ console.log(getOrderSeller)
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between items-center gap-2 font-mono">
+              <div className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-2 font-mono">
                 <p className="flex items-center gap-1 ">
                   <GiPriceTag className="text-xl text-error" />
                   <span>
@@ -161,7 +162,11 @@ console.log(getOrderSeller)
               </div>
               <div className="flex items-center gap-2">
               <ImLocation className="text-xl text-error" />
-              <p className="font-semibold">{order?.address? order.address : ''}</p>
+              <p className="font-semibold">{order?.address}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <img className="h-[25px]" src={phone} alt="" />
+                <p className="font-semibold">{order?.phone}</p>
               </div>
 
               <div className="absolute bottom-3 right-3">
