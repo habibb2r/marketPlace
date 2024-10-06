@@ -10,7 +10,7 @@ const useSellerStats = () => {
         queryKey: ['sellerStats'],
         enabled: !isLoading,
         queryFn: async ()=>{
-            const res = await axiosSecure.get(`/sellerstats/${sellerInfo.sellerProfile?.stall_id}`)
+            const res = await axiosSecure.get(`/sellerStats/${sellerInfo.sellerProfile?.stall_id}`)
             return res.data
         }
     })
