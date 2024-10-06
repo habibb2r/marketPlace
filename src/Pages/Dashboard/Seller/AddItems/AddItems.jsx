@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useState } from "react";
+
 import Loading from "../../../Shared/Loading/Loading";
-import useAddCategories from "../SellerHooks/useAddCategories";
+
 import useFeatureList from "../SellerHooks/useFeatureList";
 import Swal from "sweetalert2";
 import useSellerInfo from "../SellerHooks/useSellerInfo";
-// const img_hosting_token = import.meta.env.VITE_imgbb_token;
+
 const img_hosting = import.meta.env.VITE_img_host;
 const img_upload_preset = import.meta.env.VITE_preset;
 const img_cloud_name = import.meta.env.VITE_cloud;
@@ -19,24 +18,28 @@ import { useLocation } from "react-router-dom";
 const AddItems = () => {
   const location = useLocation();
   const category = location?.state?.category;
-  // const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  
   const hosting_url = img_hosting;
 
-  // console.log(hosting_url);
+
   const [sellerInfo] = useSellerInfo();
-  const [select, setSelect] = useState();
-  const [cateList, ,] = useAddCategories();
-  const [featureList, refetch, isLoading] = useFeatureList(category);
+  const [featureList, , isLoading] = useFeatureList(category);
   const axiosSecure = useAxiosSecure();
-  // const [image, setImage] = useState(null)
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+  
+
+  if(isLoading){
+    return <Loading/>
+  }
   const onSubmit = async (data) => {
     // console.log(data);
+    console.log(errors)
     const features = {};
     featureList?.data?.forEach((feature) => {
       if (data[feature]) {
@@ -70,6 +73,7 @@ const AddItems = () => {
           product_category: category,
           product_rating: 0,
           total_rated: 0,
+          quantity: data.quantity,
           product_price: {
             previous_price: data.previous_price,
             present_price: data.present_price,
@@ -118,76 +122,7 @@ const AddItems = () => {
       console.log(error);
     }
 
-    //Imgbb options
-
-    // const formData = new FormData();
-
-    // formData.append("image", data.image[0]);
-    // fetch(hosting_url, {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((imageResponse) => {
-    //     console.log(imageResponse)
-    //     if (imageResponse.success) {
-
-    //       const imgURL = imageResponse.data.display_url;
-    //       const features = {};
-    //       featureList?.data?.forEach((feature) => {
-    //         if (data[feature]) {
-    //           features[feature] = data[feature];
-    //         }
-    //       });
-    //       const additemdata = {
-    //         product_name: data.product_name,
-    //         product_image: imgURL,
-    //         product_category: select,
-    //         product_rating: 0,
-    //         total_rated: 0,
-    //         product_price: {
-    //           previous_price: data.previous_price,
-    //           present_price: data.present_price,
-    //           discount: data.discount,
-    //         },
-    //         product_description: {
-    //           description: data.description,
-    //           features: features,
-    //         },
-    //         stall: {
-    //           name: sellerInfo.sellerProfile.stall_name,
-    //           id: sellerInfo.sellerProfile.stall_id,
-    //           type: sellerInfo.sellerProfile.stall_type,
-    //         },
-    //       };
-    //       console.log('additemdata',additemdata);
-    //       axiosSecure.post("/addItems", additemdata).then((res) => {
-    //         if (res.data) {
-    //           reset();
-    //           Swal.fire({
-    //             position: "top-end",
-    //             icon: "success",
-    //             title: "Added Items Successfully",
-    //             showConfirmButton: false,
-    //             timer: 1500,
-    //           });
-    //         }
-    //       });
-    //     }
-    //   });
   };
-
-  const handleFilter = (e) => {
-    console.log(e.target.value);
-    setSelect(e.target.value);
-  };
-  const handleNext = () => {
-    refetch();
-  };
-
-  // console.log("CateList", cateList);
-  // console.log(featureList);
-  // console.log('Seller',sellerInfo);
 
   return (
     <div>
@@ -244,15 +179,15 @@ const AddItems = () => {
             />
           </label>
 
-          <label className="form-control w-full">
+          <label className="form-control md:w-full">
               <div className="label">
                 <span className="label-text">* Quantity</span>
               </div>
               <input
-                className="input input-bordered input-primary w-[100px] max-w-xs"
+                className="input input-bordered input-primary md:w-[100px] max-w-xs"
                 type="number"
                 placeholder="Quantity"
-                {...register("quantity", { required: true })}
+                {...register("quantity",{required: true, max: 30, min: 0})}
               />
             </label>
           </div>
@@ -301,13 +236,6 @@ const AddItems = () => {
 
           <div className="flex flex-col justify-center items-center gap-2 py-2">
             <p className="font-mono font-semibold">* Product Features</p>
-            {select ? (
-              ""
-            ) : (
-              <p className="text-error font-semibold">
-                Select a type from above and Click Next to Unlock
-              </p>
-            )}
             <div className="grid md:grid-cols-2 gap-2">
               {featureList?.data?.map((feature) => (
                 <label key={feature} className="form-control w-full ">
