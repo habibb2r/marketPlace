@@ -5,14 +5,18 @@ import "./adminname.css";
 import created from "../../../../assets/for title/015-software-engineer.png";
 import userUpdate from "../../../../assets/admin/png/setting.png";
 import useAdminStats from "../AdminHooks/useAdminStats";
+import Loading from "../../../Shared/Loading/Loading";
 
 const AdminStat = () => {
-  const [userInfo, refetch, isLoading] = useGetUserInfo();
+  const [userInfo, , isLoading] = useGetUserInfo();
   const [adminstat] = useAdminStats();
-  console.log(adminstat);
+
   const location = useLocation();
   const mystate = location.pathname;
-  console.log(mystate);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <SectionTitle title="Admin Dashboard"></SectionTitle>

@@ -7,7 +7,6 @@ import Loading from "../../../Shared/Loading/Loading";
 
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-// const img_hosting_token = import.meta.env.VITE_imgbb_token;
 const img_hosting = import.meta.env.VITE_img_host;
 const img_upload_preset = import.meta.env.VITE_preset;
 const img_cloud_name = import.meta.env.VITE_cloud;
@@ -19,14 +18,6 @@ const UpdateItem = () => {
   const axiosSecure = useAxiosSecure();
   const from = "/sellerdashboard/manageitems";
   const hosting_url = img_hosting;
-
-  // const hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
-
-  if (!itemDetails) {
-    return <Loading></Loading>;
-  }
-
-  console.log(location);
   const {
     register,
     handleSubmit,
@@ -34,8 +25,12 @@ const UpdateItem = () => {
     formState: { errors },
   } = useForm();
 
+  if (!itemDetails) {
+    return <Loading></Loading>;
+  }
+
   const onSubmit = async (data) => {
-    // console.log(data)
+    console.log(errors)
     // Separate out features from the other form data
     const features = {};
     const otherData = {};
@@ -167,78 +162,7 @@ const UpdateItem = () => {
           text: `{error.message}`,
         });
       }
-
-      //start
-      // const formData = new FormData();
-      // formData.append("image", data.image[0]);
-      // fetch(hosting_url, {
-      //   method: "POST",
-      //   body: formData,
-      // })
-      //   .then((res) => res.json())
-      //   .then((imageResponse) => {
-      //     if (imageResponse.success) {
-      //       let timerInterval;
-      //       Swal.fire({
-      //         title: "Updating item in market place.!",
-      //         html: "I will close in <b></b> milliseconds.",
-      //         timer: 2000,
-      //         timerProgressBar: true,
-      //         didOpen: () => {
-      //           Swal.showLoading();
-      //           const timer = Swal.getPopup().querySelector("b");
-      //           timerInterval = setInterval(() => {
-      //             timer.textContent = `${Swal.getTimerLeft()}`;
-      //           }, 100);
-      //         },
-      //         willClose: () => {
-      //           clearInterval(timerInterval);
-      //         },
-      //       }).then((result) => {
-      //         /* Read more about handling dismissals below */
-      //         if (result.dismiss === Swal.DismissReason.timer) {
-      //           console.log("I was closed by the timer");
-      //         }
-      //       });
-
-      //       const imgURL = imageResponse.data.display_url;
-
-      //       const updateData = {
-      //         product_name: data.product_name,
-      //         product_image: imgURL,
-      //         product_price: {
-      //           previous_price: data.previous_price,
-      //           present_price: data.present_price,
-      //           discount: data.discount,
-      //         },
-      //         product_description: {
-      //           description: data.description,
-      //           features: features,
-      //         },
-      //       };
-
-      //       axiosSecure
-      //         .patch(`/updateitem/${itemDetails._id}`, updateData)
-      //         .then((res) => {
-      //           if (res.data) {
-      //             reset();
-      //             Swal.fire({
-      //               position: "top-end",
-      //               icon: "success",
-      //               title: "Added Items Successfully",
-      //               showConfirmButton: false,
-      //               timer: 1500,
-      //             });
-      //             navigate(from, { replace: true });
-      //           }
-      //         });
-      //     }
-      //   });
-
-      //end
     }
-
-    //end
   };
 
   return (

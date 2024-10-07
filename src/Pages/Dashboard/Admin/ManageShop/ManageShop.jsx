@@ -1,4 +1,4 @@
-import React from "react";
+
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useGetAllShops from "../AdminHooks/useGetAllShops";
 import trash from "../../../../assets/admin/png/trash.png";
@@ -32,7 +32,7 @@ const ManageShop = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/deleteShop/${id}`).then((res) => {
           if (res.data.status) {
-            refetch()
+            refetch();
             Swal.fire({
               title: "Deleted!",
               text: "Shop has been deleted.",
