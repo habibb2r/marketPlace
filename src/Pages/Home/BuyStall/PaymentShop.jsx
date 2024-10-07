@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -33,7 +33,7 @@ const PaymentShop = () => {
    })
    
    if(isLoading){
-    <Loading></Loading>
+    return <Loading></Loading>
    }
    console.log(shopInfo)
    const { register, handleSubmit, formState: { errors } } = useForm();

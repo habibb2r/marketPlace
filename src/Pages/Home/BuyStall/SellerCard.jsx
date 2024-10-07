@@ -42,7 +42,7 @@ const SellerCard = ({ data }) => {
         <div className="text-xl">
           Price : <span className="font-semibold">{data.price} only</span>
         </div>
-        <Link
+        <Link state={data}
           className={`${userInfo?.role == "customer" ? "block" : "hidden"}`}
           to={`/buyshop/${data._id}`}
         >
