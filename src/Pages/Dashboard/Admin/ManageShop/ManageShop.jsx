@@ -30,11 +30,9 @@ const ManageShop = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
         axiosSecure.delete(`/deleteShop/${id}`).then((res) => {
-          if (res.data) {
-            console.log(res.data);
-            refetch();
+          if (res.data.status) {
+            refetch()
             Swal.fire({
               title: "Deleted!",
               text: "Shop has been deleted.",
@@ -55,13 +53,13 @@ const ManageShop = () => {
         <div className="stat-desc">Check validiy and conditions</div>
       </div>
 
-      <div className="grid  gap-5">
+      <div className="grid  gap-5 px-3">
         {allshops?.map((shop) => (
           <div
-            className="flex items-center justify-between gap-5 w-full bg-accent bg-opacity-25 shadow-lg shadow-success py-4 px-3 rounded-lg hover:bg-secondary hover:bg-opacity-25 "
+            className="flex flex-col md:flex-row items-center justify-between gap-5 w-full bg-accent bg-opacity-25 shadow-lg shadow-success py-4 px-3 rounded-lg hover:bg-secondary hover:bg-opacity-25 "
             key={shop.shopId}
           >
-            <div className="flex justify-between gap-5 items-center py-2 w-full">
+            <div className="flex flex-col md:flex-row justify-start md:justify-between gap-5 items-start md:items-center py-2 w-full">
               <div className="flex flex-col gap-4">
                 <div>
                   <h1 className="text-2xl font-sans font-bold">
