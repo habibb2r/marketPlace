@@ -11,6 +11,7 @@ const CheckOut = ({ price, shopData, shopInfo }) => {
   if (isLoading) {
     <Loading></Loading>;
   }
+  console.log(shopData)
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
@@ -83,9 +84,14 @@ const CheckOut = ({ price, shopData, shopInfo }) => {
         time: timeString,
         stall_quality: shopData.category,
         price: price,
-        duration: shopData.duration,
-        shop_size: shopData.shop_size,
-        max_product: shopData.max_category,
+        duration: shopData.features
+.        duration,
+        shop_size: shopData.features
+.        shop_size,
+        max_product: shopData.features
+.        max_category,
+        rated: 0,
+        total_rated: 0,
         stall_name: shopInfo.shopName,
         stall_type: shopInfo.shopType,
       };

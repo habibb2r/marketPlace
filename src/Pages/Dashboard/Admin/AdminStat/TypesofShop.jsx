@@ -1,10 +1,13 @@
 import Chart from "react-google-charts";
 import useCategoryChart from "../AdminHooks/useCategoryChart";
+import Loading from "../../../Shared/Loading/Loading";
 
 
 const TypesofShop = () => {
     const [cateChart, , isLoading] = useCategoryChart();
-    console.log(cateChart)
+    if(isLoading){
+        return <Loading></Loading>
+    }
     const data = [
         ["Task", "Hours per Day"],
         ...cateChart.uniqueShopStat.map((item) => item),
