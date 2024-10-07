@@ -6,6 +6,7 @@ import created from "../../../../assets/for title/015-software-engineer.png";
 import userUpdate from "../../../../assets/admin/png/setting.png";
 import useAdminStats from "../AdminHooks/useAdminStats";
 import Loading from "../../../Shared/Loading/Loading";
+import AdminCharts from "./AdminCharts";
 
 const AdminStat = () => {
   const [userInfo, , isLoading] = useGetUserInfo();
@@ -102,6 +103,7 @@ const AdminStat = () => {
           </div>
         </div>
       </div>
+      <AdminCharts></AdminCharts>
     </div>
   );
 };
