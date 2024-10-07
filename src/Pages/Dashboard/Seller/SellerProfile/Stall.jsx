@@ -97,7 +97,8 @@ const Stall = ({ stallInfo }) => {
               Purchase Date: <span className="font-semibold">{stallInfo.date}</span>
             </p>
           </div>
-          <div className="flex gap-3 font-semibold py-2 bg-accent bg-opacity-30">
+          <div className="flex gap-3 font-semibold py-2 bg-accent bg-opacity-30 px-2">
+            <p>Expires in :</p>
           <div>
             <span className="font-mono text-sm">
               <span className="font-bold">{timeLeft.days}</span>

@@ -274,7 +274,7 @@ const UpdateItem = () => {
         </label>
         <label className="form-control pb-4">
           <div className="label">
-            <span className="label-text">* Product Image</span>
+            <span className="label-text"> Product Image</span>
           </div>
           <input
             type="file"
