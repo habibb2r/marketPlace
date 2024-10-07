@@ -7,6 +7,7 @@ import userUpdate from "../../../../assets/admin/png/setting.png";
 import useAdminStats from "../AdminHooks/useAdminStats";
 import Loading from "../../../Shared/Loading/Loading";
 import AdminCharts from "./AdminCharts";
+import TypesofShop from "./TypesofShop";
 
 const AdminStat = () => {
   const [userInfo, , isLoading] = useGetUserInfo();
@@ -104,6 +105,7 @@ const AdminStat = () => {
         </div>
       </div>
       <AdminCharts></AdminCharts>
+      <TypesofShop></TypesofShop>
     </div>
   );
 };
