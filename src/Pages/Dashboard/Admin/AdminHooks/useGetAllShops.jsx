@@ -5,7 +5,7 @@ const useGetAllShops = () => {
 
     const axiosSecure = useAxiosSecure()
     const {data: allshops, refetch, isLoading: loadShops} = useQuery({
-        queryKey: ['allshops'],
+        queryKey: ['allShops'],
         queryFn: async()=>{
             const res = await axiosSecure.get('/manageShops')
             return res.data
