@@ -17,9 +17,8 @@ import menu from "../../../assets/basic/001-menu-bar.png";
 import cancel from "../../../assets/basic/002-button.png";
 import guestPic from "../../../assets/basic/do-not.png";
 import noPic from "../../../assets/basic/no-photo.png";
-
 import "./Navbar.css";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ const Navbar = () => {
   const [cart] = useCart();
   const { user, logOut } = useContext(AuthContext);
   const [userInfo, refetch, isLoading] = useGetUserInfo();
-  const axiosSecure = useAxiosSecure();
+
 
   const [mode, setMode] = useState(() => {
     const savedMode = localStorage.getItem("themeMode");

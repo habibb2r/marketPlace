@@ -105,7 +105,7 @@ const Cards = ({ data, refetchAllItems}) => {
     <Slide direction="right" duration={1100}>
       <div className="shadow-md shadow-success px-5 py-5 rounded-md bg-primary bg-opacity-5">
         <div className="flex flex-col justify-center items-center gap-3 transition-transform duration-300 ease-in-out hover:scale-105">
-          <img className="h-[250px] rounded-md" src={product_image} alt="" />
+          <img loading="lazy" className="h-[250px] rounded-md" src={product_image} alt="" />
         </div>
         <div className="flex flex-col justify-start items-start gap-3 py-2">
           <p className="text-xl capitalize  overflow-ellipsis overflow-hidden whitespace-nowrap w-[250px]">

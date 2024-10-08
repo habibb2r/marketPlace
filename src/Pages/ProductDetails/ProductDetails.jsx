@@ -13,6 +13,7 @@ import ico from "../../assets/for title/012-seo.png";
 import ict from "../../assets/for title/010-map.png";
 import Typewriter from "typewriter-effect";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import ProductImage3D from "./ProductImage3D";
 
 const ProductDetails = () => {
   const itemId = useParams();
@@ -100,12 +101,14 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5 shadow-md">
-        <div className="md:w-2/5 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out hover:scale-110">
-          <img
+        <div className="md:w-2/5 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out  h-[350px]">
+          {/* <img
             className="md:h-[300px] h-[250px] rounded-lg shadow-md shadow-secondary p-2"
             src={details.product_image}
             alt=""
-          />
+          /> */}
+
+          <ProductImage3D imageUrl={details.product_image}></ProductImage3D>
         </div>
         <div className="md:w-3/5 flex flex-col justify-center items-start gap-1 px-5">
           <p className="py-3">
