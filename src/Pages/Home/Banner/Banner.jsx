@@ -1,12 +1,13 @@
-import EraSlide from "./EraSlide";
-import { SliderComponents } from "./SliderComponents"
+// import EraSlide from "./EraSlide";
+import SliderBanner from "./SliderBanner";
+
 
 
 const Banner = () => {
     return (
-        <div className="">
-            {/* <SliderComponents></SliderComponents> */}
-            <EraSlide></EraSlide>
+        <div className="h-[100vh]">
+           <SliderBanner></SliderBanner>
+            {/* <EraSlide></EraSlide> */}
         </div>
     );
 };
