@@ -20,10 +20,9 @@ const stripePromise = loadStripe(import.meta.env.VITE_stripe_key);
 const PaymentShop = () => {
    const id = useParams();
    const [shopInfo, setShopInfo] = useState()
-   console.log(id)
-
+   const { register, handleSubmit, formState: { errors } } = useForm();
    const axiosSecure = useAxiosSecure();
-   console.log(stripePromise)
+   
    const {data: shopData, isLoading}= useQuery({
     queryKey: ['shopData'],
     queryFn: async () => {
@@ -36,7 +35,7 @@ const PaymentShop = () => {
     return <Loading></Loading>
    }
    console.log(shopInfo)
-   const { register, handleSubmit, formState: { errors } } = useForm();
+   
   const onSubmit = data => setShopInfo(data);
     return (
         <div>
