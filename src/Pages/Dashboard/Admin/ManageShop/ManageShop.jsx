@@ -50,7 +50,7 @@ const ManageShop = () => {
       <div className="stat text-center">
         <div className="stat-title">Total Shops</div>
         <div className="stat-value text-secondary">{allshops.length}</div>
-        <div className="stat-desc">Check validiy and conditions</div>
+        <div className="stat-desc">Check validity and conditions</div>
       </div>
 
       <div className="grid  gap-5 px-3">
