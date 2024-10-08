@@ -5,7 +5,7 @@ import SliderBanner from "./SliderBanner";
 
 const Banner = () => {
     return (
-        <div className="h-[100vh]">
+        <div className="lg:h-[100vh] rounded-md">
            <SliderBanner></SliderBanner>
             {/* <EraSlide></EraSlide> */}
         </div>
