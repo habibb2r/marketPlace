@@ -9,71 +9,57 @@ import Loading from "../Shared/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 
 const AllProducts = () => {
-  
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState(0);
-  // const [allItems, refetchAllItems, loadItems] = useAllProducts({filter, sort})
- 
-
-  // console.log(allItems)
-
-  const axiosSecure = useAxiosSecure()
-  const { data : allItems, refetch: refetchAllItems, isLoading: loadItems} = useQuery({
-      queryKey: ['allProducts'],
-      queryFn: async()=>{
-          const res = await axiosSecure.get(`${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`)
-          return res.data
-      }
-  })
-
-  useEffect(()=>{
-    refetchAllItems()
-  },[sort, filter, refetchAllItems])
+  const [activeCategory, setActiveCategory] = useState('All');
 
 
-    if(loadItems){
-    return <Loading></Loading>
+  const axiosSecure = useAxiosSecure();
+  const {
+    data: allItems,
+    refetch: refetchAllItems,
+    isLoading: loadItems,
+  } = useQuery({
+    queryKey: ["allProducts"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `${
+          import.meta.env.VITE_backend_server
+        }/allProducts/${filter}?sort=${sort}`
+      );
+      return res.data;
+    },
+  });
+
+  useEffect(() => {
+    refetchAllItems();
+  }, [sort, filter, refetchAllItems]);
+
+  if (loadItems) {
+    return <Loading></Loading>;
   }
 
 
-  // return [allItems, refetchAllItems, loadItems]
-
-
-
-  // setCategories(allItems?.uniqueProductCategories)
-  // setAllProducts(allItems?.results)
-  // useEffect(() => {
-  //   fetch(
-  //     `${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAllProducts(data.results);
-  //       setCategories(data.uniqueProductCategories);
-  //     });
-  // }, [filter, sort]);
-
   const handleFilter = (e) => {
-    setFilter(e.target.value);
-    // refetchAllItems()
+
+    console.log(e)
+    setFilter(e);
+    setActiveCategory(e);
+
   };
 
   const handleSorting = (e) => {
     const sorting = parseInt(e.target.value);
     setSort(sorting);
-    // refetchAllItems()
+
   };
 
   const handleSubmit = (event) => {
-
     // Todo
     event.preventDefault(); //
     const searchQuery = event.target.elements.searchInput.value;
     console.log(searchQuery);
-  
   };
-  
-
 
   return (
     <div className="">
@@ -92,28 +78,6 @@ const AllProducts = () => {
               </button>
             </form>
           </label>
-
-          <select
-            defaultValue={"All"}
-            onClick={handleFilter}
-            className="select select-primary select-bordered w-full max-w-xs"
-          >
-            <option
-              className="bg-accent bg-opacity-20 font-semibold"
-              value={"All"}
-            >
-              All Products
-            </option>
-            {allItems?.uniqueProductCategories?.map((category) => (
-              <option
-                className="bg-accent bg-opacity-20 font-semibold"
-                key={category}
-                value={category}
-              >
-                {category}
-              </option>
-            ))}
-          </select>
 
           <select
             defaultValue={0}
@@ -142,6 +106,40 @@ const AllProducts = () => {
           </select>
         </div>
         <div>
+          <div className="flex flex-wrap justify-center items-center gap-3 px-5 py-3 bg-success bg-opacity-15 mt-3 rounded-md">
+          <button onClick={()=>handleFilter('All')} className={`badge ${activeCategory === 'All' ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block h-4 w-4 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+              All Products
+            </button>
+            {allItems?.uniqueProductCategories?.map((category) => <button onClick={()=>handleFilter(category)} key={category} className={`badge ${activeCategory === category ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block h-4 w-4 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+              {category}
+            </button>)}
+          </div>
           <SectionTitle
             title={`${filter} Products`}
             ico={ico}
@@ -149,7 +147,11 @@ const AllProducts = () => {
           ></SectionTitle>
           <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {allItems?.results?.map((product) => (
-              <Cards key={product._id} data={product} refetchAllItems={refetchAllItems}></Cards>
+              <Cards
+                key={product._id}
+                data={product}
+                refetchAllItems={refetchAllItems}
+              ></Cards>
             ))}
           </div>
         </div>
