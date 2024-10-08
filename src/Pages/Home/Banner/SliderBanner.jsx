@@ -19,11 +19,11 @@ const SliderBanner = () => {
           delay: 2500,
           disableOnInteraction: false,
         }} modules={[Autoplay, Pagination, Navigation]} className="mySwiper">
-        <SwiperSlide><img className='shadow-lg shadow-success rounded-md' src={banner1} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='shadow-lg shadow-success rounded-md' src={banner2} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='shadow-lg shadow-success rounded-md' src={banner3} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='shadow-lg shadow-success rounded-md' src={banner4} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='shadow-lg shadow-success rounded-md' src={banner5} alt="" /></SwiperSlide>
+        <SwiperSlide className='my-swiper-slide'><img className='shadow-lg shadow-success rounded-md' src={banner1} alt="" /></SwiperSlide>
+        <SwiperSlide className='my-swiper-slide'><img className='shadow-lg shadow-success rounded-md' src={banner2} alt="" /></SwiperSlide>
+        <SwiperSlide className='my-swiper-slide'><img className='shadow-lg shadow-success rounded-md' src={banner3} alt="" /></SwiperSlide>
+        <SwiperSlide className='my-swiper-slide'><img className='shadow-lg shadow-success rounded-md' src={banner4} alt="" /></SwiperSlide>
+        <SwiperSlide className='my-swiper-slide'><img className='shadow-lg shadow-success rounded-md' src={banner5} alt="" /></SwiperSlide>
         
       </Swiper>
         </div>

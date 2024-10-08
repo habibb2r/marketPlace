@@ -1,5 +1,6 @@
 import About from "../About/About";
 import Banner from "../Banner/Banner";
+import EraSlide from "../AdBoard/EraSlide";
 
 import BuyStall from "../BuyStall/BuyStall";
 import Categories from "../Categories/Categories";
@@ -17,7 +18,9 @@ const Home = () => {
            <DiscountProducts></DiscountProducts>
            <BuyStall></BuyStall>
            <TopStalls></TopStalls>
+           <EraSlide></EraSlide>
            <Reviews></Reviews>
+
         </>
     );
 };
