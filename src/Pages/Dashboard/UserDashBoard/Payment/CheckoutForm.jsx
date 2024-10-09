@@ -34,10 +34,22 @@ const CheckoutForm = ({ price, cart, refetch, data, reset }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const today = new Date();
-    
-    const dateTimeString = today.toLocaleDateString();
 
-    const timeString = today.toLocaleTimeString();
+    const dateOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    };
+    
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    
+    const dateTimeString = today.toLocaleDateString('en-GB', dateOptions); // DD/MM/YYYY format
+    const timeString = today.toLocaleTimeString('en-US', timeOptions); 
 
     if (!stripe || !elements) {
       return;

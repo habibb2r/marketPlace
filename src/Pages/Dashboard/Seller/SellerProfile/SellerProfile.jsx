@@ -10,12 +10,33 @@ import ict from "../../../../assets/for title/023-businessman-1.png";
 import Seller from "./Seller";
 import Stall from "./Stall";
 import useSellerStats from "../SellerHooks/useSellerStats";
+import ShopSaleStat from "./ShopSaleStat";
 
 const SellerProfile = () => {
+  
   const location = useLocation();
   const mystate = location.pathname;
   const [sellerStats, , loadSellerStat] = useSellerStats();
   const [sellerInfo, , isLoading] = useSellerInfo();
+  const today = new Date();
+
+const dateOptions = {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+};
+
+const timeOptions = {
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: true
+};
+
+const dateTimeString = today.toLocaleDateString('en-GB', dateOptions); // DD/MM/YYYY format
+const timeString = today.toLocaleTimeString('en-US', timeOptions); // Hour: Minute : Seconds AM/PM format
+
+console.log(today, dateTimeString, timeString);
 
   if (isLoading || loadSellerStat) {
     return <Loading></Loading>;
@@ -98,6 +119,7 @@ const SellerProfile = () => {
             <div className="stat-desc">Deliver fast</div>
           </div>
         </div>
+        <ShopSaleStat></ShopSaleStat>
  
       </div>
     </div>
