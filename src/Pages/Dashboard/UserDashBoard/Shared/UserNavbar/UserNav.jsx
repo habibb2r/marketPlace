@@ -61,7 +61,7 @@ const UserNav = () => {
   };
   return (
     <div
-      className={`z-20 h-[560px] fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${
+      className={`z-20 h-full fixed w-[200px] md:w-[250px] md:bg-opacity-40 bg-base-100 py-3 px-2 md:px-4 shadow-md shadow-success ${
         clicked ? "" : "my-nav"
       }`}
     >
@@ -141,7 +141,7 @@ const UserNav = () => {
           </NavLink>
         </div>
         <div className="divider divider-success"></div>
-        <div className="flex justify-center items-center w-full gap-3 font-semibold text-md mt-5">
+        <div className="flex justify-center items-center w-full gap-3 font-semibold text-md mt-5 pb-5">
           <button
             onClick={handleLogOut}
             className="btn btn-active btn-secondary text-md"
