@@ -14,6 +14,7 @@ import ict from "../../assets/for title/010-map.png";
 import Typewriter from "typewriter-effect";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import ProductImage3D from "./ProductImage3D";
+import reviewPic from '../../assets/basic/user.png'
 
 const ProductDetails = () => {
   const itemId = useParams();
@@ -28,7 +29,7 @@ const ProductDetails = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
-
+  console.log(details)
   const addToCart = (item) => {
     if (user && user.email) {
       const cartItem = {
@@ -150,11 +151,11 @@ const ProductDetails = () => {
             </div>
           )}
           <div className="flex flex-col justify-center items-start gap-4 py-2">
-            <Rating
+            <div className="flex items-center gap-2"><Rating
               style={{ maxWidth: 100 }}
               value={details.product_rating}
               readOnly
-            />
+            /><span>({details.total_rated})</span></div>
             <Link
               to={`/shopDetails/${details.stall.id}`}
               className="flex justify-start items-center gap-1"
@@ -173,6 +174,22 @@ const ProductDetails = () => {
             <h2 className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
               Reviews
             </h2>
+            <div className="flex flex-col justify-start items-start gap-4 py-3 px-2">
+              {details.product_reviews.map((review, index)=>  <div key={index} className="flex flex-col justify-start items-start gap-3 bg-accent bg-opacity-25 shadow-md px-5 py-3 rounded-md">
+              <div className="flex items-center gap-2">
+                <img className="h-[25px]" src={reviewPic} alt="" />
+                <p className="font-semibold">{review.name}</p>
+              </div>
+              <div className="flex flex-col justify-start items-start gap-2">
+                  <Rating
+                  style={{ maxWidth: 100 }}
+                  value={review.product_info.rating}
+                  readOnly
+                />
+                <p className="text-sm font-medium">{review.product_info.review}</p>
+              </div>
+            </div>)}
+            </div>
           </div>
         </div>
     </div>
