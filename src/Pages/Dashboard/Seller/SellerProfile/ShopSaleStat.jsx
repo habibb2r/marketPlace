@@ -1,22 +1,19 @@
 
 import { Chart } from "react-google-charts";
 
-
-
-
 const ShopSaleStat = () => {
     const data = [
         ["Days", "Sales"],
-        ["2013", 1000],
-        ["2014", 1170],
-        ["2015", 660],
-        ["2016", 1030],
+        ["June", 1000],
+        ["July", 1170],
+        ["Auguest", 660],
+        ["September", 1030],
       ];
       
       const options = {
         chart: {
-          title: "Company Performance",
-          subtitle: "Sales and Expenses over the Years",
+          title: "Stall Performance",
+          subtitle: "Sales over the Monthes",
         },
       };
     return (
