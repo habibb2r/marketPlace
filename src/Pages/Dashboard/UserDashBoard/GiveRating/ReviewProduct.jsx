@@ -24,11 +24,12 @@ const myStyles = {
   };
 
 const ReviewProduct = () => {
+  
   const axiosSecure = useAxiosSecure();
   const [orderStatus, refetch, orderLoad] = useOrderStatus();
   const [rating, setRating] = useState(3);
   const filteredArray = orderStatus?.result.filter((item) => item.delivered === true);
- 
+  console.log(filteredArray)
   if(orderLoad){
     return <Loading></Loading>
   }
@@ -74,6 +75,7 @@ const ReviewProduct = () => {
   if (text) {
     const reviewData = {
      email: itemdata?.email,
+     name: itemdata?.name,
      order_date: itemdata?.date,
      order_time: itemdata?.time,
      stall_id: itemdata?.stall_id,
