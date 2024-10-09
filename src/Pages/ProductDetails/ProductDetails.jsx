@@ -100,7 +100,7 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5 shadow-md">
+      <div className="flex flex-col md:flex-row justify-center md:justify-start items-start md:gap-0 gap-3 md:px-10 py-5 shadow-md rounded-md mb-4">
         <div className="md:w-2/5 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out  h-[350px]">
           {/* <img
             className="md:h-[300px] h-[250px] rounded-lg shadow-md shadow-secondary p-2"
@@ -168,6 +168,13 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      <div>
+          <div>
+            <h2 className="font-mono uppercase font-semibold text-xl px-3 py-2 md:w-[500px] bg-accent bg-opacity-20 rounded-lg shadow-inner shadow-success">
+              Reviews
+            </h2>
+          </div>
+        </div>
     </div>
   );
 };
