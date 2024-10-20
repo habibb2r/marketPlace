@@ -26,13 +26,29 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
 const axiosSecure = useAxiosSecure();
-    const {signin, signInGoogle} = useContext(AuthContext)
+    const {signin, signInGoogle, sendResetEmail} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+
+  const handleForgetPassword = async() =>{
+    const { value: email } = await Swal.fire({
+      title: "Input email address",
+      input: "email",
+      inputLabel: "for recover password",
+      inputPlaceholder: "Enter your email address"
+    });
+    if (email) {
+      sendResetEmail(email)
+      .then(res=>{
+        console.log(res)
+      })
+      Swal.fire(`Check your email ${email}`);
+    }
+  }
   const onSubmit = (data) => {
     console.log(data);
     signin(data.Email, data.Password)
@@ -116,10 +132,11 @@ const axiosSecure = useAxiosSecure();
               placeholder="Password"
               {...register("Password", {})}
             />
-
+            
             <button className="btn btn-success px-5 py-3" type="submit">
               Login
             </button>
+            <button className="badge badge-error font-semibold" onClick={handleForgetPassword}>Forget Password?</button>
           </form>
           </AttentionSeeker>
           <div className="divider divider-primary">Or continue with</div>
