@@ -12,7 +12,7 @@ const AllProducts = () => {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState(0);
   const [activeCategory, setActiveCategory] = useState('All');
-
+  const [search, setSearch] = useState('');
 
   const axiosSecure = useAxiosSecure();
   const {
@@ -20,12 +20,10 @@ const AllProducts = () => {
     refetch: refetchAllItems,
     isLoading: loadItems,
   } = useQuery({
-    queryKey: ["allProducts"],
+    queryKey: ["allProducts", filter, sort, search],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${
-          import.meta.env.VITE_backend_server
-        }/allProducts/${filter}?sort=${sort}`
+        `${import.meta.env.VITE_backend_server}/allProducts/${filter}?sort=${sort}&search=${search}`
       );
       return res.data;
     },
@@ -33,32 +31,26 @@ const AllProducts = () => {
 
   useEffect(() => {
     refetchAllItems();
-  }, [sort, filter, refetchAllItems]);
+  }, [sort, filter, search, refetchAllItems]);
 
   if (loadItems) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
-
   const handleFilter = (e) => {
-
-    console.log(e)
     setFilter(e);
     setActiveCategory(e);
-
+    setSearch('');
   };
 
   const handleSorting = (e) => {
     const sorting = parseInt(e.target.value);
     setSort(sorting);
-
   };
 
   const handleSubmit = (event) => {
-    // Todo
-    event.preventDefault(); //
-    const searchQuery = event.target.elements.searchInput.value;
-    console.log(searchQuery);
+    event.preventDefault();
+    setSearch(event.target.elements.searchInput.value);
   };
 
   return (
@@ -107,7 +99,11 @@ const AllProducts = () => {
         </div>
         <div>
           <div className="flex flex-wrap justify-center items-center gap-3 px-5 py-3 bg-success bg-opacity-15 mt-3 rounded-md">
-          <button onClick={()=>handleFilter('All')} className={`badge ${activeCategory === 'All' ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}>
+            
+            <button
+              onClick={() => handleFilter('All')}
+              className={`badge ${activeCategory === 'All' ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -123,35 +119,39 @@ const AllProducts = () => {
               </svg>
               All Products
             </button>
-            {allItems?.uniqueProductCategories?.map((category) => <button onClick={()=>handleFilter(category)} key={category} className={`badge ${activeCategory === category ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block h-4 w-4 stroke-current"
+            {allItems?.uniqueProductCategories?.map((category) => (
+              <button
+                onClick={() => handleFilter(category)}
+                key={category}
+                className={`badge ${activeCategory === category ? 'badge-success' : 'badge-warning'}  gap-2 font-semibold`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-              {category}
-            </button>)}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block h-4 w-4 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+                {category}
+              </button>
+            ))}
           </div>
-          <SectionTitle
-            title={`${filter} Products`}
-            ico={ico}
-            ict={ict}
-          ></SectionTitle>
+          <SectionTitle title={`${filter} Products`} ico={ico} ict={ict} />
+          {allItems?.results.length> 0 ? '' : <p className="text-center font-semibold text-error font-mono py-5">No Products Found</p>}
+          {loadItems? <Loading></Loading> : ''}
           <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {allItems?.results?.map((product) => (
               <Cards
                 key={product._id}
                 data={product}
                 refetchAllItems={refetchAllItems}
-              ></Cards>
+              />
             ))}
           </div>
         </div>
