@@ -21,7 +21,7 @@ const SellerCard = ({ data }) => {
       >
         <div className="text-2xl font-mono font-semibold">{data.category}</div>
         <div className="flex flex-col justify-start items-start gap-2">
-          <p className="text-xl">Features</p>
+          <p className="text-xl font-semibold border-b-2 border-primary">Features</p>
           <div className="font-semibold flex flex-col justify-start items-start gap-2">
             <div className="flex items-center gap-2">
               <img className="h-[20px]" src={sign} alt="" />{" "}
