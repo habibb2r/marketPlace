@@ -13,6 +13,8 @@ import details from "../../icons/info.png";
 import { Slide } from "react-awesome-reveal";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import quanityimg from '../../assets/basic/quantity.png'
+import {motion} from 'framer-motion'
+
 
 const Cards = ({ data, refetchAllItems}) => {
   const { user } = useAuth();
@@ -102,7 +104,7 @@ const Cards = ({ data, refetchAllItems}) => {
     }
   };
   return (
-    <Slide direction="right" duration={1100}>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: "easeInOut",  }}>
       <div className="shadow-md shadow-success px-5 py-5 rounded-md bg-primary bg-opacity-5">
         <div className="flex flex-col justify-center items-center gap-3 transition-transform duration-300 ease-in-out hover:scale-105">
           <img loading="lazy" className="h-[250px] rounded-md" src={product_image} alt="" />
@@ -167,7 +169,7 @@ const Cards = ({ data, refetchAllItems}) => {
           </Link>
         </div>
       </div>
-    </Slide>
+    </motion.div>
   );
 };
 
