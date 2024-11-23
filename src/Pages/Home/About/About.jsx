@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import abouticon from "../../../assets/for title/001-marketplace.png";
 import abouticont from "../../../assets/for title/003-market-segment.png";
-import { AttentionSeeker, Bounce } from "react-awesome-reveal";
+import {motion} from 'framer-motion'
 
 const About = () => {
   return (
@@ -15,7 +15,7 @@ const About = () => {
         ict={abouticont}
       ></SectionTitle>
       <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-2 md:gap-10">
-        <Bounce delay={1} duration={1500} className="md:w-1/2 px-5">
+        <motion.div initial={{opacity: 0, scale: 0}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}} className="md:w-1/2 px-5">
           <div className="flex flex-col justify-start items-start gap-4 ">
             <h1 className="text-3xl font-semibold">
               Welcome to Panda MarketPlace: Your Ultimate Online Shopping
@@ -38,15 +38,12 @@ const About = () => {
               <span className="relative">Know More..</span>
             </Link>
           </div>
-        </Bounce>
-        <AttentionSeeker
-          effect="jello"
-          delay={1}
-          duration={1500}
+        </motion.div>
+        <motion.div initial={{opacity: 0, scale: 0}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}}
           className="md:w-1/2"
         >
           <Lottie animationData={about}></Lottie>
-        </AttentionSeeker>
+        </motion.div>
       </div>
     </div>
   );
