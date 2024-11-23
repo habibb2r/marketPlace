@@ -10,22 +10,30 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCart from "../../Hooks/useCart";
 import cart from "../../icons/005-add-to-cart.png";
 import details from "../../icons/info.png";
-import { Slide } from "react-awesome-reveal";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import quanityimg from '../../assets/basic/quantity.png'
-import {motion} from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 
-const Cards = ({ data, refetchAllItems}) => {
+
+const Cards = ({ data, refetchAllItems }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const [, , refetch] = useCart();
-  const [userInfo, , ] = useGetUserInfo()
+  const [userInfo, ,] = useGetUserInfo();
 
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    }
+  }, [controls, isInView]);
 
   const {
     product_image,
@@ -52,7 +60,7 @@ const Cards = ({ data, refetchAllItems}) => {
         },
       };
       axiosSecure.post("/addToCart", cartItem).then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         if (res.data?.result?.status) {
           Swal.fire({
             position: "top-end",
@@ -61,7 +69,7 @@ const Cards = ({ data, refetchAllItems}) => {
             showConfirmButton: false,
             timer: 1500,
           });
-          refetchAllItems()
+          refetchAllItems();
           refetch();
         } else {
           Swal.fire({
@@ -72,7 +80,7 @@ const Cards = ({ data, refetchAllItems}) => {
         }
       });
     } else {
-      if(userInfo?.role == "admin" || userInfo?.role == "seller"){
+      if (userInfo?.role == "admin" || userInfo?.role == "seller") {
         Swal.fire({
           title: "Admin and Seller Cannot Buy Items",
           text: "You have to login with customer account",
@@ -86,7 +94,7 @@ const Cards = ({ data, refetchAllItems}) => {
             navigate("/login", { state: { from: location } });
           }
         });
-      }else{
+      } else {
         Swal.fire({
           title: "You don't have any account",
           text: "You have to login first",
@@ -103,46 +111,54 @@ const Cards = ({ data, refetchAllItems}) => {
       }
     }
   };
+
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: "easeInOut",  }}>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 10 }}
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeInOut" } },
+      }}
+      
+    >
       <div className="shadow-md shadow-success px-5 py-5 rounded-md bg-primary bg-opacity-5">
         <div className="flex flex-col justify-center items-center gap-3 transition-transform duration-300 ease-in-out hover:scale-105">
           <img loading="lazy" className="h-[250px] rounded-md" src={product_image} alt="" />
         </div>
         <div className="flex flex-col justify-start items-start gap-3 py-2">
-          <p className="text-xl capitalize  overflow-ellipsis overflow-hidden whitespace-nowrap w-[250px]">
+          <p className="text-xl capitalize overflow-ellipsis overflow-hidden whitespace-nowrap w-[250px]">
             {product_name}
           </p>
           <Rating style={{ maxWidth: 100 }} value={product_rating} readOnly />
           {product_price.discount ? (
             <div className="flex justify-between items-center gap-5 w-full">
-              <div className="flex flex-row justify-between items-center gap-5 ">
-              <div className="flex justify-start items-center font-bold text-error line-through">
-                <TbCurrencyTaka />
-                <p>{product_price.previous_price}</p>
+              <div className="flex flex-row justify-between items-center gap-5">
+                <div className="flex justify-start items-center font-bold text-error line-through">
+                  <TbCurrencyTaka />
+                  <p>{product_price.previous_price}</p>
+                </div>
+                <div className="flex justify-start items-center font-bold text-primary">
+                  <TbCurrencyTaka />
+                  <p>{product_price.present_price}</p>
+                </div>
               </div>
-              <div className="flex justify-start items-center font-bold text-primary">
-                <TbCurrencyTaka />
-                <p>{product_price.present_price}</p>
+              <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
+                <img className="h-[35px]" src={quanityimg} alt="" />
+                <p className="font-semibold font-sans text-primary">{quantity}</p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
-              <img className="h-[35px]" src={quanityimg} alt="" />
-              <p className="font-semibold font-sans text-primary">{quantity}</p>
-            </div>
-
             </div>
           ) : (
             <div className="flex justify-between items-center gap-5 w-full">
               <div className="flex justify-start items-center font-bold text-primary">
-              <TbCurrencyTaka />
-              <p>{product_price.present_price}</p>
-            </div>
-            <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
-              <img className="h-[35px]" src={quanityimg} alt="" />
-              <p className="font-semibold font-sans text-primary">{quantity}</p>
-            </div>
+                <TbCurrencyTaka />
+                <p>{product_price.present_price}</p>
+              </div>
+              <div className="flex items-center gap-2 px-2 py-2 rounded-lg shadow-sm shadow-success tooltip tooltip-bottom" data-tip="Quantity">
+                <img className="h-[35px]" src={quanityimg} alt="" />
+                <p className="font-semibold font-sans text-primary">{quantity}</p>
+              </div>
             </div>
           )}
           <div className="flex justify-start items-center font-bold gap-2">
@@ -156,16 +172,12 @@ const Cards = ({ data, refetchAllItems}) => {
             className="text-sm flex justify-center items-center font-bold gap-2"
           >
             <img className="h-[45px]" src={cart} alt="" />
-            {/* <FaCartPlus className="text-xl" /> */}
-            {/* <div className="">Cart</div> */}
           </button>
           <Link
             to={`/details/${_id}`}
             className="text-sm flex justify-center items-center font-bold gap-2"
           >
             <img className="h-[45px]" src={details} alt="" />
-            {/* <TbListDetails className="text-xl" />
-            <div className="">Details</div> */}
           </Link>
         </div>
       </div>
@@ -174,3 +186,4 @@ const Cards = ({ data, refetchAllItems}) => {
 };
 
 export default Cards;
+
