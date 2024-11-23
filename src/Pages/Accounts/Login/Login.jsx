@@ -11,7 +11,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
-import { AttentionSeeker, Slide } from "react-awesome-reveal";
+import {motion} from 'framer-motion'
 import ico from '../../../assets/basic/001-key.png'
 import ict from '../../../assets/basic/002-profile.png'
 
@@ -104,10 +104,10 @@ const axiosSecure = useAxiosSecure();
     <div className="">
       <SectionTitle ico={ico} ict={ict} title="Login"></SectionTitle>
       <div className="py-[3%] flex flex-col md:flex-row justify-center items-center gap-5 md:gap-16">
-        <Slide direction="left" className="h-[250px] md:h-full">
+        <motion.div initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} transition={{duration: 0.9, ease: 'easeInOut'}}  className="h-[250px] md:h-full">
         <Lottie className="h-[250px] md:h-full"  animationData={loginani}></Lottie>
-        </Slide>
-       <Slide direction="right">
+        </motion.div>
+       <motion.div initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} transition={{duration: 0.9, ease: 'easeInOut'}} >
        <div>
           <div>
             <Lottie
@@ -115,7 +115,7 @@ const axiosSecure = useAxiosSecure();
               animationData={apndaani}
             ></Lottie>
           </div>
-          <AttentionSeeker effect="jello" delay={1800} duration={1200}>
+          <motion.div initial={{opacity: 0, y: 50}} whileInView={{opacity: 1, y: 0}} transition={{duration: 0.9, ease: 'easeInOut'}} >
           <form
             className="flex flex-col justify-center items-center gap-5"
             onSubmit={handleSubmit(onSubmit)}
@@ -138,7 +138,7 @@ const axiosSecure = useAxiosSecure();
             </button>
             <button className="badge badge-error font-semibold" onClick={handleForgetPassword}>Forget Password?</button>
           </form>
-          </AttentionSeeker>
+          </motion.div>
           <div className="divider divider-primary">Or continue with</div>
           <div className="flex justify-center items-center gap-10">
             <button onClick={handleLogInWithGoogle} className="text-5xl rounded-full">
@@ -158,7 +158,7 @@ const axiosSecure = useAxiosSecure();
             </p>
           </div>
         </div>
-       </Slide>
+       </motion.div>
       </div>
     </div>
   );
