@@ -9,9 +9,10 @@ import image6 from "../../../assets/ad/watch.png";
 import image7 from "../../../assets/ad/watch2.png";
 // import image8 from "../../../assets/ad/iii.png";
 import Lottie from "lottie-react";
+import {motion} from 'framer-motion'
 const EraSlide = () => {
   return (
-    <div className="my-body">
+    <motion.div initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{duration: 0.9, ease: 'easeInOut'}} className="my-body">
       <div className="my-bannner">
         <div className="my-slider" style={{ "--quantity": 7 }}>
           <div className="item" style={{ "--position": 1 }}>
@@ -41,7 +42,7 @@ const EraSlide = () => {
         </div>
       </div>
       
-    </div>
+    </motion.div>
   );
 };
 
