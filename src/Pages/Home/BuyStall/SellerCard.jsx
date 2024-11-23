@@ -1,4 +1,4 @@
-import { AttentionSeeker } from "react-awesome-reveal";
+import {motion} from 'framer-motion'
 import sign from "../../../assets/basic/checked.png";
 import { Link } from "react-router-dom";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
@@ -14,7 +14,7 @@ const SellerCard = ({ data }) => {
   const backgroundColor = getCategoryColor(data.category);
 
   return (
-    <AttentionSeeker className="" duration={1000} effect="jello">
+    <motion.div initial={{opacity: 0, scale: 0.8}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}} className="" >
       <div
         className={`flex flex-col justify-center items-center gap-4 px-4 py-10 rounded-lg shadow-md text-black transition-transform duration-300 ease-in-out`}
         style={{ backgroundColor }}
@@ -72,7 +72,7 @@ const SellerCard = ({ data }) => {
           <span className="relative">Buy Now</span>
         </Link>
       </div>
-    </AttentionSeeker>
+    </motion.div>
   );
 };
 
