@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
-import { Slide } from "react-awesome-reveal";
+import {motion} from 'framer-motion'
 import ico from '../../../assets/basic/003-sign-up.png'
 import ict from '../../../assets/basic/004-add-friend.png'
 
@@ -67,11 +67,11 @@ const Signup = () => {
         <div>
             <SectionTitle ico={ico} ict={ict} title='Signup Now'></SectionTitle>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 py-5">
-              <Slide duration={1200} className="h-[350px]">
+              <motion.div initial={{opacity: 0, scale: 0}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}} className="h-[350px]">
               <Lottie className="h-[350px]"  animationData={ani}></Lottie>
-              </Slide>
+              </motion.div>
                 
-           <Slide duration={1300} direction="down">
+           <motion.div initial={{opacity: 0, scale: 0}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}} direction="down">
            <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
               <input  className="input input-bordered input-info w-full max-w-md" type="text" placeholder="Username" {...register("name", {})} />
               <input  className="input input-bordered input-info w-full max-w-md" type="email" placeholder="Email" {...register("Email", {required: true})} />
@@ -79,7 +79,7 @@ const Signup = () => {
 
             <button className="btn btn-success px-5 py-3" type="submit">Signup</button>
     </form>
-           </Slide>
+           </motion.div>
             </div>
         </div>
     );
