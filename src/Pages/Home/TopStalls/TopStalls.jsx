@@ -2,16 +2,16 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import TopStallsSection from "./TopStallsSection";
 import ico from '../../../assets/for title/application.png'
 import ict from '../../../assets/for title/computer.png'
-import { Slide } from "react-awesome-reveal";
+import {motion} from 'framer-motion'
 
 
 const TopStalls = () => {
     return (
         <div className="py-10">
             <SectionTitle ico={ico} ict={ict} title={'Our Products'}></SectionTitle>
-            <Slide direction="right">
+            <motion.div initial={{opacity: 0, scale: 0.8}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}}>
             <TopStallsSection></TopStallsSection>
-            </Slide>
+            </motion.div>
         </div>
     );
 };
