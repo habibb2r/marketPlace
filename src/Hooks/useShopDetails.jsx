@@ -2,8 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
 
-//useshop details
-
 const useShopDetails = (id) => {
     console.log(id)
     const axiosSecure = useAxiosSecure()
