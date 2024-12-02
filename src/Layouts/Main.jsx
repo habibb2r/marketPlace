@@ -4,16 +4,17 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import Lottie from "lottie-react";
 import anidata from '../Pages/Home/Banner/banner.json'
 import useConnect from "../Hooks/useConnect";
+import useConnectToServer from "../Hooks/useConnectToServer";
 
 const Main = () => {
+    const [connectToServer, serverLoading] = useConnectToServer()
 
-  
+    
+    console.log(connectToServer)
 
-    const [preloader, isLoading] = useConnect()
-    console.log(preloader.message)
    
 
-    return isLoading ? <div className="flex flex-col h-[100vh] items-center justify-center pt-[45%] md:pt-[15%]"><Lottie className="h-[300px]" animationData={anidata}></Lottie><span className="text-success font-bold font-mono">Connecting to server</span><span className="loading loading-dots loading-lg text-success"></span></div> :  <>  
+    return serverLoading ? <div className="flex flex-col h-[100vh] items-center justify-center pt-[45%] md:pt-[15%]"><Lottie className="h-[300px]" animationData={anidata}></Lottie><span className="text-success font-bold font-mono">Connecting to server</span><span className="loading loading-dots loading-lg text-success"></span></div> :  <>  
     <Navbar></Navbar>
     <div className="pt-[25%] md:pt-[8%]">
     

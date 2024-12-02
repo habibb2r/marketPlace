@@ -208,9 +208,7 @@ const Navbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                   
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   ></path>
                 </svg>
@@ -256,7 +254,7 @@ const Navbar = () => {
           </label>
         </div>
 
-        <div className="resposive-nav">
+        <div className="resposive-nav pr-2">
           <img
             onClick={controlNav}
             className="h-[40px]"
