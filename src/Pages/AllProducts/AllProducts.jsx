@@ -33,9 +33,6 @@ const AllProducts = () => {
     refetchAllItems();
   }, [sort, filter, search, refetchAllItems]);
 
-  if (loadItems) {
-    return <Loading />;
-  }
 
   const handleFilter = (e) => {
     setFilter(e);
@@ -144,8 +141,7 @@ const AllProducts = () => {
           </div>
           <SectionTitle title={`${filter} Products`} ico={ico} ict={ict} />
           {allItems?.results.length> 0 ? '' : <p className="text-center font-semibold text-error font-mono py-5">No Products Found</p>}
-          {loadItems? <Loading></Loading> : ''}
-          <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {loadItems? <Loading></Loading> :  <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {allItems?.results?.map((product) => (
               <Cards
                 key={product._id}
@@ -153,7 +149,8 @@ const AllProducts = () => {
                 refetchAllItems={refetchAllItems}
               />
             ))}
-          </div>
+          </div>}
+         
         </div>
       </div>
     </div>
