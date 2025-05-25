@@ -1,12 +1,46 @@
+import { motion } from 'framer-motion';
+import './SectionTitle.css';
 
 const SectionTitle = ({title, ico, ict}) => {
     return (
-        <div className="text-center py-[2%] font-semibold md:w-8/12 mx-auto">
-            <div className="flex justify-center items-center md:gap-2 divider divider-success">
-            <img className='h-[45px] md:h-[50px]' src={ico? ico: ''} alt="" />
-            <h1 className="text-2xl md:text-4xl">{title}</h1>
-            <img className='h-[45px] md:h-[50px]' src={ict? ict: ''} alt="" />
-            </div>
+        <div className="section-title-container">
+            <motion.div 
+                className="section-title-wrapper"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+            >
+                {ico && (
+                    <motion.img 
+                        className="section-icon"
+                        src={ico}
+                        alt=""
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                    />
+                )}
+                
+                <motion.h1 
+                    className="section-title"
+                    initial={{ scale: 0.9 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                >
+                    {title}
+                </motion.h1>
+                
+                {ict && (
+                    <motion.img 
+                        className="section-icon"
+                        src={ict}
+                        alt=""
+                        whileHover={{ rotate: -360 }}
+                        transition={{ duration: 0.5 }}
+                    />
+                )}
+            </motion.div>
         </div>
     );
 };

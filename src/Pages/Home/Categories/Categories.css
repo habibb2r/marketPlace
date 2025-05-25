@@ -1,0 +1,42 @@
+.category-header {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.phones-header::before {
+  background: linear-gradient(135deg, 
+    rgba(var(--primary-rgb), 0.2) 0%,
+    rgba(var(--success-rgb), 0.2) 100%
+  );
+}
+
+.fashion-header::before {
+  background: linear-gradient(135deg, 
+    rgba(var(--secondary-rgb), 0.2) 0%,
+    rgba(var(--accent-rgb), 0.2) 100%
+  );
+}
+
+.kids-header::before {
+  background: linear-gradient(135deg, 
+    rgba(var(--accent-rgb), 0.2) 0%,
+    rgba(var(--primary-rgb), 0.2) 100%
+  );
+}
+
+.category-header h3 {
+  position: relative;
+  z-index: 1;
+}

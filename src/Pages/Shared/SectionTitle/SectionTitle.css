@@ -1,0 +1,81 @@
+.section-title-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 1.2rem auto;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  padding: 1.5rem 0;
+}
+
+.section-title-wrapper::before,
+.section-title-wrapper::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(var(--success-rgb), 0.3) 20%,
+    rgba(var(--success-rgb), 0.6) 50%,
+    rgba(var(--success-rgb), 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.section-title-wrapper::before {
+  top: 0;
+}
+
+.section-title-wrapper::after {
+  bottom: 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2d3748;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.section-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.section-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .section-title-container {
+    padding: 0 0.5rem;
+  }
+
+  .section-title-wrapper {
+    gap: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-icon {
+    width: 35px;
+    height: 35px;
+  }
+}

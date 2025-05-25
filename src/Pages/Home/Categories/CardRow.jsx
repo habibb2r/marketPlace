@@ -3,36 +3,55 @@ import shop from "../../../icons/online-shop.png";
 import info from "../../../icons/information.png";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { Link } from "react-router-dom";
+
 const CardRow = (data) => {
   const item = data.data;
+  
   return (
-    <div className="flex justify-between items-center gap-3 p-3 w-full shadow-sm shadow-primary rounded-lg hover:shadow-md hover:shadow-success transition-transform duration-300 ease-in-out hover:scale-[103%]">
-      
-      <div className="flex justify-center items-center gap-2">
-      <img
-        className="w-[65px] h-[80px] rounded-2xl"
-        src={item.product_image}
-        alt=""
-      />
-        <div className="flex flex-col justify-center items-start gap-1">
-          <p className="font-semibold uppercase w-[170px]  overflow-ellipsis overflow-hidden whitespace-nowrap">{item.product_name}</p>
-          <div className="flex items-center">
-          <TbCurrencyTaka className="text-secondary" />
-          <p className="font-medium text-primary">
-            {item.product_price.present_price}
-          </p>
+    <div className="group bg-base-100 rounded-xl p-3 flex items-center justify-between gap-4 hover:bg-base-200/50 transition-all duration-300 hover:scale-[102%]">
+      <div className="flex items-center gap-4">
+        <div className="relative overflow-hidden rounded-lg w-16 h-20">
+          <img
+            className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-300"
+            src={item.product_image}
+            alt={item.product_name}
+            loading="lazy"
+          />
+        </div>
+        
+        <div className="flex flex-col gap-2">
+          <h4 className="font-medium capitalize w-[170px] overflow-ellipsis overflow-hidden whitespace-nowrap group-hover:text-primary transition-colors duration-300">
+            {item.product_name}
+          </h4>
+          
+          <div className="flex items-center gap-1">
+            <TbCurrencyTaka className="text-primary text-lg" />
+            <span className="font-semibold text-primary">
+              {item.product_price.present_price}
+            </span>
           </div>
           
           <Rating
-            style={{ maxWidth: 100 }}
+            style={{ maxWidth: 90 }}
             value={item.product_rating}
             readOnly
           />
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-2">
-        <Link to={`/shopDetails/${item.stall.id}`}><img className="h-[40px]" src={shop} alt="" /></Link>
-        <Link to={`/details/${item._id}`}><img className="h-[50px] rounded-full" src={info} alt="" /></Link>
+
+      <div className="flex items-center gap-3">
+        <Link 
+          to={`/shopDetails/${item.stall.id}`}
+          className="p-2 rounded-full hover:bg-primary/10 transition-colors duration-300"
+        >
+          <img className="w-8 h-8" src={shop} alt="View Shop" />
+        </Link>
+        <Link 
+          to={`/details/${item._id}`}
+          className="p-2 rounded-full hover:bg-primary/10 transition-colors duration-300"
+        >
+          <img className="w-8 h-8" src={info} alt="View Details" />
+        </Link>
       </div>
     </div>
   );

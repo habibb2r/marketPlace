@@ -49,7 +49,7 @@ const ManageShop = () => {
 
       <div className="stat text-center">
         <div className="stat-title">Total Shops</div>
-        <div className="stat-value text-secondary">{allshops.length}</div>
+        <div className="stat-value text-secondary">{allshops?.length}</div>
         <div className="stat-desc">Check validity and conditions</div>
       </div>
 
@@ -57,7 +57,7 @@ const ManageShop = () => {
         {allshops?.map((shop) => (
           <div
             className="flex flex-col md:flex-row items-center justify-between gap-5 w-full bg-accent bg-opacity-25 shadow-lg shadow-success py-4 px-3 rounded-lg hover:bg-secondary hover:bg-opacity-25 "
-            key={shop.shopId}
+            key={shop?.shopId}
           >
             <div className="flex flex-col md:flex-row justify-start md:justify-between gap-5 items-start md:items-center py-2 w-full">
               <div className="flex flex-col gap-4">

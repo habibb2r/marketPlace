@@ -9,10 +9,11 @@ import Swal from "sweetalert2";
 
 const ManageAllItems = () => {
   const [manageAllItems, refetch, isLoading] = useManageAllItems();
-  if (isLoading) {
-    <Loading></Loading>;
-  }
   const axiosSecure = useAxiosSecure();
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   const handleDeleteItems = (item) => {
     Swal.fire({
       title: "Are you sure?",
