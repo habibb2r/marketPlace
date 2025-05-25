@@ -1,76 +1,91 @@
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion';
 import sign from "../../../assets/basic/checked.png";
 import { Link } from "react-router-dom";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
+import './SellerCard.css';
 
 const SellerCard = ({ data }) => {
   const [userInfo] = useGetUserInfo();
-  const getCategoryColor = (category) => {
-    if (category === "Gold") return "#FFD700";
-    if (category === "Bronze") return "#CD7F32";
-    return "#e5e4e2";
+
+  const getCardClass = (category) => {
+    const baseClass = "seller-card";
+    if (category === "Gold") return `${baseClass} seller-card-gold`;
+    if (category === "Bronze") return `${baseClass} seller-card-bronze`;
+    return `${baseClass} seller-card-silver`;
   };
 
-  const backgroundColor = getCategoryColor(data.category);
+  const getBadgeClass = (category) => {
+    const baseClass = "category-badge";
+    if (category === "Gold") return `${baseClass} badge-gold`;
+    if (category === "Bronze") return `${baseClass} badge-bronze`;
+    return `${baseClass} badge-silver`;
+  };
 
   return (
-    <motion.div initial={{opacity: 0, scale: 0.8}} whileInView={{opacity: 1, scale: 1}} transition={{duration: 0.9, ease: 'easeInOut'}} className="" >
-      <div
-        className={`flex flex-col justify-center items-center gap-4 px-4 py-10 rounded-lg shadow-md text-black transition-transform duration-300 ease-in-out`}
-        style={{ backgroundColor }}
-      >
-        <div className="text-2xl font-mono font-semibold">{data.category}</div>
-        <div className="flex flex-col justify-start items-start gap-2">
-          <p className="text-xl font-semibold border-b-2 border-primary">Features</p>
-          <div className="font-semibold flex flex-col justify-start items-start gap-2">
-            <div className="flex items-center gap-2">
-              <img className="h-[20px]" src={sign} alt="" />{" "}
-              <span>Shop size {data.features.shop_size} Products</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <img className="h-[20px]" src={sign} alt="" />{" "}
-              <span>
-                Can add {data.features.max_category} categories of product
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <img className="h-[20px]" src={sign} alt="" />{" "}
-              <span>Duration {data.features.duration} years</span>
-            </div>
-          </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={getCardClass(data.category)}
+    >
+      <div className="p-6 space-y-6">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex justify-center"
+        >
+          <span className={getBadgeClass(data.category)}>
+            {data.category}
+          </span>
+        </motion.div>
+
+        <div className="features-list">
+          <h3 className="text-lg font-semibold mb-4 border-b border-primary/20 pb-2">
+            Package Features
+          </h3>
+          
+          <motion.div className="space-y-3">
+            {[
+              { icon: sign, text: `Shop size ${data.features.shop_size} Products` },
+              { icon: sign, text: `Can add ${data.features.max_category} categories of product` },
+              { icon: sign, text: `Duration ${data.features.duration} years` }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="feature-item"
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <img className="feature-icon" src={feature.icon} alt="" />
+                <span className="text-sm font-medium">{feature.text}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-        <div className="text-xl">
-          <div
-            
-            className="relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
+
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          className="price-tag text-center"
+        >
+          <span className="text-xl font-bold">
+            ৳{data.price}
+          </span>
+          <span className="text-sm font-medium ml-1">only</span>
+        </motion.div>
+
+        {userInfo?.role === "customer" && (
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-red-500 rounded-full blur-md ease"></span>
-            <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
-              <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-purple-500 rounded-full blur-md"></span>
-              <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"></span>
-            </span>
-            <span className="relative text-white">Price : {data.price} only</span>
-          </div>
-      
-        </div>
-        {/* <Link state={data}
-          className={`${userInfo?.role == "customer" ? "block" : "hidden"}`}
-          to={`/buyshop/${data._id}`}
-        >
-          <button className="btn btn-secondary">Buy Now</button>
-        </Link> */}
-        <Link
-          to={`/buyshop/${data._id}`}
-          className={`${
-            userInfo?.role == "customer" ? "block" : "hidden"
-          } relative px-5 py-2 font-medium text-white group`}
-        >
-          <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-purple-500 group-hover:bg-purple-700 group-hover:skew-x-12"></span>
-          <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-purple-700 group-hover:bg-purple-500 group-hover:-skew-x-12"></span>
-          <span className="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-purple-600 -rotate-12"></span>
-          <span className="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-purple-400 -rotate-12"></span>
-          <span className="relative">Buy Now</span>
-        </Link>
+            <Link
+              to={`/buyshop/${data._id}`}
+              className="block w-full"
+            >              <button className="buy-button w-full">
+                Buy Now
+              </button>
+            </Link>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );
