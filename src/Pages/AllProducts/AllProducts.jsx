@@ -141,7 +141,7 @@ const AllProducts = () => {
           </div>
           <SectionTitle title={`${filter} Products`} ico={ico} ict={ict} />
           {allItems?.results.length> 0 ? '' : <p className="text-center font-semibold text-error font-mono py-5">No Products Found</p>}
-          {loadItems? <Loading></Loading> :  <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {loadItems? <Loading></Loading> :  <div className="pt-10 grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-10 pb-5">
             {allItems?.results?.map((product) => (
               <Cards
                 key={product._id}

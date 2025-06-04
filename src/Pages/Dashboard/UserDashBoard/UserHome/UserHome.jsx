@@ -1,110 +1,141 @@
-import { Link, useLocation } from "react-router-dom";
 import Loading from "../../../Shared/Loading/Loading";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import useGetUserInfo from "../UserHooks/useGetUserInfo";
 import pp from "../../../../icons/profile.png";
 import useUserStat from "../UserHooks/useUserStat";
 import { Slide } from "react-awesome-reveal";
-import ico from "../../../../assets/basic/001-expectation.png";
-import ict from "../../../../assets/basic/002-user.png";
+import {
+  FaShoppingCart,
+  FaBox,
+  FaMoneyBillWave,
+  FaStar,
+  FaClock,
+  FaCheckCircle,
+} from "react-icons/fa";
 
 const UserHome = () => {
-  const [userInfo, , isLoading] = useGetUserInfo();
-  const [stat, statLoad] = useUserStat();
-  const location = useLocation()
-  const mystate = location.pathname
+  const [ userInfo, , isLoading ] = useGetUserInfo();
+  const { userStat } = useUserStat();
 
-  if (isLoading || statLoad) {
+  console.log(userInfo);
+  if (isLoading) {
     return <Loading></Loading>;
   }
 
   return (
-    <div>
-      <SectionTitle ico={ico} ict={ict} title="Dashboard"></SectionTitle>
-      <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-5 pt-5">
-        <Slide direction="left" className="md:w-1/3 ">
-          <div className="flex flex-col justify-center items-center gap-5 shadow-sm shadow-primary p-3 rounded-xl">
-            <img
-              className="rounded-full w-[150px] h-[150px]"
-              src={userInfo.picture ? userInfo.picture : pp}
-              alt=""
-            />
-            <div className="flex flex-col justify-center items-start gap-2">
-              <p className="font-semibold">Name : {userInfo.name}</p>
-              <p className="font-semibold">Email : {userInfo.email}</p>
-              <p className="font-semibold">
-                Phone : {userInfo.phone ? userInfo.phone : "Update Profile"}
-              </p>
-              <p className="font-semibold">
-                Date of Birth : {userInfo.dob ? userInfo.dob : "Update Profile"}
-              </p>
-              <p className="font-semibold">
-                Gender : {userInfo.gender ? userInfo.gender : "Update Profile"}
-              </p>
-              <p className="font-semibold text-secondary">
-                Account Created : {userInfo.createdDate}
-              </p>
-            </div>
-            <Link to="/dashboard/userUpdate" state={mystate} className="btn btn-secondary">
-              Update Profile
-            </Link>
-          </div>
-        </Slide>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <SectionTitle
+        title="Welcome Back!"
+        subHeading="Your Dashboard Overview"
+      ></SectionTitle>
 
-        <Slide direction="right" className="md:w-2/3">
-          <div className=" flex flex-col justify-center items-center gap-5 px-3 md:px-0">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-primary"></div>
-                <div className="stat-title">Total Cart</div>
-                <div className="stat-value text-primary">{stat.cart}</div>
-                <div className="stat-desc">Pay as soon as possible</div>
-              </div>
-
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-secondary"></div>
-                <div className="stat-title">Ordered Item</div>
-                <div className="stat-value text-secondary">
-                  {stat.totalOrder}
+      <div className="container mx-auto px-4">
+        <Slide direction="down" triggerOnce>
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-transform duration-300">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="relative">
+                <img
+                  src={userInfo?.photo || pp}
+                  alt=""
+                  className="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-lg"
+                />
+                <div className="absolute -bottom-2 right-0 bg-green-500 p-2 rounded-full">
+                  <FaCheckCircle className="text-white" />
                 </div>
-                <div className="stat-desc">Give rating those items</div>
               </div>
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-secondary"></div>
-                <div className="stat-title">Total Spending</div>
-                <div className="md:stat-value text-xl font-semibold text-secondary">
-                  {stat.totalSpend}TK
-                </div>
-                <div className="stat-desc">Thats fair</div>
-              </div>
-
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-primary"></div>
-                <div className="stat-title">Total Rating</div>
-                <div className="stat-value text-primary">
-                  {stat.totalRating}
-                </div>
-                <div className="stat-desc">We respect your opinion</div>
-              </div>
-
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-secondary"></div>
-                <div className="stat-title">Order Pending</div>
-                <div className="stat-value text-secondary">{stat.pending}</div>
-                <div className="stat-desc">Please wait</div>
-              </div>
-
-              <div className="stat shadow rounded-lg shadow-secondary transition-transform duration-300 ease-in-out hover:scale-105">
-                <div className="stat-figure text-secondary"></div>
-                <div className="stat-title">Order Received</div>
-                <div className="stat-value text-secondary">
-                  {stat.delivered ? stat.delivered : "0"}
-                </div>
-                <div className="stat-desc">Enjoy</div>
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  {userInfo?.name || "Update Your Profile"}
+                </h2>
+                <p className="text-gray-600 mb-2">{userInfo?.email}</p>
+                <p className="text-sm text-gray-500">
+                  Member since:{" "}
+                  {new Date(userInfo?.createdDate).toLocaleDateString()}
+                </p>
               </div>
             </div>
           </div>
         </Slide>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <Slide direction="up" cascade triggerOnce>
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-[1.03] transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <FaShoppingCart className="text-2xl" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium opacity-90">Total Orders</p>
+                  <h3 className="text-2xl font-bold">
+                    {userStat?.totalOrders || 0}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-[1.03] transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <FaBox className="text-2xl" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium opacity-90">
+                    Total Products
+                  </p>
+                  <h3 className="text-2xl font-bold">
+                    {userStat?.totalProduct || 0}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-[1.03] transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <FaMoneyBillWave className="text-2xl" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium opacity-90">Total Spent</p>
+                  <h3 className="text-2xl font-bold">
+                    ${userStat?.totalSpent.toFixed(2) || 0}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-[1.03] transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <FaStar className="text-2xl" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium opacity-90">
+                    Total Reviews
+                  </p>
+                  <h3 className="text-2xl font-bold">
+                    {userStat?.totalReviews || 0}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-[1.03] transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-white/20 rounded-lg">
+                  <FaClock className="text-2xl" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium opacity-90">
+                    Pending Orders
+                  </p>
+                  <h3 className="text-2xl font-bold">
+                    {userStat?.pendingOrders || 0}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </Slide>
+        </div>
       </div>
     </div>
   );

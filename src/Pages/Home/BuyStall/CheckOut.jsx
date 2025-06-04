@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import Loading from "../../Shared/Loading/Loading";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Navigate } from "react-router-dom";
 
 const CheckOut = ({ price, shopData, shopInfo }) => {
   const [userInfo, refetch, isLoading] = useGetUserInfo();
@@ -105,6 +106,7 @@ const CheckOut = ({ price, shopData, shopInfo }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          Navigate("/")
           refetch();
         }
       });

@@ -7,100 +7,118 @@ import userGender from "../../../../assets/seller/006-equality.png";
 import userDate from "../../../../assets/seller/008-calendar.png";
 import userRole from "../../../../assets/seller/007-management.png";
 import userTime from "../../../../assets/seller/009-clock.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Seller = ({seller, mystate}) => {
-    return (
-        <div className="bg-gray-500 bg-opacity-15 rounded-md px-4 py-5 shadow-md shadow-blue-400">
-            <div className="flex flex-col md:flex-row justify-start items-center gap-4">
-              <img
-                className="rounded-2xl h-[120px] w-[120px] md:h-[150px] md:w-[150px] shadow-lg shadow-primary"
-                src={seller?.picture}
-                alt=""
-              />
-              <div className="flex flex-col  md:justify-center items-start md:items-center  gap-3 font-semibold font-sans">
-                <div className="flex flex-col justify-start items-start gap-4">
-                  <div className="flex items-center gap-2">
-                    <img className="h-[20px]" src={userName} alt="" />
-                    <h2 className="text-xl">{seller?.name}</h2>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <img className="h-[15px]" src={userEmail} alt="" />
-                    <h2 className="text-md">{seller?.email}</h2>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <img className="h-[20px]" src={userPhone} alt="" />
-                    <h2 className="text-md">
-                      {seller?.phone ? (
-                        seller.phone
-                      ) : (
-                        <span className="text-error">Update Profile</span>
-                      )}
-                    </h2>
-                  </div>
-
-                  <Link
-                    className=""
-                    to="/sellerdashboard/userupdate"
-                    state={mystate}
-                  >
-                    <div className="flex items-center gap-1">
-                      <img className="h-[50px]" src={userUpdate} alt="" />
-                    </div>
-                  </Link>
-                </div>
+const Seller = ({ seller, mystate }) => {
+  return (
+    <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
+      <div className="relative">
+        {/* Profile Header */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
+        <div className="relative p-6">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            {/* Profile Image */}
+            <div className="relative">
+              <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-white shadow-lg">
+                <img
+                  className="w-full h-full object-cover"
+                  src={seller?.picture}
+                  alt={seller?.name}
+                />
               </div>
+              <Link
+                to="/sellerdashboard/userupdate"
+                state={mystate}
+                className="absolute bottom-0 right-0 bg-yellow-100 text-white p-2 rounded-full shadow-lg hover:bg-primary/90 transition-colors duration-200"
+              >
+                <img className="h-6 w-6 invert" src={userUpdate} alt="Update" />
+              </Link>
             </div>
-            <div>
-              <h1 className="text-xl font-semibold border-b-2 border-secondary py-2">
-                Addtional Information
-              </h1>
-              <div className="flex flex-col md:flex-row justify-between items-start font-sans gap-4 py-3">
+
+            {/* Basic Info */}
+            <div className="flex-1">
+              <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <img className="h-[40px]" src={userBirth} alt="" />
-                  <span className="font-semibold">
-                    {seller?.dob}
-                  </span>{" "}
+                  <img className="h-5 w-5" src={userName} alt="" />
+                  <h2 className="text-2xl font-semibold">{seller?.name}</h2>
                 </div>
-                <p className="flex items-center gap-2">
-                  <img className="h-[40px]" src={userGender} alt="" />
-                  <span className="font-semibold">
-                    {seller?.gender}
-                  </span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <img className="h-[40px]" src={userRole} alt="" />{" "}
-                  <span className="font-semibold">
-                    {seller?.role}
-                  </span>
-                </p>
-              </div>
-              <div className="flex flex-col md:flex-row justify-start items-start gap-3 py-3">
-                <p className="border-b-2 border-secondary">
-                  <span className="font-semibold">Account Created</span> :
-                </p>
-                <div className="flex items-center justify-around gap-4">
-                  <p className="flex items-center gap-2">
-                    {" "}
-                    <img className="h-[40px]" src={userDate} alt="" />
-                    <span className="font-semibold">
-                      {seller?.createdDate}
-                    </span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    {" "}
-                    <img className="h-[40px]" src={userTime} alt="" />
-                    <span className="font-semibold">
-                      {seller?.createdTime}
-                    </span>
+                <div className="flex items-center gap-2 text-gray-600">
+                  <img className="h-4 w-4" src={userEmail} alt="" />
+                  <p>{seller?.email}</p>
+                </div>
+                <div className="flex items-center gap-2 text-gray-600">
+                  <img className="h-5 w-5" src={userPhone} alt="" />
+                  <p>
+                    {seller?.phone || (
+                      <span className="text-error font-medium">
+                        Update Profile
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-    );
+        </div>
+      </div>
+
+      {/* Additional Information */}
+      <div className="p-6 bg-gray-50">
+        <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-200">
+          Additional Information
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Personal Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+              <img className="h-8 w-8" src={userBirth} alt="" />
+              <div>
+                <p className="text-sm text-gray-500">Date of Birth</p>
+                <p className="font-medium">{seller?.dob}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+              <img className="h-8 w-8" src={userGender} alt="" />
+              <div>
+                <p className="text-sm text-gray-500">Gender</p>
+                <p className="font-medium">{seller?.gender}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+              <img className="h-8 w-8" src={userRole} alt="" />
+              <div>
+                <p className="text-sm text-gray-500">Role</p>
+                <p className="font-medium">{seller?.role}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Account Info */}
+          <div className="space-y-4">
+            <h4 className="text-sm font-medium text-gray-500">
+              Account Created
+            </h4>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+                <img className="h-8 w-8" src={userDate} alt="" />
+                <div>
+                  <p className="text-sm text-gray-500">Date</p>
+                  <p className="font-medium">{seller?.createdDate}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+                <img className="h-8 w-8" src={userTime} alt="" />
+                <div>
+                  <p className="text-sm text-gray-500">Time</p>
+                  <p className="font-medium">{seller?.createdTime}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Seller;
