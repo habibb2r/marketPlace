@@ -1,22 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  FaHome, 
+  FaShoppingBag, 
+  FaShoppingCart, 
+  FaTachometerAlt, 
+  FaUserShield, 
+  FaStore, 
+  FaUser, 
+  FaBars, 
+  FaTimes,
+  FaSun,
+  FaMoon,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUserCircle
+} from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useCart from "../../../Hooks/useCart";
 import useGetUserInfo from "../../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
 import Loading from "../Loading/Loading";
-
-import logo from "../../../assets/Logo/Logo.png";
-import home from "../../../icons/home-page.png";
-import allproducts from "../../../icons/allproducts.png";
-import dashboard from "../../../icons/dashboard.png";
-import cartlogo from "../../../icons/cart.png";
-import adminpanel from "../../../assets/adminpanel.png";
-import sellerdash from "../../../assets/sellerdash.png";
-import menu from "../../../assets/basic/001-menu-bar.png";
-import cancel from "../../../assets/basic/002-button.png";
-import guestPic from "../../../assets/basic/do-not.png";
-import noPic from "../../../assets/basic/no-photo.png";
 import "./Navbar.css";
 
 
@@ -69,201 +74,336 @@ const Navbar = () => {
   }
 
   return (
-    <div className="z-20  fixed w-full mx-auto bg-opacity-35 bg-base-100 px-3 py-4 md:py-3">
-      <div className="flex justify-between items-center">
-        <Link to="/">
-          <img className="h-[65px] md:h-[80px]" src={logo} alt="Logo" />
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-20">
+          
+          {/* Logo/Brand */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              className="text-4xl"
+            >
+              🐼
+            </motion.div>
+            <div className="hidden md:block">
+              <h1 className="text-2xl font-bold text-green-600 group-hover:text-green-700 transition-colors">
+                Panda
+              </h1>
+              <p className="text-xs text-gray-500 -mt-1">MarketPlace</p>
+            </div>
+          </Link>
 
-        <div
-          onClick={controlNav}
-          className={`flex items-center gap-5 font-semibold text-md ${
-            clicked ? "navbar-res" : "navbar-res navbar-active"
-          }`}
-        >
-          <Link
-            className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-            data-tip="Home"
-            to="/"
-          >
-            <img className="h-[40px]" src={home} alt="Home" />
-            <span className="block md:hidden">Home</span>
-          </Link>
-          <Link
-            className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-            data-tip="All Products"
-            to="/allProducts"
-          >
-            <img className="h-[35px]" src={allproducts} alt="All Products" />
-            <span className="block md:hidden">All Products</span>
-          </Link>
-          {user ? (
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-10 md:gap-5 md:px-2">
-              {userInfo?.role === "admin" && (
-                <Link
-                  className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-                  data-tip="Admin Panel"
-                  to="/adminpanel/adminhome"
-                >
-                  <img className="h-[35px]" src={adminpanel} alt="AdminPanel" />
-                  <span className="block md:hidden">Admin Panel</span>
-                </Link>
-              )}
-              {userInfo?.role === "customer" && (
-                <>
-                  <Link
-                    className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-                    data-tip="Dashboard"
-                    to="/dashboard/userhome"
-                  >
-                    <img className="h-[35px]" src={dashboard} alt="Dashboard" />
-                    <span className="block md:hidden">Dashboard</span>
-                  </Link>
-                  <Link
-                    className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-                    data-tip="Cart"
-                    to="/dashboard/cart"
-                  >
-                    <div className="relative text-primary">
-                      <img className="h-[42px]" src={cartlogo} alt="Cart" />
-                      <div className="badge badge-md badge-primary absolute top-[-15px] right-[-10px]">
-                        {cart?.length || 0}
-                      </div>
-                    </div>
-                    <span className="block md:hidden">Cart</span>
-                  </Link>
-                </>
-              )}
-              {userInfo?.role === "seller" && (
-                <Link
-                  className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-                  data-tip="Seller Dashboard"
-                  to="/sellerdashboard/sellerprofile"
-                >
-                  <img
-                    className="h-[35px]"
-                    src={sellerdash}
-                    alt="Seller Dashboard"
-                  />
-                  <span className="block md:hidden">Seller Dashboard</span>
-                </Link>
-              )}
-            </div>
-          ) : (
-            ""
-          )}
-          {user ? (
-            userInfo?.picture ? (
-              <div
-                className="flex items-center gap-2 lg:tooltip lg:tooltip-bottom"
-                data-tip={userInfo?.name}
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-1">
+            
+            {/* Home Link */}
+            <Link to="/">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all font-medium"
               >
-                <img
-                  className="h-[42px] w-[42px] rounded-full shadow-md shadow-success border-2 border-success"
-                  src={userInfo?.picture}
-                  alt="User"
-                />
-                <span className="block md:hidden">{userInfo?.name}</span>
-              </div>
-            ) : (
-              <div
-                className="flex items-center gap-2 md:tooltip md:tooltip-bottom"
-                data-tip={userInfo?.name}
-              >
-                <img
-                  className="h-[42px] w-[42px] rounded-full"
-                  src={noPic}
-                  alt="User"
-                />
-                <span className="block md:hidden">{userInfo?.name}</span>
-              </div>
-            )
-          ) : (
-            <div className="md:tooltip md:tooltip-bottom" data-tip="Guest">
-              <img className="h-[42px] w-[42px]" src={guestPic} alt="Guest" />
-            </div>
-          )}
-          {user ? (
-            <button
-              onClick={handleLogOut}
-              className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-500 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
-            >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-700"></span>
-              <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-              <span className="relative text-white">Logout</span>
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              className="box-border relative z-30 inline-flex items-center justify-center  px-4 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none"
-            >
-              <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
-              <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
-              <span className="relative z-20 flex items-center text-sm">
-                <svg
-                  className="relative w-5 h-5 mr-2 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                   
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  ></path>
-                </svg>
-                Login
-              </span>
+                <FaHome className="text-lg" />
+                <span>Home</span>
+              </motion.button>
             </Link>
-          )}
-          <label className="flex cursor-pointer gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-            </svg>
-            <input
-              type="checkbox"
-              value="forest"
-              className="toggle theme-controller"
-              onChange={handleChangeTheme}
-              checked={mode}
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </label>
-        </div>
 
-        <div className="resposive-nav pr-2">
-          <img
+            {/* All Products Link */}
+            <Link to="/allProducts">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all font-medium"
+              >
+                <FaShoppingBag className="text-lg" />
+                <span>Products</span>
+              </motion.button>
+            </Link>
+
+            {/* Role-Based Navigation */}
+            {user && (
+              <>
+                {userInfo?.role === "admin" && (
+                  <Link to="/adminpanel/adminhome">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all font-medium"
+                    >
+                      <FaUserShield className="text-lg" />
+                      <span>Admin Panel</span>
+                    </motion.button>
+                  </Link>
+                )}
+
+                {userInfo?.role === "customer" && (
+                  <>
+                    <Link to="/dashboard/userhome">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all font-medium"
+                      >
+                        <FaTachometerAlt className="text-lg" />
+                        <span>Dashboard</span>
+                      </motion.button>
+                    </Link>
+
+                    <Link to="/dashboard/cart">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="relative flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all font-medium"
+                      >
+                        <FaShoppingCart className="text-lg" />
+                        <span>Cart</span>
+                        {cart?.length > 0 && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="absolute -top-1 -right-1 bg-green-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                          >
+                            {cart.length}
+                          </motion.span>
+                        )}
+                      </motion.button>
+                    </Link>
+                  </>
+                )}
+
+                {userInfo?.role === "seller" && (
+                  <Link to="/sellerdashboard/sellerprofile">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all font-medium"
+                    >
+                      <FaStore className="text-lg" />
+                      <span>My Store</span>
+                    </motion.button>
+                  </Link>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Right Side - User & Actions */}
+          <div className="hidden lg:flex items-center gap-3">
+            
+            {/* Theme Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleChangeTheme}
+              className="p-2 rounded-lg hover:bg-gray-100 text-gray-700 transition-colors"
+            >
+              {mode ? <FaMoon className="text-xl" /> : <FaSun className="text-xl" />}
+            </motion.button>
+
+            {/* User Section */}
+            {user ? (
+              <>
+                {/* User Avatar/Name */}
+                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 rounded-lg">
+                  {userInfo?.picture ? (
+                    <img
+                      src={userInfo.picture}
+                      alt={userInfo?.name}
+                      className="w-8 h-8 rounded-full object-cover border-2 border-green-500"
+                    />
+                  ) : (
+                    <FaUserCircle className="text-3xl text-green-600" />
+                  )}
+                  <span className="font-medium text-gray-700 text-sm max-w-[100px] truncate">
+                    {userInfo?.name || "User"}
+                  </span>
+                </div>
+
+                {/* Logout Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleLogOut}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-lg hover:from-red-600 hover:to-pink-600 shadow-md hover:shadow-lg transition-all"
+                >
+                  <FaSignOutAlt />
+                  <span>Logout</span>
+                </motion.button>
+              </>
+            ) : (
+              <Link to="/login">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-lg hover:from-green-600 hover:to-emerald-600 shadow-md hover:shadow-lg transition-all"
+                >
+                  <FaSignInAlt />
+                  <span>Login</span>
+                </motion.button>
+              </Link>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={controlNav}
-            className="h-[40px]"
-            src={clicked ? cancel : menu}
-            alt="Menu"
-          />
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-700"
+          >
+            {clicked ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+          </motion.button>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {clicked && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white border-t border-gray-200 overflow-hidden"
+          >
+            <div className="container mx-auto px-4 py-6 space-y-2">
+              
+              {/* Mobile Links */}
+              <Link to="/" onClick={() => setClicked(false)}>
+                <motion.div
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-50 text-gray-700 hover:text-green-600 transition-colors font-medium"
+                >
+                  <FaHome className="text-xl" />
+                  <span>Home</span>
+                </motion.div>
+              </Link>
+
+              <Link to="/allProducts" onClick={() => setClicked(false)}>
+                <motion.div
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-50 text-gray-700 hover:text-green-600 transition-colors font-medium"
+                >
+                  <FaShoppingBag className="text-xl" />
+                  <span>All Products</span>
+                </motion.div>
+              </Link>
+
+              {user && (
+                <>
+                  {userInfo?.role === "admin" && (
+                    <Link to="/adminpanel/adminhome" onClick={() => setClicked(false)}>
+                      <motion.div
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-purple-50 text-gray-700 hover:text-purple-600 transition-colors font-medium"
+                      >
+                        <FaUserShield className="text-xl" />
+                        <span>Admin Panel</span>
+                      </motion.div>
+                    </Link>
+                  )}
+
+                  {userInfo?.role === "customer" && (
+                    <>
+                      <Link to="/dashboard/userhome" onClick={() => setClicked(false)}>
+                        <motion.div
+                          whileTap={{ scale: 0.98 }}
+                          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                          <FaTachometerAlt className="text-xl" />
+                          <span>Dashboard</span>
+                        </motion.div>
+                      </Link>
+
+                      <Link to="/dashboard/cart" onClick={() => setClicked(false)}>
+                        <motion.div
+                          whileTap={{ scale: 0.98 }}
+                          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-50 text-gray-700 hover:text-green-600 transition-colors font-medium relative"
+                        >
+                          <FaShoppingCart className="text-xl" />
+                          <span>Cart</span>
+                          {cart?.length > 0 && (
+                            <span className="ml-auto bg-green-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                              {cart.length}
+                            </span>
+                          )}
+                        </motion.div>
+                      </Link>
+                    </>
+                  )}
+
+                  {userInfo?.role === "seller" && (
+                    <Link to="/sellerdashboard/sellerprofile" onClick={() => setClicked(false)}>
+                      <motion.div
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 text-gray-700 hover:text-orange-600 transition-colors font-medium"
+                      >
+                        <FaStore className="text-xl" />
+                        <span>Seller Dashboard</span>
+                      </motion.div>
+                    </Link>
+                  )}
+                </>
+              )}
+
+              {/* Mobile User Section */}
+              <div className="border-t border-gray-200 pt-4 mt-4">
+                {user ? (
+                  <>
+                    <div className="flex items-center gap-3 px-4 py-3 bg-green-50 rounded-lg mb-3">
+                      {userInfo?.picture ? (
+                        <img
+                          src={userInfo.picture}
+                          alt={userInfo?.name}
+                          className="w-10 h-10 rounded-full object-cover border-2 border-green-500"
+                        />
+                      ) : (
+                        <FaUserCircle className="text-4xl text-green-600" />
+                      )}
+                      <div>
+                        <p className="font-semibold text-gray-800">{userInfo?.name || "User"}</p>
+                        <p className="text-xs text-gray-500">{userInfo?.email}</p>
+                      </div>
+                    </div>
+
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => {
+                        handleLogOut();
+                        setClicked(false);
+                      }}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-lg hover:from-red-600 hover:to-pink-600 transition-all"
+                    >
+                      <FaSignOutAlt />
+                      <span>Logout</span>
+                    </motion.button>
+                  </>
+                ) : (
+                  <Link to="/login" onClick={() => setClicked(false)}>
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-lg hover:from-green-600 hover:to-emerald-600 transition-all"
+                    >
+                      <FaSignInAlt />
+                      <span>Login</span>
+                    </motion.button>
+                  </Link>
+                )}
+
+                {/* Mobile Theme Toggle */}
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleChangeTheme}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 mt-3 border-2 border-gray-200 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors font-medium"
+                >
+                  {mode ? <FaMoon className="text-xl" /> : <FaSun className="text-xl" />}
+                  <span>{mode ? "Dark Mode" : "Light Mode"}</span>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 };
 

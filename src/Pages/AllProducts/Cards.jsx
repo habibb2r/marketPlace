@@ -1,37 +1,22 @@
 import { Rating } from "@smastrom/react-rating";
-import "./Cards.css";
 import "@smastrom/react-rating/style.css";
-import { TbCurrencyTaka } from "react-icons/tb";
-import { BsShop } from "react-icons/bs";
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaShoppingCart, FaEye, FaStore, FaBox } from "react-icons/fa";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useCart from "../../Hooks/useCart";
-import cart from "../../icons/005-add-to-cart.png";
-import details from "../../icons/info.png";
 import useGetUserInfo from "../Dashboard/UserDashBoard/UserHooks/useGetUserInfo";
-import quanityimg from "../../assets/basic/quantity.png";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
 
-const Cards = ({ data, refetchAllItems }) => {
+const Cards = ({ data, refetchAllItems, viewMode = "grid" }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const [, , refetch] = useCart();
-  const [userInfo, ,] = useGetUserInfo();
-
-  const ref = useRef(null);
-  const controls = useAnimation();
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [controls, isInView]);
+  const [userInfo] = useGetUserInfo();
 
   const {
     product_image,
@@ -44,7 +29,7 @@ const Cards = ({ data, refetchAllItems }) => {
   } = data;
 
   const addToCart = (item) => {
-    if (user && user.email && userInfo?.role == "customer") {
+    if (user && user.email && userInfo?.role === "customer") {
       const cartItem = {
         stall_id: item.stall.id,
         cartData: {
@@ -58,12 +43,11 @@ const Cards = ({ data, refetchAllItems }) => {
         },
       };
       axiosSecure.post("/addToCart", cartItem).then((res) => {
-        console.log(res.data);
         if (res.data?.result?.status) {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `Added to Cart Successfully`,
+            title: "Added to Cart Successfully",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -78,7 +62,7 @@ const Cards = ({ data, refetchAllItems }) => {
         }
       });
     } else {
-      if (userInfo?.role == "admin" || userInfo?.role == "seller") {
+      if (userInfo?.role === "admin" || userInfo?.role === "seller") {
         Swal.fire({
           title: "Admin and Seller Cannot Buy Items",
           text: "You have to login with customer account",
@@ -110,139 +94,208 @@ const Cards = ({ data, refetchAllItems }) => {
     }
   };
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 10 }}
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 10 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: "easeOut" },
-        },
-      }}
-      whileHover={{ y: -5 }}
-      className="w-full"
-    >
-      <div className="relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full">
-        {/* Discount Badge */}
-        {product_price.discount && (
-          <div className="absolute top-4 left-4 z-10">
-            <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-              {Math.round(
-                ((product_price.previous_price - product_price.present_price) /
-                  product_price.previous_price) *
-                  100
-              )}
-              % OFF
-            </span>
-          </div>
-        )}
+  const discountPercentage = product_price.previous_price > product_price.present_price
+    ? Math.round(((product_price.previous_price - product_price.present_price) / product_price.previous_price) * 100)
+    : 0;
 
-        {/* Quick Actions */}
-        <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
-          <Link
-            to={`/details/${_id}`}
-            className="bg-white p-2 rounded-full shadow-lg hover:bg-primary group relative flex items-center"
-          >
-            <img
-              className="h-5 w-5 group-hover:invert transition-all duration-300"
-              src={details}
-              alt="Details"
-            />
-            <span className="absolute right-full mr-2 bg-black text-white text-xs py-1 px-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-              View Details
-            </span>
-          </Link>
-          <button
-            onClick={() => addToCart(data)}
-            className="bg-white p-2 rounded-full shadow-lg hover:bg-primary group relative flex items-center"
-          >
-            <img
-              className="h-5 w-5 group-hover:invert transition-all duration-300"
-              src={cart}
-              alt="Add to cart"
-            />
-            <span className="absolute right-full mr-2 bg-black text-white text-xs py-1 px-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-              Add to Cart
-            </span>
-          </button>
-        </div>
-
+  // Grid View
+  if (viewMode === "grid") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
+        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col"
+      >
         {/* Product Image */}
-        <div className="relative overflow-hidden pt-[100%]">
-          <img
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-            src={product_image}
-            alt={product_name}
-          />
+        <div className="relative h-52 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+          <Link to={`/details/${_id}`}>
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src={product_image}
+              alt={product_name}
+              className="w-full h-full object-cover"
+            />
+          </Link>
+
+          {/* Discount Badge */}
+          {discountPercentage > 0 && (
+            <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+              {discountPercentage}% OFF
+            </div>
+          )}
+
+          {/* Stock Badge */}
+          <div className="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+            <FaBox className="text-xs" />
+            {quantity}
+          </div>
+
+          {/* Hover Actions */}
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+            <Link to={`/details/${_id}`}>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-3 bg-white rounded-full text-gray-800 hover:bg-green-500 hover:text-white transition-colors shadow-lg"
+              >
+                <FaEye className="text-xl" />
+              </motion.button>
+            </Link>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => addToCart(data)}
+              className="p-3 bg-white rounded-full text-gray-800 hover:bg-green-500 hover:text-white transition-colors shadow-lg"
+            >
+              <FaShoppingCart className="text-xl" />
+            </motion.button>
+          </div>
         </div>
 
         {/* Product Info */}
-        <div className="p-4 sm:p-5">
-          <div className="space-y-3">
-            {/* Title and Rating */}
-            <div>
-              <h3 className="text-base sm:text-lg font-medium text-gray-800 line-clamp-2 min-h-[2.5rem] hover:text-primary transition-colors">
+        <div className="p-5 flex-1 flex flex-col">
+          <Link to={`/details/${_id}`}>
+            <h3 className="font-bold text-lg text-gray-800 mb-2 truncate group-hover:text-green-600 transition-colors">
+              {product_name}
+            </h3>
+          </Link>
+
+          {/* Rating */}
+          <div className="flex items-center gap-2 mb-3">
+            <Rating style={{ maxWidth: 90 }} value={product_rating} readOnly />
+            <span className="text-sm text-gray-500">({product_rating})</span>
+          </div>
+
+          {/* Price */}
+          <div className="mb-3 flex items-center gap-4">
+            <div className="flex items-center text-xl font-bold text-green-600">
+              <FaBangladeshiTakaSign />
+              <span>{product_price.present_price}</span>
+            </div>
+            {discountPercentage > 0 && (
+              <div className="flex items-center text-gray-400 line-through text-sm mb-1">
+                <FaBangladeshiTakaSign className="text-xs" />
+                <span>{product_price.previous_price}</span>
+              </div>
+            )}
+            
+          </div>
+
+          {/* Shop Name */}
+          <div className="mt-auto pt-3 border-t border-gray-100">
+            <Link
+              to={`/shopDetails/${stall.id}`}
+              className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-600 transition-colors"
+            >
+              <FaStore />
+              <span className="truncate font-medium">{stall.name}</span>
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // List View
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      whileHover={{ scale: 1.01 }}
+      transition={{ duration: 0.3 }}
+      className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+    >
+      <div className="flex flex-col sm:flex-row gap-4 p-4">
+        {/* Product Image */}
+        <div className="relative w-full sm:w-48 h-32 flex-shrink-0 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl overflow-hidden">
+          <Link to={`/details/${_id}`}>
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+              src={product_image}
+              alt={product_name}
+              className="w-full h-full object-cover"
+            />
+          </Link>
+
+          {/* Discount Badge */}
+          {discountPercentage > 0 && (
+            <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-lg text-xs font-bold">
+              {discountPercentage}% OFF
+            </div>
+          )}
+        </div>
+
+        {/* Product Details */}
+        <div className="flex-1 flex justify-between">
+          <div>
+            <Link to={`/details/${_id}`}>
+              <h3 className="font-bold text-xl text-gray-800 mb-2 group-hover:text-green-600 transition-colors line-clamp-2">
                 {product_name}
               </h3>
-              <div className="flex items-center gap-2 mt-2">
-                <Rating
-                  style={{ maxWidth: 80 }}
-                  value={product_rating}
-                  readOnly
-                />
-                <span className="text-xs text-gray-500">
-                  ({product_rating})
-                </span>
-              </div>
-            </div>
+            </Link>
 
-            {/* Price */}
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                {product_price.discount && (
-                  <div className="flex items-center text-gray-400 line-through text-sm">
-                    <TbCurrencyTaka className="text-base" />
-                    <span>{product_price.previous_price}</span>
-                  </div>
-                )}
-                <div className="flex items-center text-primary font-bold text-lg sm:text-xl">
-                  <TbCurrencyTaka className="text-xl sm:text-2xl" />
-                  <span>{product_price.present_price}</span>
-                </div>
-              </div>
-
-              {/* Quantity Badge */}
-              <div
-                className="flex items-center gap-1 bg-primary/5 px-2 py-1 rounded-full"
-                data-tip="Available Quantity"
-              >
-                <img className="h-4 w-4 opacity-70" src={quanityimg} alt="" />
-                <span className="text-sm font-medium text-primary">
-                  {quantity}
-                </span>
-              </div>
+            {/* Rating */}
+            <div className="flex items-center gap-2 mb-3">
+              <Rating style={{ maxWidth: 100 }} value={product_rating} readOnly />
+              <span className="text-sm text-gray-500">({product_rating} stars)</span>
             </div>
 
             {/* Shop Info */}
-            <div className="flex items-center gap-2 text-gray-600 pt-1">
-              <BsShop className="text-primary text-sm" />
-              <p className="text-sm font-medium truncate">{stall.name}</p>
+            <Link
+              to={`/shopDetails/${stall.id}`}
+              className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-600 transition-colors mb-3"
+            >
+              <FaStore />
+              <span className="font-medium">{stall.name}</span>
+            </Link>
+
+            {/* Stock */}
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <FaBox className="text-green-600" />
+              <span><span className="font-semibold">{quantity}</span> in stock</span>
+            </div>
+          </div>
+
+          {/* Price and Action */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-4">
+            <div>
+              {discountPercentage > 0 && (
+                <div className="flex items-center text-gray-400 line-through text-sm mb-1">
+                  <FaBangladeshiTakaSign className="text-xs" />
+                  <span>{product_price.previous_price}</span>
+                </div>
+              )}
+              <div className="flex items-center text-3xl font-bold text-green-600">
+                <FaBangladeshiTakaSign />
+                <span>{product_price.present_price}</span>
+              </div>
             </div>
 
-            {/* Mobile Add to Cart Button */}
-            <div className="block sm:hidden pt-2">
-              <button
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <Link to={`/details/${_id}`}>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 border-2 border-green-600 text-green-600 rounded-xl font-semibold hover:bg-green-50 transition-colors flex items-center gap-2"
+                >
+                  <FaEye />
+                  <span>View</span>
+                </motion.button>
+              </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => addToCart(data)}
-                className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
               >
-                <img className="h-5 w-5 invert" src={cart} alt="" />
-                <span className="text-sm font-medium">Add to Cart</span>
-              </button>
+                <FaShoppingCart />
+                <span>Add to Cart</span>
+              </motion.button>
             </div>
           </div>
         </div>
